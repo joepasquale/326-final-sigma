@@ -19,6 +19,7 @@ The main complaints that users of Goodreads have refer to the review and rating 
 
 Many users also complain about the stability of the application itself, stating that 
 > The app crashes often and is slow in general.
+
 We aim to make a more stable and quick application by the end of the semester. You can find a thread of complaints [here](https://news.ycombinator.com/item?id=20904549).
 
 ## Important Components
