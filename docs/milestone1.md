@@ -22,16 +22,18 @@ Many users also complain about the stability of the application itself, stating 
 
 We aim to make a more stable and quick application by the end of the semester. You can find a thread of complaints [here](https://news.ycombinator.com/item?id=20904549).
 
-## Important Components
-- Users will be able to add a book to one of three lists: "Have Read", "Currently Reading", and "Will Read".
+## Data interactions
+- Users will be able to add a book to one of four lists: "Have Read", "Currently Reading", "Dropped/Stopped reading" and "Will Read".
 - Users will be able to add a book to their profile by inputting some critical information. These books will be pushed to a database, so that if another user was to try and log the same book, it would show up for them too.
-- Users will be able to write reviews for books (in a similar fashion to how users make posts on Facebook), and will also be able to write comments on friends' reviews.
+- Users will be able to write reviews for books (in a similar fashion to how users make posts on Facebook), and will also be able to write comments on friends' reviews/feed updates.
 - Users will be able to add other users as 'friends' and will be able to view their friend's reading lists and review history.
-- Each book will have its own page where you can read the reviews and ratings for the books as well as a potential stretch goals with links to where to buy the book
-- Each user will have their own profile page that will allow users to see their review history, friends list, and books they are reading
-- We are hoping to include a book database so most books do not have to be manually added to our website by Users, we will still give the option for users to manually add books if the book does not already exist on our website
+- Each book will have its own page where you can read the reviews and ratings for the books as well as a potential stretch goals such as adding links to where to buy the book
+- Each user will have their own profile page that will allow users to see their review history, friends list, and books they have on their various lists.
+- We are hoping to include a book database so most books do not have to be manually added to our website by Users.
 - Since users have friends we will have to have page for managing friends such as pending requests and current friends as well as a way to delete friends.
 - Users will be able to create accounts as a way to save the books they are Reading and add friends
 - You will still be able to access the website without logging in so you can read reviews of books, but you will not be able to comment, rate, or do other actions that pertain to having a profile
 - The website will need some sort of search functionality in order to find books or profiles. Thus we will need an additional page that gives back a well formatted list of search results as well as search bar somewhere on our page.
 - We will also include a page for logging into our website as well as registering an accounts
+- Add a recommend function that will recommend books based on the user's lists of books using highly rated books and their info. This should be different than how goodreads does it ( see complaint above)
+- When looking at their own list, the user can interact with an action button (will figure out what its called later) where they can move books to other lists, change data, remove, etc.
