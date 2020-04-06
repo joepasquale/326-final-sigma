@@ -109,12 +109,16 @@
 
     <div class="container" style = "border: 4px solid black; padding:20px; margin-top: 25px; border-radius: 15px;">
         <div class="row">
+            <h1>Add a book to your list?</h1>
+        </div>
+        <div class="row">
             <div class="col-sm-3"> 
+                <div class="row-sm-8"> <!-- This is where book pic can be added and is displayed.-->
+                    
+                    <img src="../resources/shining.jpg" height="336" width="168"></img>
+                </div>
                 <div class="row-sm-2">
                     <p>Upload the book cover?</p>
-                </div>
-                <div class="row-sm-8"> <!-- This is where book pic can be added and is displayed-->
-                    <img src="../resources/shining.jpg" height="336" width="168"></img>
                 </div>
                 <div class="row-sm-2">
                     <div class="col">
@@ -125,8 +129,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
-                <p>test</p>
+            <div class="col-sm-9"> <!-- Inputs for book-->
+                <div class="row">
+                    <label id = "addListForm" for="addList"><h4>Add to which list?</h4></label><br>
+                    <select id="addList">
+                        <option value="wantR">Want to Read</option>
+                        <option value="curR">Currently Reading</option>
+                        <option value="comR">Completed Reading</option>
+                        <option value="stopR">Stopped Reading</option>
+                    </select>
+                </div>
+                
             </div>
 
         </div>
