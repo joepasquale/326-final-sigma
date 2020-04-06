@@ -92,7 +92,7 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="form-inline  pt-3">
+            <div class="form pt-3 col-sm-8 col-md-6 col-lg-5">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search...">
                     <div class="input-group-append">
@@ -116,14 +116,41 @@
                 </table>
             </div>
             <div class="tab-pane fade show active" id="reading" role="tabpanel" aria-labelledby="reading-tab">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-
+               <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="align-middle" scope="row">1</th>
+                            <td class="align-middle">
+                                <div style="width:45px;">
+                                    <img src="../resources/shining.jpg" alt="..." class="img-thumbnail">
+                                </div>
+                            </td>
+                            <td class="align-middle"><h6><a href="">Green Eggs and Ham</a></h6></td>
+                            <td class="align-middle">Dr. Seuss</tdclass="align-middle">
+                            <td class="align-middle">Fiction</td>
+                            <td class="align-middle">8.7/10</td>
+                            <td class="align-middle">
+                                <button class="btn border" type="button">
+                                    <i class="far fa-edit"></i> Edit
+                                </button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                </div>
             </div>
             <div class="tab-pane fade" id="finished" role="tabpanel" aria-labelledby="finished-tab">
                 ...
