@@ -52,6 +52,13 @@
             padding: 5px;
         }
 
+        .inputBorder{
+            border: 4px solid black;
+            padding: 10px;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+
     </style>
     <title>Book Feed Add</title>
 </head>
@@ -131,17 +138,46 @@
             </div>
             <div class="col-sm-9"> <!-- Inputs for book-->
                 <div class="row">
-                    <label id = "addListForm" for="addList"><h4>Add to which list?</h4></label><br>
+                    <label id = "addListForm" required for="addList"><p>Add to which list?</p></label> <!--Which List-->
                     <select id="addList">
                         <option value="wantR">Want to Read</option>
                         <option value="curR">Currently Reading</option>
                         <option value="comR">Completed Reading</option>
                         <option value="stopR">Stopped Reading</option>
                     </select>
-                </div>
-                
-            </div>
 
+                    <p>Book Title</p> <!--Book Title-->
+                    <textarea class="inputBorder" required cols= "30" rows = "1" placeholder = "Book Title"></textarea>
+
+                    <p>Author Name</p> <!--Author Name-->
+                    <textarea class="inputBorder" required cols= "30" rows = "1" placeholder = "Auhtor Name"></textarea>
+
+                    <p>Genre</p>
+                    <select id="bookGenre" required> <!-- Pick genre, will fill out later which genes we agree on adding-->
+                        <option value="optionA">Genre A</option>
+                        <option value="optionB">Genre B</option>
+                        <option value="optionC">Genre C</option>
+                    </select>
+
+                    <p>Rating</p>
+                    <select id="bookRating"> <!-- Pick genre, will fill out later which genes we agree on adding-->
+                        <option value="option10">10</option>
+                        <option value="option9">9</option>
+                        <option value="option8">8</option>
+                        <option value="option7">7</option>
+                        <option value="option6">6</option>
+                        <option value="option5">5</option>
+                        <option value="option4">4</option>
+                        <option value="option3">3</option>
+                        <option value="option2">2</option>
+                        <option value="option1">1</option>
+                    </select>
+
+                    <p>Leave a review?</p>
+                    <textarea class="commentBorder" cols= "100" rows = "3" placeholder = "Leave a comment."></textarea>
+
+                </div>
+            </div>
         </div>
     </div>
 </body>
