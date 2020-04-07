@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/NavBarStyle.css" />
     
-    <title>Book Feed Add</title>
+    <title>Shelf: [BOOK TITLE]</title> <!-- Change this depedning on which book you are looking at-->
 </head>
 
 
@@ -66,10 +66,54 @@
     </nav>
     <!--Top bar End-->
 
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white;">
+    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white;"> <!--Book page example starts-->
+        <div class="row">
+            <h1>[BOOK TITLE]</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="../resources/harrypotter.jpg" height="336" width="168" ></img>
+            </div>
+            <div class="col-sm-10">
+                <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white;">
+                    <div class="row" style="font-size: 30px;">
+                        <div class="col-sm-2">
+                            <label id="quickAdd" required for="quickAdd"><p>In List</p></label> <!--Which List-->
+                        </div>
+                        <div class="col-sm-10">
+                            <select id="quickAdd">
+                                <option value="none">None</option> <!-- by adding to NONE, it would remove from users list?-->
+                                <option value="wantR">Want to Read</option> <!-- by selecting any list, it would add/move to that list-->
+                                <option value="curR">Currently Reading</option>
+                                <option value="comR">Completed Reading</option>
+                                <option value="stopR">Stopped Reading</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="row" style="font-size: 30px;">
+                        <p>Genre: [GENRE]</p>
+                    </div>
+                    <div class="row" style="font-size: 30px;">
+                        <p>Author: [GENRE]</p>
+                    </div>
+                    <div class="row" style="font-size: 30px;">
+                        <p>Average Rating: [Average Rating]</p>
+                    </div>
+                    <div class="row" style="font-size: 30px;">
+                        <p>Published: [DATE]</p>
+                    </div>
+                    <div class="row" style="font-size: 30px;">
+                        <p>Published by: [Publisher]</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
         
-        
-    </div>
+    </div><!--Book page example ends-->
 
         <!--Footer Start-->
         <footer class="py-5" style="background-color: #335482" ;>
