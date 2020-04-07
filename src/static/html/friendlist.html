@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/NavBarStyle.css" />
     <title>Shelf</title>
+    <style>
+        .btn-circle {
+            width: 30px;
+            height: 30px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.42857;
+        }
+
+    </style>
 </head>
 <body>
     <!--Top bar Start-->
@@ -67,15 +79,19 @@
     <!--Top bar End-->
     <!--Page Content Start-->
     <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+        <!--User Name-->
+        <h3 class="mb-3">Username's Friend(s)</h3>
         <!--Tabs-->
         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="wishlist" aria-selected="true">Want to Read</a>
+                <a class="nav-link active" id="friends-tab" data-toggle="tab" href="#friends" role="tab" aria-controls="wishlist" aria-selected="true">Friends</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="reading" aria-selected="false">Currently Reading</a>
+                <a class="nav-link" id="requests-tab" data-toggle="tab" href="#requests" role="tab" aria-controls="requests" aria-selected="false">Requests</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="sent" aria-selected="false">Sent</a>
+            </li>
         </ul>
         <!--Static Tab Content-->
         <div class="tab-content" id="myTabContent">
@@ -92,47 +108,29 @@
             </div>
             <hr />
             <!--First Tab Content-->
-            <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
-                <table class="container text-center" style="height: 400px">
-                    <tbody>
-                        <tr>
-                            <td class="align-middle">
-                                <h6 class="text-black-50 display-1">Book List Empty</h6>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--Second Tab Content-->
-            <div class="tab-pane fade show active" id="reading" role="tabpanel" aria-labelledby="reading-tab">
+            <div class="tab-pane fade show active" id="friends" role="tabpanel" aria-labelledby="wishlist-tab">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Genre</th>
-                                <th scope="col">Rating</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="align-middle" scope="row">1</th>
                                 <td class="align-middle">
                                     <div style="width:45px;">
-                                        <img src="../resources/shining.jpg" alt="..." class="img-thumbnail">
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;"}>
                                     </div>
                                 </td>
-                                <td class="align-middle"><h6><a href="">Green Eggs and Ham</a></h6></td>
-                                <td class="align-middle">Dr. Seuss</tdclass="align-middle">
-                                <td class="align-middle">Fiction</td>
-                                <td class="align-middle">8.7/10</td>
+                                <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
+                                <td class="align-middle">jvasilevsky@umass.edu</td>
                                 <td class="align-middle">
-                                    <button class="btn border" type="button">
-                                        <i class="far fa-edit"></i> Edit
+                                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="right" title="Remove Friend">
+                                        <i class="fa fa-times"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -141,6 +139,73 @@
                     </table>
                 </div>
             </div>
+            <!--Second Tab Content-->
+            <div class="tab-pane fade" id="requests" role="tabpanel" aria-labelledby="reading-tab">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div style="width:45px;">
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
+                                <td class="align-middle">jvasilevsky@umass.edu</td>
+                                <td class="align-middle">
+                                    <button type="button" class="btn btn-outline-success btn-circle" data-toggle="tooltip" data-placement="top" title="Accept Friend Request">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Deny Friend Request">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Third Tab Content-->
+            <div class="tab-pane fade" id="sent" role="tabpanel" aria-labelledby="reading-tab">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                     <div style="width:45px;">
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
+                                <td class="align-middle">jvasilevsky@umass.edu</td>
+                                <td class="align-middle">
+                                    <small>Pending...</small>
+                                   
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 
         </div>
     </div>
