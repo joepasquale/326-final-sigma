@@ -7,27 +7,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            outline: 0;
-            font-size: 100%;
-            vertical-align: baseline;
-            background: transparent;
-        }
-        body {
-            padding-top: 50px;
-            background-color: #fafafa;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/NavBarStyle.css" />
     <title>Shelf</title>
 </head>
 <body>
 
     <!--Top bar Start-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top"  style="background-color: #335482";>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5" style="background-color: #335482" ;>
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="../resources/logo.png" width="105" height="48" class="d-inline-block align-top" alt="Shelf">
@@ -38,29 +24,35 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link lead" href="#">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-compass"></i> Discover
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-list"></i> Books
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-list"></i>
+                            My Books
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user-friends"></i>
-                            Friends
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-poo"></i>
-                        Profile
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-user"></i>
+                            Profile
                         </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search...">
                         <div class="input-group-append">
@@ -69,12 +61,11 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
     <!--Top bar End-->
-
     <!--Page Content Start-->
     <div class="container">
         <header class="jumbotron my-4">
@@ -82,20 +73,15 @@
         </header>
     </div>
     <!--Page Content End-->
-
     <!--Footer Start-->
-    <footer class="py-5" style="background-color: #335482";>
+    <footer class="py-5" style="background-color: #335482" ;>
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Sigma 2020</p>
         </div>
     </footer>
     <!--Footer End-->
-
-
-
     <!--Our JavaScript Start -->
     <!--Our JavaScript End-->
-
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

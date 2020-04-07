@@ -3,62 +3,47 @@
 <head>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/NavBarStyle.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            outline: 0;
-            font-size: 100%;
-            vertical-align: baseline;
-            background: transparent;
-            margin: auto;
-        }
-
-        body {
-            padding-top: 50px;
-            background-color: #fafafa;
-        }
-        
-        .textUI{
-            color:black;
+        .textUI {
+            color: black;
             padding: 10px;
             margin-right: 50px;
-            font-size: 20;  
+            font-size: 20;
         }
 
-        .uploadButton{
+        .uploadButton {
             border: 4px solid black;
             padding: 10px;
-            float: left;  
-            margin-top:15px;
-            margin-left:-15px;
+            float: left;
+            margin-top: 15px;
+            margin-left: -15px;
             border-radius: 15px;
-
         }
-        .confirmButton{
+
+        .confirmButton {
             border: 4px solid black;
             background-color: lightskyblue;
             padding: 10px;
-            float: left;  
-            margin-top:15px;
-            margin-left:11px;
+            float: left;
+            margin-top: 15px;
+            margin-left: 11px;
             border-radius: 15px;
         }
-        
-        
-        .borderLine{
+
+
+        .borderLine {
             border: 5px solid black;
             padding: 5px;
         }
 
-        .inputBorder{
+        .inputBorder {
             border: 4px solid black;
             padding: 10px;
             margin-top: 5px;
             margin-left: 10px;
         }
-
     </style>
     <title>Book Feed Add</title>
 </head>
@@ -66,7 +51,7 @@
 
 <body>
     <!--Top bar Start-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #335482" ;>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5" style="background-color: #335482" ;>
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="../resources/logo.png" width="105" height="48" class="d-inline-block align-top" alt="Shelf">
@@ -77,29 +62,35 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link lead" href="#">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-compass"></i> Discover
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-list"></i> Books
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-list"></i>
+                            My Books
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user-friends"></i>
-                            Friends
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-poo"></i>
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-user"></i>
                             Profile
                         </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search...">
                         <div class="input-group-append">
@@ -108,20 +99,21 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
     <!--Top bar End-->
 
-    <div class="container" style = "border: 4px solid black; padding:20px; margin-top: 25px; border-radius: 15px;">
+    <div class="container" style="border: 4px solid black; padding:20px; margin-top: 25px; border-radius: 15px;">
         <div class="row">
             <h1>Add a book to your list?</h1>
         </div>
         <div class="row">
-            <div class="col-sm-3"> 
-                <div class="row-sm-8"> <!-- This is where book pic can be added and is displayed.-->
-                    
+            <div class="col-sm-3">
+                <div class="row-sm-8">
+                    <!-- This is where book pic can be added and is displayed.-->
+
                     <img src="../resources/shining.jpg" height="336" width="168"></img>
                 </div>
                 <div class="row-sm-2">
@@ -136,9 +128,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9"> <!-- Inputs for book-->
+            <div class="col-sm-9">
+                <!-- Inputs for book-->
                 <div class="row">
-                    <label id = "addListForm" required for="addList"><p>Add to which list?</p></label> <!--Which List-->
+                    <label id="addListForm" required for="addList"><p>Add to which list?</p></label> <!--Which List-->
                     <select id="addList">
                         <option value="wantR">Want to Read</option>
                         <option value="curR">Currently Reading</option>
@@ -147,20 +140,22 @@
                     </select>
 
                     <p>Book Title</p> <!--Book Title-->
-                    <textarea class="inputBorder" required cols= "30" rows = "1" placeholder = "Book Title"></textarea>
+                    <textarea class="inputBorder" required cols="30" rows="1" placeholder="Book Title"></textarea>
 
                     <p>Author Name</p> <!--Author Name-->
-                    <textarea class="inputBorder" required cols= "30" rows = "1" placeholder = "Auhtor Name"></textarea>
+                    <textarea class="inputBorder" required cols="30" rows="1" placeholder="Auhtor Name"></textarea>
 
                     <p>Genre</p>
-                    <select id="bookGenre" required> <!-- Pick genre, will fill out later which genes we agree on adding-->
+                    <select id="bookGenre" required>
+                        <!-- Pick genre, will fill out later which genes we agree on adding-->
                         <option value="optionA">Genre A</option>
                         <option value="optionB">Genre B</option>
                         <option value="optionC">Genre C</option>
                     </select>
 
                     <p>Rating</p>
-                    <select id="bookRating"> <!-- Pick genre, will fill out later which genes we agree on adding-->
+                    <select id="bookRating">
+                        <!-- Pick genre, will fill out later which genes we agree on adding-->
                         <option value="option10">10</option>
                         <option value="option9">9</option>
                         <option value="option8">8</option>
@@ -174,7 +169,7 @@
                     </select>
 
                     <p>Leave a review?</p>
-                    <textarea class="commentBorder" cols= "100" rows = "3" placeholder = "Leave a comment."></textarea>
+                    <textarea class="commentBorder" cols="100" rows="3" placeholder="Leave a comment."></textarea>
 
                 </div>
             </div>

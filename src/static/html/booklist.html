@@ -7,22 +7,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            outline: 0;
-            font-size: 100%;
-            vertical-align: baseline;
-            background: transparent;
-        }
+    <link rel="stylesheet" href="../css/NavBarStyle.css" />
 
-        body {
-            padding-top: 50px;
-            background-color: #fafafa;
-        }
-    </style>
     <title>Shelf</title>
 </head>
 <body>
@@ -39,24 +25,30 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link lead" href="#">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-list"></i> Discover
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-compass"></i> Discover
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user-friends"></i>
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-poo"></i>
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-user"></i>
                             Profile
                         </a>
                     </li>
@@ -135,16 +127,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="align-middle" scope="row">1</th>
+                                <th class="align-middle lead" scope="row">1</th>
                                 <td class="align-middle">
                                     <div style="width:45px;">
                                         <img src="../resources/greeneggs.jpg" alt="..." class="img-thumbnail">
                                     </div>
                                 </td>
-                                <td class="align-middle"><h6><a href="">Green Eggs and Ham</a></h6></td>
-                                <td class="align-middle">Dr. Seuss</td>
-                                <td class="align-middle">Fiction</td>
-                                <td class="align-middle">8.7/10</td>
+                                <td class="align-middle"><a class="lead" href="">Green Eggs and Ham</a></td>
+                                <td class="align-middle lead">Dr. Seuss</td>
+                                <td class="align-middle lead">Fiction</td>
+                                <td class="align-middle lead">8.7/10</td>
                                 <td class="align-middle">
                                     <button class="btn border" type="button">
                                         <i class="far fa-edit"></i> Edit
@@ -173,7 +165,7 @@
     <!--Footer Start-->
     <footer class="py-5" style="background-color: #335482" ;>
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Sigma 2020</p>
+            <p class="m-0 text-center text-white lead">Copyright &copy; Sigma 2020</p>
         </div>
     </footer>
     <!--Footer End-->
