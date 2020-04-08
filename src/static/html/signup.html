@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <style>
 
+    body {
+        height: 100%;
+    }
+
+    #signup-box {
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 100px;
+        margin-bottom: 60px;
+        width: 512px;
+        background-color: lightgray;
+        border-radius: 25px;
+    }
+
+    #logo {
+        height: 100px;
+        padding-top: 10px;
+    }
+
+    .form-signup {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signup .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .form-signup .nametag { 
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .form-signup input{
+        margin-bottom: 5px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
     </style>
     <script>
     
@@ -63,6 +110,36 @@
             </div>
         </div>
     </nav>
-    <!--Top bar End-->
+    <!--Top bar End-->    
+    <!-- Content Start-->
+    <div class="text-center" id="signup-box">
+        <form class="form-signup">
+            <img id="logo" src = "../resources/logo.png" alt="logo">
+            <h1>Sign Up</h1>
+            <label for="inputEmail" class="nametag">Email Address</label>
+            <input class="form-control" type="email" id="inputEmail" placeholder="Email address" required autofocus>
+            <label for="inputUsername" class="nametag">Username</label>
+            <input class="form-control" type="text" id="inputUsername" placeholder="Username" required>
+            <label for="inputPassword" class="nametag">Password</label>
+            <input class="form-control" type="password" id="inputPassword" placeholder="Password" required>
+            <label for="confirmPassword" class="nametag">Re-enter Password</label>
+            <input class="form-control" type="password" id="confirmPassword" placeholder="Re-enter Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 30px; margin-bottom: 30px">Sign Up</button>    
+        </form>
+    </div> 
+    <!-- Content End-->
+    <!--Footer Start-->
+    <footer class="py-4" style="background-color: #335482" ;>
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Sigma 2020</p>
+        </div>
+    </footer>
+    <!--Footer End-->
+    <!--Our JavaScript Start -->
+    <!--Our JavaScript End-->
+    <!--Booststrap JS files-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
