@@ -50,6 +50,8 @@ Sign in Page for users
 
 ### Screenshots:
 
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/login.png)
+
 ## Sign Up
 Allow users to create accounts
 
@@ -58,6 +60,8 @@ Allow users to create accounts
 ![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/wireframe/signup.png)
 
 ### Screenshots:
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/signup.png)
 
 ## Profile
 
@@ -69,15 +73,23 @@ The profile page allows users to see some basic inofmraiton as well as a snippet
 
 ### Screenshots:
 
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/profile.png)
+
 ## Friends List
 
 The friends list has 3 tabs for your friends, friends requests recieved, and friend requests sent.
 
 ### Wireframe:
 
-![alt text](https://github.com/joepasquale/326-final-sigma/blob.master/docs/pictures/wireframe/friendlist.png)
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/wireframe/friendlist.png)
 
 ### Screenshots:
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/friendsent.png)
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/friendrequest.png)
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/friendlist.png)
 
 ## Book List
 
@@ -89,15 +101,19 @@ The Book List shows the users books that they want to read, are currently readin
 
 ### Screenshots:
 
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/readinglist.png)
+
 ## Search Results
 
-Search Results shows 3 different tyes of results. The first will be books added to the page by users, thhe next books retrieved from the book database we plan to use, and finally user profiles.
+Search Results shows 3 different tyes of results. The first will be books added to the page by users, then next books retrieved from the book database we plan to use, and finally user profiles.
 
 ### Wireframe:
 
 ![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/wireframe/searchresults.png)
 
 ### Screenshots:
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/seachresults.png)
 
 ## Home Feed
 
@@ -109,6 +125,8 @@ The home feed it similar to a feed on facebook. It shows activity of your firend
 
 ### Screenshots:
 
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/feed.png)
+
 ## Book Page
 
 The book page shows an overview of a book. It contains the info about the book as well as reviews for the book. You can add the books to your lists from this page.
@@ -118,6 +136,10 @@ The book page shows an overview of a book. It contains the info about the book a
 ![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/wireframe/bookpage.png)
 
 ### Screenshots:
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/bookpage.png)
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/addbook.png)
 
 # Breakdown of the division of labor
 
