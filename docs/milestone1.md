@@ -38,41 +38,59 @@ We aim to make a more stable and quick application by the end of the semester. Y
 - Add a recommend function that will recommend books based on the user's lists of books using highly rated books and their info. This should be different than how goodreads does it ( see complaint above)
 - When looking at their own list, the user can interact with an action button (will figure out what its called later) where they can move books to other lists, change data, remove, etc.
 
-##Sign In
+# User Interface
+
+## Sign In
 
 Sign in Page for users
+
+Wireframe:
 ![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/login.png)
 
-##Sign Up
+## Sign Up
 Allow users to create accounts
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/signup.png)
 
-##Profile
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/signup.png)
+
+## Profile
 
 The profile page allows users to see some basic inofmraiton as well as a snippet of their friends list and book list.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/profile.png)
 
-##Friends List
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/profile.png)
+
+## Friends List
 
 The friends list has 3 tabs for your friends, friends requests recieved, and friend requests sent.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/friendlist.png)
 
-##Book List
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/friendlist.png)
+
+## Book List
 
 The Book List shows the users books that they want to read, are currently reading, have finished, or dropped. The edit button allows them to move the book between lists or delete it from the list entirely.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/booklist.png)
 
-##Search Results
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/booklist.png)
+
+## Search Results
 
 Search Results shows 3 different tyes of results. The first will be books added to the page by users, thhe next books retrieved from the book database we plan to use, and finally user profiles.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/searchresults.png)
 
-##Home Feed
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/searchresults.png)
+
+## Home Feed
 
 The home feed it similar to a feed on facebook. It shows activity of your firends as well as allows the user to make review posts about books. Users can also comment on other users activity.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/feed.png)
 
-##Book Page
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/feed.png)
+
+## Book Page
 
 The book page shows an overview of a book. It contains the info about the book as well as reviews for the book. You can add the books to your lists from this page.
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/bookpage.png)
+
+Wireframe:
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/bookpage.png)
