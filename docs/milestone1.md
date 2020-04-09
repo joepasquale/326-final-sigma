@@ -38,12 +38,10 @@ We aim to make a more stable and quick application by the end of the semester. Y
 - Add a recommend function that will recommend books based on the user's lists of books using highly rated books and their info. This should be different than how goodreads does it ( see complaint above)
 - When looking at their own list, the user can interact with an action button (will figure out what its called later) where they can move books to other lists, change data, remove, etc.
 
-# User Interface
-
 ##Sign In
 
 Sign in Page for users
-(https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/login.png)
+![alt text](https://github.com/joepasquale/326-final-sigma/tree/master/docs/pictures/wireframe/login.png)
 
 ##Sign Up
 Allow users to create accounts
