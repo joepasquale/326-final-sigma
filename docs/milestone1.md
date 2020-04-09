@@ -113,7 +113,7 @@ Search Results shows 3 different tyes of results. The first will be books added 
 
 ### Screenshots:
 
-![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/seachresults.png)
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/searchresults.png)
 
 ## Home Feed
 
