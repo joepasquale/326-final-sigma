@@ -68,83 +68,161 @@
     </nav>
     <!--Top bar End-->
     <!--Page Content Start-->
-    <div class="container" style="background-color: white">
+    <div class="container">
 
         <div class="row">
-            <div class="col-lg-3">
-                <div class="text-center">
+            <div class="container shadow-sm col-lg-3 mt-5 bg-white">
+                <div class="text-center pt-3 pb-1">
                     <img src="../resources/avatar.png" class="rounded-circle" alt="avatar">
                 </div>
+                <h2 class="text-center pb-3">Username</h2>
             </div>
-            <div class="col-lg-8">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" role="tab" aria-controls="books" aria-selected="false">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Review</a>
-                    </li>
-                </ul>
-                <!--First Tab-->
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-                        <div class="col-md-6">
-                            <label><h4>First Name</h4></label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name">
-                        </div>
-                        <div class="col-md-6">
-                            <label><h4>Last Name</h4></label>
-                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name">
-                        </div>
-                        <div class="col-md-6">
-                            <label><h4>Favorite Book</h4></label>
-                            <input type="text" class="form-control" name="favorite_book" id="favorite_book" placeholder="book title">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="fagenre"><h4>Favorite Genre</h4></label><br>
-                            <select id="favgenre">
-                                <option value="TestA">None</option>
-                                <option value="TestA">Fantasy</option>
-                                <option value="TestB">Sci-Fi</option>
-                                <option value="TestC">Horror</option>
-                                <option value="TestC">Western</option>
-                                <option value="TestC">Romance</option>
-                                <option value="TestC">Thriller</option>
-                                <option value="TestC">Mystery</option>
-                                <option value="TestC">Detective</option>
-                                <option value="TestC">Dystopia</option>
-                                <option value="TestC">Action Adventure</option>
-                                <option value="TestC">Young Adult</option>
-                                <option value="TestC">Non-Fiction</option>
-                                <option value="TestC">TextBook</option>
-                                <option value="TestC">Poetry</option>
-                                <option value="TestC">Biography</option>
-                                <option value="TestC">Play</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12">
-                            <br>
-                            <button class="btn btn-md btn-success"><i class="fas fa-check-circle"></i> Save</button>
-                            <button class="btn btn-md btn-secondary"><i class="fas fa-redo"></i> Reset</button>
-                        </div>
-                        <hr>
+            <div class="container shadow-sm col-lg-8 mt-5 bg-white">
+                <div class="row mt-3">
+                 <div class="col">
+                    <h4>First Name</h4>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name">
+                 </div>
+                 <div class="col">
+                    <h4>Last Name</h4>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name">
+                 </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <h4>Favorite Book</h4>
+                        <input type="text" class="form-control" name="favorite_book" id="favorite_book" placeholder="book title">
+                    </div>
+                    <div class="col">
+                        <h4>Favorite Genre</h4>
+                        <select class="form-control" id="favgenre">
+                            <option value="TestA">None</option>
+                            <option value="TestA">Fantasy</option>
+                            <option value="TestB">Sci-Fi</option>
+                            <option value="TestC">Horror</option>
+                            <option value="TestC">Western</option>
+                            <option value="TestC">Romance</option>
+                            <option value="TestC">Thriller</option>
+                            <option value="TestC">Mystery</option>
+                            <option value="TestC">Detective</option>
+                            <option value="TestC">Dystopia</option>
+                            <option value="TestC">Action Adventure</option>
+                            <option value="TestC">Young Adult</option>
+                            <option value="TestC">Non-Fiction</option>
+                            <option value="TestC">TextBook</option>
+                            <option value="TestC">Poetry</option>
+                            <option value="TestC">Biography</option>
+                            <option value="TestC">Play</option>
+                        </select>
                     </div>
                 </div>
-                <!--Second Tab-->
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
-                <!--Third Tab-->
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+                        <div class="row my-3">
+                            
+                            <button class="btn btn-md btn-success ml-3 mr-3"><i class="fas fa-check-circle"></i> Save</button>
+                            
+                            <button class="btn btn-md btn-secondary"><i class="fas fa-redo"></i> Reset</button>
+                            
+                        </div>
+                        
+                   
+                  
             </div>
         </div>
+        <div class="row">
+            <div class="container shadow-sm col-lg-5 my-5 bg-white">
+                <h3 class="mt-3"><a href="#">Friends</a></h3>
+                <hr />
 
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div style="width:45px;">
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
+                                <td class="align-middle">jvasilevsky@umass.edu</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div style="width:45px;">
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">John Smith</a></td>
+                                <td class="align-middle">jsmith@umass.edu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="#" class="text-center">load more</a>
+                </div>
+            </div>
+            <div class="container shadow-sm col-lg-6 my-5 bg-white">
+                <h3 class="mt-3"><a href="#">Currently Reading</a></h3>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Genre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                               
+                                <td class="align-middle">
+                                    <div style="width:45px;">
+                                        <img src="../resources/greeneggs.jpg" alt="..." class="img-thumbnail">
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">Green Eggs and Ham</a></td>
+                                <td class="align-middle">Dr. Seuss</td>
+                                <td class="align-middle">Fiction</td>
+
+                            </tr>
+                            <tr>
+                               
+                                <td class="align-middle">
+                                    <div style="width:45px;">
+                                        <img src="http://books.google.com/books/content?id=gqX7rQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="..." class="img-thumbnail">
+                                    </div>
+                                </td>
+                                <td class="align-middle"><a href="">Harry Potter and the Sorcerer's Stone</a></td>
+                                <td class="align-middle">J. K. Rowling</td>
+                                <td class="align-middle">Fiction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr/>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="#" class="text-center">load more</a>
+                </div>
+            </div>
+
+         </div>
     </div>
+
     <!--Page Content End-->
     <!--Footer Start-->
-    <footer class="py-4" style="background-color: #335482" ;>
+    <footer class="py-5" style="background-color: #335482" ;>
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Sigma 2020</p>
         </div>
