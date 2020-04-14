@@ -1,10 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const login = require("./routes/login");
+const search = require("./routes/search");
+const profile = require("./routes/profile");
+const book = require("./routes/book");
 const app = express();
 
 app.use(express.json());
 app.use('/api/login', login);
+app.use('/api/search', search);
+app.use('/api/user', profile);
+app.use('/api/book', profile);
 
 mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
