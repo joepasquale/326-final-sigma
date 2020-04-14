@@ -10,7 +10,8 @@ app.use(express.json());
 app.use('/api/login', login);
 app.use('/api/search', search);
 app.use('/api/user', profile);
-app.use('/api/book', profile);
+app.use('/api/book', book);
+app.use('/files', express.static('../public'));
 
 mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
