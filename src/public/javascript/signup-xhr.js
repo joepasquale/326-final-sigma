@@ -2,7 +2,7 @@ const url = "http://localhost:4000";
 
 async function registerUser() {
     let email = document.getElementById("inputEmail").value;//
-    let username = document.getElementById("inputUserName").value;
+    let username = document.getElementById("inputUsername").value;
     let passwordA = document.getElementById("inputPassword").value;
     let passwordB = document.getElementById("confirmPassword").value;
     if(passwordA != passwordB){ //Check if passwords match ******COME BACK TO THIS LATER******** -Dan
@@ -18,7 +18,7 @@ async function registerUser() {
         },
         body: JSON.stringify(data),
     })
-        .then(function (dat) {
+        .then(function (dat) { //problem for later(?) 
         console.log('Request success: ', dat.results);
     })
         .catch(function (error) {

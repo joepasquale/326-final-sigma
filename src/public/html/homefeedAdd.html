@@ -118,6 +118,9 @@
                 <div class="row-sm-2">
                     <p>Upload the book cover?</p>
                 </div>
+                <form action="/action_page.php">
+                    <input type="file" id="coverImage" name="coverimage">
+                </form>
                 <div class="row-sm-2">
                     <div class="col">
                         <button id="uploadCover" class="UploadButton">Upload</button> <!-- upload the cover of the book button-->
@@ -141,11 +144,15 @@
                     </div>
                     <div class="row">
                         <p>Book Title</p> <!--Book Title-->
-                        <textarea class="inputBorder" required cols="30" rows="1" placeholder="Book Title"></textarea>
+                        <textarea id ="bookTitle" class="inputBorder" required cols="30" rows="1" placeholder="Book Title"></textarea>
                     </div>
                     <div class="row">
                         <p>Author Name</p> <!--Author Name-->
-                        <textarea class="inputBorder" required cols="30" rows="1" placeholder="Auhtor Name"></textarea>
+                        <textarea id = "authorName" class="inputBorder" required cols="30" rows="1" placeholder="Author Name"></textarea>
+                    </div>
+                    <div class="row">
+                        <p>ISBN</p> <!--ISBN-->
+                        <textarea id = "ISBNinput" class="inputBorder" required cols="30" rows="1" placeholder="ISBN"></textarea>
                     </div>
                     <div class="row">
                         <p>Genre</p>
@@ -160,11 +167,6 @@
                         <p>Rating</p>
                         <select id="bookRating">
                             <!-- Pick genre, will fill out later which genes we agree on adding-->
-                            <option value="option10">10</option>
-                            <option value="option9">9</option>
-                            <option value="option8">8</option>
-                            <option value="option7">7</option>
-                            <option value="option6">6</option>
                             <option value="option5">5</option>
                             <option value="option4">4</option>
                             <option value="option3">3</option>
@@ -176,7 +178,7 @@
                         <p>Leave a review?</p>
                     </div>
                     <div class="row">
-                        <textarea class="commentBorder" cols="70" rows="3" placeholder="Leave a comment."></textarea>
+                        <textarea id="reviewText" class="commentBorder" cols="70" rows="3" placeholder="Leave a comment."></textarea>
                     </div>
                 </div> 
                 <!-- input for book end-->
