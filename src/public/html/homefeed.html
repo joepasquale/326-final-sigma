@@ -126,7 +126,7 @@
                 <p style="font-size: 40px;">Make an update?</p>
             </div>
             <div class="col-sm-8">
-                <button id="updateButtom" class="updateButton">Update</button> <!-- Moves you to the homefeedAdd page-->
+                <button id="updateButtom" class="updateButton" onclick="movePage()">Update</button> <!-- Moves you to the homefeedAdd page-->
             </div>
             
         </div>
@@ -202,8 +202,8 @@
 
                 <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                     <!-- Personal Message left by User-->
-                    <textarea  required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
-                    <button class="submitComment" style="margin-right: 15px;">Submit</button>
+                    <textarea  id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
+                    <button class="submitComment" onclick="submitComment()" style="margin-right: 15px;">Submit</button>
                 </div>
             </div>
         </div> 
@@ -254,8 +254,8 @@
 
                 <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                     <!-- Personal Message left by User-->
-                    <textarea  required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
-                    <button class="submitComment" style="margin-right: 15px;">Submit</button>
+                    <textarea id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
+                    <button class="submitComment" onclick="submitComment()" style="margin-right: 15px;">Submit</button>
                 </div>
             </div>
         </div>
