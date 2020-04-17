@@ -1,6 +1,6 @@
 const url = "http://localhost:4000";
 
-async function authUser() {
+async function registerUser() {
     let email = document.getElementById("inputEmail").value;//
     let username = document.getElementById("inputUserName").value;
     let passwordA = document.getElementById("inputPassword").value;
