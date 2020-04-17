@@ -88,6 +88,7 @@
                                 <option value="comR">Completed Reading</option>
                                 <option value="stopR">Stopped Reading</option>
                             </select>
+                            <button onclick="addToList()" class="addList" style="margin-right: 15px;">Add to</button>
                         </div>
                         
                     </div>
@@ -151,6 +152,17 @@
             <div class="col-sm-12">
                 <!-- Personal Message left by User-->
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+            </div>
+
+            <div class="col-sm-11">
+                <!-- Prompts user if they want to comment-->
+                <p class="textUI" id="textUI" style="font-size: 20;">Leave a Review?</p>
+            </div>
+
+            <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
+                <!-- Personal Message left by User-->
+                <textarea  id = "reviewText" required cols="100" rows="3" placeholder="Leave a review..."></textarea>
+                <button onclick="addReview()" class="submitReview" style="margin-right: 15px;">Submit</button>
             </div>
         </div>
 
