@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 
 router.get('/login', async (req, res) => {
     res.sendFile('login.html');
@@ -41,4 +40,4 @@ router.get('/book/add', async (req, res) => {
 });
 
 
-module.exports = router;
+export { router }
