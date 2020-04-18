@@ -5,11 +5,11 @@ async function registerUser() {
     let username = document.getElementById("inputUsername").value;
     let passwordA = document.getElementById("inputPassword").value;
     let passwordB = document.getElementById("confirmPassword").value;
-    if(passwordA != passwordB){ //Check if passwords match ******COME BACK TO THIS LATER******** -Dan
+    if(passwordA !== passwordB){ //Check if passwords match ******COME BACK TO THIS LATER******** -Dan
 
     }
     const data = { "email" : email, "username": username, "password": passwordA };
-        const newURL = "http://localhost:4000/api/login/register";
+        const newURL = url+"/api/login/register";
     await fetch(newURL, {
         method: 'POST',
         headers: {

@@ -7,125 +7,66 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <style>
-    body {
-        height: 100%;
-    }
-
-    #login-box {
-        align-items: center;
-        margin: 0 auto;
-        margin-top: 100px;
-        margin-bottom: 60px;
-        width: 512px;
-        background-color: lightgray;
-        border-radius: 25px;
-    }
-
-    #logo {
-        height: 100px;
-        padding-top: 10px;
-    }
-
-    .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: auto;
-    }
-
-    .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        font-size: 16px;
-    }
-
-    .form-signin .nametag { 
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    </style>
-    <script>
-    
-    </script>
+    <link rel="stylesheet" href="../css/NavBarStyle.css" />
     <title>Shelf - Log in</title>
 </head>
 <body>
     <!--Top bar Start-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #335482" ;>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5" style="background-color: #335482" ;>
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../resources/logo.png" width="105" height="48" alt="Shelf">
+            <a class="navbar-brand" href="/index.html">
+                <img src="../resources/logo.png" width="105" height="48" class="d-inline-block align-top" alt="Shelf">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link lead" href="/index.html">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
+                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-home"></i> Home
+                        <a class="nav-link lead" href="/login.html">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-list"></i> Books
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user-friends"></i>
-                            Friends
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-poo"></i>
-                            Profile
+                        <a class="nav-link lead" href="/signup.html">
+                            <i class="fas fa-user-plus"></i>
+                            Sign Up
                         </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+
             </div>
         </div>
     </nav>
     <!--Top bar End-->
     <!-- Content Start-->
-    <div class="text-center" id="login-box">
-        <div class="form-signin">
-            <img id="logo" src="../resources/logo.png" alt="logo">
-            <h1>Log In</h1>
-            <label for="inputUser" class="nametag">Username</label>
-            <input class="form-control" type="text" id="inputUser" placeholder="Username" required autofocus>
-            <label for="inputPassword" class="nametag">Password</label>
-            <input class="form-control" type="password" id="inputPassword" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" onclick="authUser()" style="margin-top: 30px; margin-bottom: 30px">Log in</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+                <div class="card card-signin my-5 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="text-center display-4">Sign In</h5>
+                        <div class="form px-5">
+                            <div class="form-row pb-2">
+                                <label for="inputUser">Username</label>
+                                <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus />
+                            </div>
+                            <div class="form-row pb-4">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" require autofocus />
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase mb-2" onclick="authuser()">Sign in</button>
+                        </div>
+                        <a class="text-center" href="/signup.html">Don't have an account? Sign Up</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Content End-->
@@ -137,7 +78,8 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
-    <script src="../javascript/login-xhr.js" ></script>
+    <script src="../javascript/navbar-Redirect.js"></script>
+    <script src="../javascript/login-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

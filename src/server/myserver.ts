@@ -7,7 +7,8 @@ import { router as login } from "./routes/login";
 import { router as search } from "./routes/search";
 import { router as profile } from "./routes/profile";
 import { router as book } from "./routes/book";
-
+import { router as html } from "./routes/html";
+import { auth } from './middleware/auth';
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -18,8 +19,15 @@ mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
 
-app.use('/files', express.static('../public'));
+app.use('/resources', express.static('../public/resources'));
+app.use('/css', express.static('../public/css'));
+app.use('/javascript', express.static('../public/javascript'));
+app.use('/', express.static('../public/html'));
+app.use('/', auth);
+app.use('/', express.static('../public/htmlauth'));
 app.use('/api/login', login);
 app.use('/api/search', search);
 app.use('/api/user', profile);
 app.use('/api/book', book);
+
+

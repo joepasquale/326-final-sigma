@@ -2,9 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\public",
+    "\\src\\public\\html",
+    "\\src\\public\\javascript",
     "\\src\\server",
+    "\\src\\serverTS (ignore)\\routes",
+    "\\src\\server\\models",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\server\\routes\\html.js",
+  "SelectedNode": "\\src\\public\\javascript\\login-xhr.js",
   "PreviewInSolutionExplorer": false
 }

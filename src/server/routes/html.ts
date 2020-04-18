@@ -1,7 +1,8 @@
 const router = require("express").Router();
+const path = require('path');
 
 router.get('/login', async (req, res) => {
-    res.sendFile('login.html');
+    res.sendFile(path.resolve('../public/login'));
 });
 
 router.get('/login/register', async (req, res) => {
