@@ -34,30 +34,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link lead" href="/auth/homefeed.html">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-compass"></i> Discover
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
@@ -65,9 +54,9 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -123,7 +112,7 @@
                             <tr>
                                 <td class="align-middle">
                                     <div style="width:45px;">
-                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;"}>
+                                        <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
                                     </div>
                                 </td>
                                 <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
@@ -189,7 +178,7 @@
                         <tbody>
                             <tr>
                                 <td class="align-middle">
-                                     <div style="width:45px;">
+                                    <div style="width:45px;">
                                         <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
                                     </div>
                                 </td>
@@ -197,7 +186,7 @@
                                 <td class="align-middle">jvasilevsky@umass.edu</td>
                                 <td class="align-middle">
                                     <small>Pending...</small>
-                                   
+
                                 </td>
                             </tr>
 
@@ -219,6 +208,7 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
+    <script src="../javascript/search-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

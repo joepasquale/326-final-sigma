@@ -14,7 +14,7 @@
     </script>
     <title>Shelf - Search Results</title>
 </head>
-<body>
+<body onload="Search()">
     <!--Top bar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5" style="background-color: #335482" ;>
         <div class="container">
@@ -26,30 +26,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link lead" href="/auth/homefeed.html">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-compass"></i> Discover
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item ">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
@@ -57,9 +46,9 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -74,9 +63,9 @@
     <div class="container shadow-sm p-3 my-5 bg-white">
         <div class="d-flex justify-content-center">
             <form class="input-group mb-3 w-75">
-                <input type="text" class="form-control " placeholder="Search..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control " placeholder="Search..." id="mainsearch" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button">
+                    <button class="btn btn-secondary" type="button"  onclick="redirectSearch_MainBar()">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -151,6 +140,7 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
+    <script src="../javascript/search-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

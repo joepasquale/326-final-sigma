@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var jwt = require('jsonwebtoken');
 ;
 function auth(req, res, next) {
-    var token = req.header('x-auth-token');
+    var token = req.session.user;
     if (!token)
         return res.status(401).send('No Token Provided.');
     try {

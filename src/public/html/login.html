@@ -52,16 +52,22 @@
                 <div class="card card-signin my-5 shadow-sm">
                     <div class="card-body text-center">
                         <h5 class="text-center display-4">Sign In</h5>
-                        <div class="form px-5">
+                        <div class="alert alert-danger" id="validateInput" role="alert" style="display:none">
+                           Invalid Username or Password
+                        </div>
+                        <div class="needs-validaiton px-5">
                             <div class="form-row pb-2">
                                 <label for="inputUser">Username</label>
                                 <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus />
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                             <div class="form-row pb-4">
                                 <label for="inputPassword">Password</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" require autofocus />
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" require/>
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase mb-2" onclick="authuser()">Sign in</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase mb-2" onclick="authUser()">Sign in</button>
                         </div>
                         <a class="text-center" href="/signup.html">Don't have an account? Sign Up</a>
                     </div>
@@ -78,7 +84,7 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
-    <script src="../javascript/navbar-Redirect.js"></script>
+ 
     <script src="../javascript/login-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->

@@ -14,10 +14,11 @@ async function authUser() {
         body: JSON.stringify(data),
     })
     if (resp.status != 200) {
-        console.log("invalid email or password");
+        document.getElementById("validateInput").style.display = 'block';
+        window.sessionStorage.setItem('token', "");
     } else {
-        console.log(await resp.text());
-        window.location.href = url+"/files/html/homefeed.html";
+        let token = await resp.text();
+        window.sessionStorage.setItem('token', token);
+        window.location.href = url + "/auth/homefeed.html"
     }
-    
 }

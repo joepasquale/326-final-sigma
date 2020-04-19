@@ -13,6 +13,7 @@ import { auth } from './middleware/auth';
 app.use(express.json());
 app.use(bodyParser.json());
 
+
 mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB..', err));
@@ -23,10 +24,11 @@ app.use('/resources', express.static('../public/resources'));
 app.use('/css', express.static('../public/css'));
 app.use('/javascript', express.static('../public/javascript'));
 app.use('/', express.static('../public/html'));
-app.use('/', auth);
-app.use('/', express.static('../public/htmlauth'));
+//app.use('/auth', auth);
+app.use('/', html);
+app.use('/api/', search);
+app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login);
-app.use('/api/search', search);
 app.use('/api/user', profile);
 app.use('/api/book', book);
 

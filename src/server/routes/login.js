@@ -98,8 +98,7 @@ router.post('/', function (req, res) { return __awaiter(_this, void 0, void 0, f
                 return [4 /*yield*/, user.generateAuthToken()];
             case 3:
                 token = _a.sent();
-                res.write(token);
-                res.end();
+                res.send(token);
                 return [2 /*return*/];
         }
     });

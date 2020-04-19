@@ -24,30 +24,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link lead" href="/auth/homefeed.html">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-compass"></i> Discover
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item active ">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
@@ -55,9 +44,9 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -79,14 +68,14 @@
             </div>
             <div class="container shadow-sm col-lg-8 mt-5 bg-white">
                 <div class="row mt-3">
-                 <div class="col">
-                    <h4>First Name</h4>
-                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name">
-                 </div>
-                 <div class="col">
-                    <h4>Last Name</h4>
-                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name">
-                 </div>
+                    <div class="col">
+                        <h4>First Name</h4>
+                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name">
+                    </div>
+                    <div class="col">
+                        <h4>Last Name</h4>
+                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name">
+                    </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col">
@@ -116,16 +105,16 @@
                         </select>
                     </div>
                 </div>
-                        <div class="row my-3">
-                            
-                            <button class="btn btn-md btn-success ml-3 mr-3"><i class="fas fa-check-circle"></i> Save</button>
-                            
-                            <button class="btn btn-md btn-secondary"><i class="fas fa-redo"></i> Reset</button>
-                            
-                        </div>
-                        
-                   
-                  
+                <div class="row my-3">
+
+                    <button class="btn btn-md btn-success ml-3 mr-3"><i class="fas fa-check-circle"></i> Save</button>
+
+                    <button class="btn btn-md btn-secondary"><i class="fas fa-redo"></i> Reset</button>
+
+                </div>
+
+
+
             </div>
         </div>
         <div class="row">
@@ -186,7 +175,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                               
+
                                 <td class="align-middle">
                                     <div style="width:45px;">
                                         <img src="../resources/greeneggs.jpg" alt="..." class="img-thumbnail">
@@ -198,7 +187,7 @@
 
                             </tr>
                             <tr>
-                               
+
                                 <td class="align-middle">
                                     <div style="width:45px;">
                                         <img src="http://books.google.com/books/content?id=gqX7rQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="..." class="img-thumbnail">
@@ -210,14 +199,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    <hr/>
+                    <hr />
                 </div>
                 <div class="d-flex justify-content-center mb-3">
                     <a href="#" class="text-center">load more</a>
                 </div>
             </div>
 
-         </div>
+        </div>
     </div>
 
     <!--Page Content End-->
@@ -229,6 +218,7 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
+    <script src="../javascript/search-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

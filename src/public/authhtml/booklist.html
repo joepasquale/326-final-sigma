@@ -24,30 +24,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link lead" href="/auth/homefeed.html">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-compass"></i> Discover
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item ">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
@@ -55,9 +44,9 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -68,7 +57,7 @@
     </nav>
     <!--Top bar End-->
     <!--Page Content Start-->
-    
+
     <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
         <!--User Name-->
         <h3 class="mb-3">Username's Book List</h3>
@@ -90,25 +79,25 @@
         <!--Static Tab Content-->
         <div class="tab-content" id="myTabContent">
             <div class="row pt-3">
-            <div class="form  col-xs col-sm-8 col-md-6 col-lg-5">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <div class="input-group-append">
+                <div class="form  col-xs col-sm-8 col-md-6 col-lg-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <div class="input-group-append">
 
-                        <button class="btn border" type="button">
-                            <i class="fa fa-search text-black-50"></i>
-                        </button>
+                            <button class="btn border" type="button">
+                                <i class="fa fa-search text-black-50"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="btn-group col-xs-5 col-sm-2 col-md-2 col-lg-">
-                <button type="button" class="btn btn-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort by?
-                </button>
-                <div class="dropdown-menu">
-                   
+                <div class="btn-group col-xs-5 col-sm-2 col-md-2 col-lg-">
+                    <button type="button" class="btn btn-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by?
+                    </button>
+                    <div class="dropdown-menu">
+
+                    </div>
                 </div>
-            </div>
             </div>
             <hr />
             <!--First Tab Content-->
@@ -151,11 +140,11 @@
                                 <td class="align-middle">Fiction</td>
                                 <td class="align-middle">
                                     <div class="container-xl" data-toggle="tooltip" data-placement="bottom" title="4.0/5.0 Stars">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="far fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="far fa-star text-warning"></i>
                                     </div>
                                 </td>
                                 <td class="align-middle">
@@ -216,6 +205,7 @@
     </footer>
     <!--Footer End-->
     <!--Our JavaScript Start -->
+    <script src="../javascript/search-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -77,29 +77,18 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link lead" href="#">
+                        <a class="nav-link lead" href="/auth/homefeed.html">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle lead" href="#" id="NavBarDropDown"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-compass"></i> Discover
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="NavBarDropDown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link lead" href="#">
+                    <li class="nav-item ">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
@@ -107,9 +96,9 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -128,41 +117,42 @@
             <div class="col-sm-8">
                 <button id="updateButtom" class="updateButton" onclick="movePage()">Update</button> <!-- Moves you to the homefeedAdd page-->
             </div>
-            
+
         </div>
     </div>
 
 
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!--start of first block example-->
+    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+        <!--start of first block example-->
 
-            <div class="row">
-                <div class="col-sm-10">
-                    <div style="float:left; width: 100%;">
-                        <div class="col">
-                            <!-- This is where profile pic is displayed for each update-->
-                            <img src="../resources/Dog.PNG" height="168" width="168"></img>
-                        </div>
-
-                        <div class="col">
-                            <!-- Friend Name and their update-->
-                            <p>
-                                [Friend Name] did [Update]<br>
-                                <span>At [Timestamp and Date]</span>
-                            </p>
-                        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div style="float:left; width: 100%;">
+                    <div class="col">
+                        <!-- This is where profile pic is displayed for each update-->
+                        <img src="../resources/Dog.PNG" height="168" width="168"></img>
                     </div>
-                    <br>
-                    <div class="col-sm-12">
-                        <!-- Personal Message left by User-->
-                        <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
+
+                    <div class="col">
+                        <!-- Friend Name and their update-->
+                        <p>
+                            [Friend Name] did [Update]<br>
+                            <span>At [Timestamp and Date]</span>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <!-- This is where book pic is displayed for each update-->
-                    <img src="../resources/shining.jpg" height="336" width="168"></img>
+                <br>
+                <div class="col-sm-12">
+                    <!-- Personal Message left by User-->
+                    <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
                 </div>
             </div>
-        
+            <div class="col-sm-2">
+                <!-- This is where book pic is displayed for each update-->
+                <img src="../resources/shining.jpg" height="336" width="168"></img>
+            </div>
+        </div>
+
 
         <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
             <div class="row">
@@ -202,44 +192,46 @@
 
                 <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                     <!-- Personal Message left by User-->
-                    <textarea  id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
+                    <textarea id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
                     <button class="submitComment" onclick="submitComment()" style="margin-right: 15px;">Submit</button>
                 </div>
             </div>
-        </div> 
+        </div>
 
     </div> <!--end of first block example-->
 
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!--start of second block example-->
-         <div class="row">
-                <div class="col-sm-10">
-                    <div style="float:left; width: 100%;">
-                        <div class="col">
-                            <!-- This is where profile pic is displayed for each update-->
-                            <img src="../resources/avatar.png" height="168" width="168"></img>
-                        </div>
-
-                        <div class="col">
-                            <!-- Friend Name and their update-->
-                            <p>
-                                [Friend Name] did [Update]<br>
-                                <span>At [Timestamp and Date]</span>
-                            </p>
-                        </div>
+    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+        <!--start of second block example-->
+        <div class="row">
+            <div class="col-sm-10">
+                <div style="float:left; width: 100%;">
+                    <div class="col">
+                        <!-- This is where profile pic is displayed for each update-->
+                        <img src="../resources/avatar.png" height="168" width="168"></img>
                     </div>
-                    <br>
-                    <div class="col-sm-12">
-                        <!-- Personal Message left by User-->
-                        <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
+
+                    <div class="col">
+                        <!-- Friend Name and their update-->
+                        <p>
+                            [Friend Name] did [Update]<br>
+                            <span>At [Timestamp and Date]</span>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <!-- This is where book pic is displayed for each update-->
-                    <img src="../resources/harrypotter.jpg" height="336" width="168"></img>
+                <br>
+                <div class="col-sm-12">
+                    <!-- Personal Message left by User-->
+                    <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
                 </div>
             </div>
+            <div class="col-sm-2">
+                <!-- This is where book pic is displayed for each update-->
+                <img src="../resources/harrypotter.jpg" height="336" width="168"></img>
+            </div>
+        </div>
 
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!-- comment example-->
+        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <!-- comment example-->
             <div class="row">
 
                 <div class="col-sm-1">
@@ -270,7 +262,7 @@
         </div>
     </footer>
     <!--Footer End-->
-
+    <script src="../javascript/search-xhr.js"></script>
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

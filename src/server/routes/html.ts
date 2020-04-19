@@ -33,7 +33,8 @@ router.get('/book', async (req, res) => {
 });
 
 router.get('/home', async (req, res) => {
-
+    console.log('test');
+    res.sendFile(path.resolve('../public/authhtml/homefeed.html'));
 });
 
 router.get('/book/add', async (req, res) => {
