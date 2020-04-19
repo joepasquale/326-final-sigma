@@ -35,23 +35,29 @@
                             My Books
                         </a>
                     </li>
-                    <li class="nav-item active ">
+                    <li class="nav-item active">
                         <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link lead" href="#">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </a>
+                    </li>
                 </ul>
-                <div class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0" action="/auth/search-results.html">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
+                        <input type="text" class="form-control" id="searchbar" name="q" placeholder="Search...">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" onclick="redirectSearch()">
+                            <button class="btn btn-secondary" type="Submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </nav>
