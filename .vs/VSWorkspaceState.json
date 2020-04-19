@@ -3,13 +3,14 @@
     "",
     "\\src",
     "\\src\\public",
+    "\\src\\public\\authhtml",
+    "\\src\\public\\css",
     "\\src\\public\\html",
     "\\src\\public\\javascript",
     "\\src\\server",
-    "\\src\\serverTS (ignore)\\routes",
-    "\\src\\server\\models",
+    "\\src\\server\\middleware",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\public\\javascript\\login-xhr.js",
+  "SelectedNode": "\\src\\public\\authhtml\\booklist.html",
   "PreviewInSolutionExplorer": false
 }

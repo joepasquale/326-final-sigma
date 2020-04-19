@@ -10,7 +10,7 @@
 </head>
 
 
-<body>
+<body onload="getBook()">
     <!--Top bar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5" style="background-color: #335482" ;>
         <div class="container">
@@ -60,7 +60,7 @@
         </div>
     </nav>
     <!--Top bar End-->
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white;">
+    <div class="container shadow p-3 my-5 bg-white" style="background-color: white;">
         <!--Book page example starts-->
         <div class="row">
             <h1 style="margin-left: 15px;">[BOOK TITLE]</h1>
@@ -105,79 +105,80 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container shadow p-3 my-5 bg-white" style="background-color: white;">
+        <!--Book page example starts-->
+        <h1>User Reviews</h1>
+        <div class="row">
 
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white;">
-            <!--Book page example starts-->
-            <h1>User Reviews</h1>
-            <div class="row">
-
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/avatar.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Friend Name and their comment-->
-                    <p>
-                        [Friend Name] Reviewed<br>
-                        <span class="timeStamp">At [Timestamp and Date]</span>
-                    </p>
-                </div>
-
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
-                </div>
-            </div>
-            <div class="row">
-
-
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/avatar.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Friend Name and their comment-->
-                    <p>
-                        [Friend Name] Reviewed<br>
-                        <span class="timeStamp">At [Timestamp and Date]</span>
-                    </p>
-                </div>
-
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Prompts user if they want to comment-->
-                    <p class="textUI" id="textUI" style="font-size: 20;">Leave a Review?</p>
-                </div>
-
-                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                    <!-- Personal Message left by User-->
-                    <textarea id="reviewText" required cols="100" rows="3" placeholder="Leave a review..."></textarea>
-                    <button onclick="addReview()" class="submitReview" style="margin-right: 15px;">Submit</button>
-                </div>
+            <div class="col-sm-1">
+                <!-- This is where profile pic is displayed for each comment-->
+                <img src="../resources/avatar.png" height="84" width="84"></img>
             </div>
 
-
-
-        </div><!--Book page example ends-->
-        <!--Footer Start-->
-        <footer class="py-5" style="background-color: #335482" ;>
-            <div class="container">
-                <p class="m-0 text-center text-white lead">Copyright &copy; Sigma 2020</p>
+            <div class="col-sm-11">
+                <!-- Friend Name and their comment-->
+                <p>
+                    [Friend Name] Reviewed<br>
+                    <span class="timeStamp">At [Timestamp and Date]</span>
+                </p>
             </div>
-        </footer>
-        <!--Footer End-->
-        <!--Our JavaScript Start -->
-        <!--Our JavaScript End-->
-        <!--Booststrap JS files-->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+            <div class="col-sm-12">
+                <!-- Personal Message left by User-->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+            </div>
+        </div>
+        <div class="row">
+
+
+            <div class="col-sm-1">
+                <!-- This is where profile pic is displayed for each comment-->
+                <img src="../resources/avatar.png" height="84" width="84"></img>
+            </div>
+
+            <div class="col-sm-11">
+                <!-- Friend Name and their comment-->
+                <p>
+                    [Friend Name] Reviewed<br>
+                    <span class="timeStamp">At [Timestamp and Date]</span>
+                </p>
+            </div>
+
+            <div class="col-sm-12">
+                <!-- Personal Message left by User-->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+            </div>
+
+            <div class="col-sm-11">
+                <!-- Prompts user if they want to comment-->
+                <p class="textUI" id="textUI" style="font-size: 20;">Leave a Review?</p>
+            </div>
+
+            <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
+                <!-- Personal Message left by User-->
+                <textarea id="reviewText" required cols="100" rows="3" placeholder="Leave a review..."></textarea>
+                <button onclick="addReview()" class="submitReview" style="margin-right: 15px;">Submit</button>
+            </div>
+        </div>
+
+
+
+    </div><!--Book page example ends-->
+    <!--Footer Start-->
+    <footer class="py-5" style="background-color: #335482" ;>
+        <div class="container">
+            <p class="m-0 text-center text-white lead">Copyright &copy; Sigma 2020</p>
+        </div>
+    </footer>
+    <!--Footer End-->
+    <!--Our JavaScript Start -->
+    <script src="../javascript/bookPage.xhr.js"></script>
+    <!--Our JavaScript End-->
+    <!--Booststrap JS files-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 

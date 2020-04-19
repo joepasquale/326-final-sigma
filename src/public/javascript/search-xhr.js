@@ -14,13 +14,17 @@ async function Search() {
                 const stars = document.createElement('div');
                 stars.className = 'container-xl';
                 for (let j = googBooks[i].googleRating == null ? 0 : googBooks[i].googleRating; j > 0; j--) {
-                    stars.innerHTML += '<i class="fas fa-star text-warning"></i>';
+                    if (j > 0 && j < 1) {
+                        stars.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
+                    } else {
+                        stars.innerHTML += '<i class="fas fa-star text-warning"></i>';
+                    }
                 }
                 for (let j = googBooks[i].googleRating == null ? 0 : googBooks[i].googleRating; j <= 4; j++) {
                     stars.innerHTML += '<i class="far fa-star text-warning"></i>';
                 }
                 const div = document.createElement('div');
-                div.className = 'container';
+                div.className = 'container shadow my-5 py-4 px-3 bg-white';
                 div.innerHTML = `
                 <div class='row'>
                     <div id=${"image_" + i} class='container col'> 
@@ -28,15 +32,12 @@ async function Search() {
                        <h6>Google Rating:</h6>
                     </div>                
                     <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
-                        <h3><a href="#">${googBooks[i].title}</a></h3>
+                        <h3><a href="javascript:" onclick='redirectBookPage(this)'>${googBooks[i].title}</a></h3>
                         <small>${googBooks[i].authors == null ? "" : googBooks[i].authors}</small>
                         <p class='lead'>${googBooks[i].description == null ? "" : googBooks[i].description}</p>
                     </div>
                  </div>
-                   
-                <hr/>
-                `
-                    ;
+                `;
                 div.id = 'google_search_' + i;
                 document.getElementById('search_list').appendChild(div);
                 document.getElementById('image_' + i).appendChild(stars);
@@ -84,3 +85,10 @@ async function parseJSON(json) {
     }
     return books;
 }
+
+async function redirectBookPage(element) {
+    let book = element.innerHTML;
+    window.location.href = url + '/auth/bookPage.html?title=' + book;
+    
+}
+

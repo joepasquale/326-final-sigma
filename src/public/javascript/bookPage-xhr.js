@@ -43,3 +43,7 @@ async function addToList() {
             console.log('Request failure: ', error);
         });
 }
+
+async function getBook() {
+
+}
