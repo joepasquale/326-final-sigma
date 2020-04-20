@@ -6,14 +6,18 @@ async function registerUser() {
     let passwordA = document.getElementById("inputPasswordA").value;
     let passwordB = document.getElementById("inputPasswordB").value;
 
-    if((passWordA.length <= 5 )||( passWordA.length >= 21)){ //Check if password is the correct length (6-20), responds and stops if not
+    if((passwordA.length <= 5 )||( passwordA.length >= 21)){ //Check if password is the correct length (6-20), responds and stops if not
+        document.getElementById("validateInput").style.display = 'block';
         let returnTextLength = "Password not of appropriate length (6-20 characters)";
-        returnTextLength.innerHTML = passwordHelpBlock;
+        document.getElementById("passwordHelpBlock").className="text-danger";
+        document.getElementById("passwordHelpBlock").innerHTML=returnTextLength;
         return;
     }
     else if(passwordA != passwordB){ //Check if passwords match, responds and stops if not
-        let returnTextMatch = "Password do not match";
-        returnTextMatch.innerHTML = passwordHelpBlock;
+        document.getElementById("validateInput").style.display = 'block';
+        let returnTextMatch = "Passwords do not match";
+        document.getElementById("passwordHelpBlock").className="text-danger";
+        document.getElementById("passwordHelpBlock").innerHTML=returnTextMatch;
         return;
     }
     const data = { "email" : email, "username": username, "password": passwordA };

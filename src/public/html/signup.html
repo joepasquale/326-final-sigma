@@ -105,10 +105,13 @@
                 <div class="card card-signin my-5 shadow-sm">
                     <div class="card-body text-center">
                         <h5 class="text-center display-4">Sign Up</h5>
+                        <div class="alert alert-danger" id="validateInput" role="alert" style="display:none">
+                            Invalid Username or Password
+                         </div>
                         <div class="form px-5">
                             <div class="form-row mb-3">
                                 <label for="inputUserName">Username</label>
-                                <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus />
+                                <input type="text" id="inputUserName" class="form-control" placeholder="Username" required autofocus />
                                
                             </div>
                             <div class="form-row mb-3">
