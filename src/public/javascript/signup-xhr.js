@@ -2,9 +2,9 @@ const url = "http://localhost:4000";
 
 async function registerUser() {
     let email = document.getElementById("inputEmail").value;//
-    let username = document.getElementById("inputUsername").value;
-    let passwordA = document.getElementById("inputPassword").value;
-    let passwordB = document.getElementById("confirmPassword").value;
+    let username = document.getElementById("inputUserName").value;
+    let passwordA = document.getElementById("inputPasswordA").value;
+    let passwordB = document.getElementById("inputPasswordB").value;
 
     if((passWordA.length <= 5 )||( passWordA.length >= 21)){ //Check if password is the correct length (6-20), responds and stops if not
         let returnTextLength = "Password not of appropriate length (6-20 characters)";
