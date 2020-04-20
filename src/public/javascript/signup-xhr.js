@@ -5,8 +5,16 @@ async function registerUser() {
     let username = document.getElementById("inputUsername").value;
     let passwordA = document.getElementById("inputPassword").value;
     let passwordB = document.getElementById("confirmPassword").value;
-    if(passwordA !== passwordB){ //Check if passwords match ******COME BACK TO THIS LATER******** -Dan
 
+    if((passWordA.length <= 5 )||( passWordA.length >= 21)){ //Check if password is the correct length (6-20), responds and stops if not
+        let returnTextLength = "Password not of appropriate length (6-20 characters)";
+        returnTextLength.innerHTML = passwordHelpBlock;
+        return;
+    }
+    else if(passwordA != passwordB){ //Check if passwords match, responds and stops if not
+        let returnTextMatch = "Password not of appropriate length (6-20 characters)";
+        returnTextMatch.innerHTML = passwordHelpBlock;
+        return;
     }
     const data = { "email" : email, "username": username, "password": passwordA };
         const newURL = url+"/api/login/register";
