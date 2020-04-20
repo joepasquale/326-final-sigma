@@ -12,7 +12,7 @@ async function registerUser() {
         return;
     }
     else if(passwordA != passwordB){ //Check if passwords match, responds and stops if not
-        let returnTextMatch = "Password not of appropriate length (6-20 characters)";
+        let returnTextMatch = "Password do not match";
         returnTextMatch.innerHTML = passwordHelpBlock;
         return;
     }
