@@ -12,7 +12,7 @@ async function authUser() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-    })
+    });
     if (resp.status != 200) {
         document.getElementById("validateInput").style.display = 'block';
         window.sessionStorage.setItem('token', "");

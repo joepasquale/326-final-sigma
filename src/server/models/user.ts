@@ -23,6 +23,6 @@ userSchema.methods.generateAuthToken = async function(){
     return token;
 }
 
-var User = mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema);
 
 export { User };

@@ -45,5 +45,28 @@ async function addToList() {
 }
 
 async function getBook() {
+    let title = await parseURL();
+    let newURL = url + '/api/book/' + title;
+    let resp = await fetch(newURL);
+    if (resp.status != 200) {
+        console.log("Book Doesn't exist");
+        return;
+    }
+    let j = await resp.json();
+    console.log(j);
+}
+
+async function parseURL() {
+    let url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (let i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+    }
+    if (data === null) {
+        return "";
+    }
+    return data.title;
 
 }

@@ -11,10 +11,20 @@ var book_1 = require("./routes/book");
 var html_1 = require("./routes/html");
 app.use(express.json());
 app.use(bodyParser.json());
+
+
 mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
     .then(function () { return console.log('Connected to MongoDB...'); })
     .catch(function (err) { return console.error('Could not connect to MongoDB..', err); });
 var PORT = process.env.PORT || 4000;
+
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.listen(PORT, function () { return console.log("Server listening on " + PORT); });
 app.use('/resources', express.static('../public/resources'));
 app.use('/css', express.static('../public/css'));

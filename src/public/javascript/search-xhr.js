@@ -6,44 +6,78 @@ async function Search() {
     let search = await parseURL();
     if (search !== "") {
         let newURL = googleAPI + search;
-        const resp = await fetch(newURL);
-        const j = await resp.json();
+        let resp = await fetch(newURL);
+        let j = await resp.json();
         googBooks = await parseJSON(j);
         if (googBooks != null) {
-            for (let i = 0; i < googBooks.length; i++) {
-                const stars = document.createElement('div');
-                stars.className = 'container-xl';
-                for (let j = googBooks[i].googleRating == null ? 0 : googBooks[i].googleRating; j > 0; j--) {
-                    if (j > 0 && j < 1) {
-                        stars.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
-                    } else {
-                        stars.innerHTML += '<i class="fas fa-star text-warning"></i>';
-                    }
+            await handleGoogleAPI(googBooks);
+        }
+    }
+    if (search === "" || googBooks === null) {
+        const empty = document.createElement('table');
+        empty.style.height = '300px';
+        empty.className = "container mb-5 text-center bg-white shadow";
+        empty.innerHTML =
+            `
+            <tbody>
+                <tr>
+                    <td class="align-middle">
+                        <h6 class="text-black-50 display-1">No Results</h6>
+                    </td>
+                </tr>
+            </tbody>`;
+        document.getElementById('search_list').appendChild(empty);
+    }
+}
+
+
+async function handleGoogleAPI(googBooks) {
+        for (let i = 0; i < googBooks.length; i++) {
+            newURL = url + '/api/book/add';
+            let resp = await fetch(newURL, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(googBooks[i]),
+            });
+            if (resp.status != 200) {
+                console.log(await resp.text());
+                continue;
+            }
+            googBooks[i] = await resp.json();
+            const stars = document.createElement('div');
+            stars.className = 'container-xl';
+            for (let j = googBooks[i].googleRating; j > 0; j--) {
+                if (j > 0 && j < 1) {
+                    stars.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
+                } else {
+                    stars.innerHTML += '<i class="fas fa-star text-warning"></i>';
                 }
-                for (let j = googBooks[i].googleRating == null ? 0 : googBooks[i].googleRating; j <= 4; j++) {
-                    stars.innerHTML += '<i class="far fa-star text-warning"></i>';
-                }
-                const div = document.createElement('div');
-                div.className = 'container shadow my-5 py-4 px-3 bg-white';
-                div.innerHTML = `
+            }
+            for (let j = googBooks[i].googleRating; j <= 4; j++) {
+                stars.innerHTML += '<i class="far fa-star text-warning"></i>';
+            }
+            const div = document.createElement('div');
+            div.className = 'container shadow my-5 py-4 px-3 bg-white';
+            div.innerHTML = `
                 <div class='row'>
                     <div id=${"image_" + i} class='container col'> 
-                       <img class="mb-2" src=${googBooks[i].imageLinks == null ? "" : googBooks[i].imageLinks.thumbnail == null ? "" : googBooks[i].imageLinks.thumbnail} />
+                       <img class="mb-2" src=${!googBooks[i].imageLinks.thumbnail ? "" : googBooks[i].imageLinks.thumbnail} />
                        <h6>Google Rating:</h6>
                     </div>                
                     <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
                         <h3><a href="javascript:" onclick='redirectBookPage(this)'>${googBooks[i].title}</a></h3>
-                        <small>${googBooks[i].authors == null ? "" : googBooks[i].authors}</small>
-                        <p class='lead'>${googBooks[i].description == null ? "" : googBooks[i].description}</p>
+                        <small>${googBooks[i].authors}</small>
+                        <p class='lead'>${googBooks[i].description}</p>
                     </div>
                  </div>
                 `;
-                div.id = 'google_search_' + i;
-                document.getElementById('search_list').appendChild(div);
-                document.getElementById('image_' + i).appendChild(stars);
-            }
+            div.id = 'google_search_' + i;
+            document.getElementById('search_list').appendChild(div);
+            document.getElementById('image_' + i).appendChild(stars);
         }
-    }
 }
 
 async function parseURL() {
@@ -57,16 +91,13 @@ async function parseURL() {
     if (data === null) {
         return "";
     }
-    let search = data.q.replace(/[+]/g, " ");
-
-    document.getElementById("query").value = search;
-    return search;
+    return data.q
 
 }
 
 async function parseJSON(json) {
     let books = [];
-    if (json == null) {
+    if (json == null || json.items == null) {
         return null;
     }
     for (let i = 0; i < json.items.length; i++) {
@@ -75,12 +106,12 @@ async function parseJSON(json) {
             'title': json.items[i].volumeInfo.title,
             'authors': json.items[i].volumeInfo.authors,
             'publisher': json.items[i].volumeInfo.publisher,
+            'publishedDate': json.items[i].volumeInfo.publishedDate,
             'ISBN': json.items[i].volumeInfo.industryIdentifiers,
             'description': json.items[i].volumeInfo.description,
             'googleRating': json.items[i].volumeInfo.averageRating,
             'imageLinks': json.items[i].volumeInfo.imageLinks,
-            'totalRating': 0,
-            'numberRating': 0 
+            'userRating': []
         });
     }
     return books;
