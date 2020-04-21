@@ -1,26 +1,34 @@
 const url = "http://localhost:4000";
 
+
+async function postData(url, data) {
+    const resp = await fetch(url,
+        {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+    return resp;
+}
+
+
 async function addReview() {
 
     let Review = document.getElementById("reviewText").value;
 
     const data = {"Review" : Review};
-        const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
-    await fetch(newURL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(function (dat) { 
-        console.log('Request success: ', dat.results);
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });
+    const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
+    const resp = await postData(newURL, data);
 }
+
+
+
 
 async function addToList() {
 
@@ -28,26 +36,14 @@ async function addToList() {
 
     const data = { "List" : List};
         const newURL = "http://localhost:4000/api/book/addList";  //Check later***************************
-    await fetch(newURL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(function (dat) { 
-        console.log('Request success: ', dat.results);
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });
+    const resp = await postData(newURL, data);
 }
 
 async function getBook() {
     let title = await parseURL();
-    let newURL = url + '/api/book/' + title;
-    let resp = await fetch(newURL);
+    let newURL = url + '/api/book/read';
+    const data = { 'title': title };
+    let resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Book Doesn't exist");
         return;

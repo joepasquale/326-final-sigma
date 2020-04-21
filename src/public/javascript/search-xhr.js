@@ -1,19 +1,62 @@
 const url = "http://localhost:4000";
 const googleAPI = "https://www.googleapis.com/books/v1/volumes?q=";
 
+async function fetchData(url, data, method) {
+    const resp = await fetch(url,
+        {
+            method: method,
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+    return resp;
+}
+
+
+
+//returns false if empty else returns false;
+async function handleSearch(type /*0 book, 1 profile*/, url) {
+    if (type === 0) {
+            resp = await fetch(url)
+            let j = await resp.json();
+            let googBooks = await parseJSON(j);
+            if (googBooks != null) {
+                await handleGoogleAPI(googBooks);
+                return true;
+            }
+            return false;
+        } else {
+            resp = await fetchData(url, data, 'POST');
+            if (resp != 200) {
+                return false;
+            }
+            let j = await resp.json();
+            let profile = await parseJSON(j);
+            if (profile != null) {
+                await handleProfileSearch(profile);
+                return true;
+            }
+            return false;
+        }
+}
+
+   
+
 async function Search() {
     let googBooks = [];
     let search = await parseURL();
+    let books = false;
+    let profile = false;
     if (search !== "") {
-        let newURL = googleAPI + search;
-        let resp = await fetch(newURL);
-        let j = await resp.json();
-        googBooks = await parseJSON(j);
-        if (googBooks != null) {
-            await handleGoogleAPI(googBooks);
-        }
+        books = handleSearch(0, googleAPI + search);
+        //profile = handleSearch(1, url + 'api/profile/search, search, 'POST');
     }
-    if (search === "" || googBooks === null) {
+    if (search === "" || books === false && profile === false) {
         const empty = document.createElement('table');
         empty.style.height = '300px';
         empty.className = "container mb-5 text-center bg-white shadow";
@@ -34,14 +77,7 @@ async function Search() {
 async function handleGoogleAPI(googBooks) {
         for (let i = 0; i < googBooks.length; i++) {
             newURL = url + '/api/book/add';
-            let resp = await fetch(newURL, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(googBooks[i]),
-            });
+            let resp = await fetchData(newURL, googBooks[i], 'PUT');
             if (resp.status != 200) {
                 console.log(await resp.text());
                 continue;
