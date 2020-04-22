@@ -5,7 +5,7 @@ const app = express();
 
 import { router as login } from "./routes/login";
 import { router as search } from "./routes/search";
-import { router as profile } from "./routes/profile";
+import { router as user } from "./routes/user";
 import { router as book } from "./routes/book";
 import { router as html } from "./routes/html";
 import { auth } from './middleware/auth';
@@ -29,7 +29,7 @@ app.use('/', html);
 app.use('/api/', search);
 app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login);
-app.use('/api/user', profile);
+app.use('/api/user', user);
 app.use('/api/book', book);
 
 
