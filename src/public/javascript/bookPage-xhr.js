@@ -66,6 +66,7 @@ async function handleBook(bookData) {
     document.getElementById('image_cover').src = bookData.imageLinks.thumbnail;
     document.getElementById('googleRating').innerHTML = bookData.googleRating;
     document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
+    document.getElementbyId('reviewerText').innerHTML = bookData.userReview[0].reviewText
 }
 
 
