@@ -53,6 +53,7 @@ var userSchema = new mongoose.Schema({
         required: true
     }
 });
+userSchema.index({ username: 'text' });
 userSchema.methods.generateAuthToken = function () {
     return __awaiter(this, void 0, void 0, function () {
         var token;

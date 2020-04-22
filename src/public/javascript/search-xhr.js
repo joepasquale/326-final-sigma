@@ -20,9 +20,12 @@ async function fetchData(url, data) {
 
 
 //returns false if empty else returns false;
-async function handleSearch(type /*0 book, 1 profile*/, url) {
+async function handleSearch(type /*0 book, 1 profile*/, url, data) {
     if (type === 0) {
             resp = await fetch(url)
+            if (resp.status === 400) {
+                return false;
+            }
             let j = await resp.json();
             let googBooks = await parseJSON(j);
             if (googBooks != null) {
@@ -32,11 +35,10 @@ async function handleSearch(type /*0 book, 1 profile*/, url) {
             return false;
         } else {
             resp = await fetchData(url, data);
-            if (resp != 200) {
+        if (resp.status != 200) {
                 return false;
             }
-            let j = await resp.json();
-            let profile = await parseJSON(j);
+        let profile = await resp.json();
             if (profile != null) {
                 await handleProfileSearch(profile);
                 return true;
@@ -45,15 +47,50 @@ async function handleSearch(type /*0 book, 1 profile*/, url) {
         }
 }
 
-   
+async function handleProfileSearch(profile){
+    for (let i = 0; i < profile.length; i++) {
+        const div = document.createElement('div');
+        div.className = 'div shadow my-5 py-4 px-3 bg-white';
+        div.innerHTML = `
+                <div class='row'>         
+                   <h3 class='text-center col-lg col-md col-xl'><a href="javascript:" onclick='redirectProfilePage(this)' id=${profile[i]._id}>${profile[i].username}</a></h3></td>
+                   <h4 class='text-center col-lg col-md col-xl'>${profile[i].email}<h4></td>
+                   <h3 class='text-center col-lg col-md col-xl'><span class="badge badge-warning text-white">Profile</span></h3>
+                </div>
+                `;
+        div.id = 'profile_' + i;
+        document.getElementById('search_list').appendChild(div);
+    }
+}
+
+
+async function decode(text) {
+    text = decodeURIComponent(text);
+    text = text.split('+').join(" ");
+    return text;
+}
+
 
 async function Search() {
-    let search = await parseURL();
+    let data = await parseURL();
     let books = false;
     let profile = false;
+    let search = data.q;
+    let option = data.option;
+    search = await decode(search);
+    document.getElementById('query').value = search;
     if (search !== "") {
-        books = handleSearch(0, googleAPI + search);
-        //profile = handleSearch(1, url + 'api/profile/search, search, 'POST');
+        if (option != 1) {
+            books = await handleSearch(0, googleAPI + search, {});
+            document.getElementById('book_radio').checked = true;
+        }
+        if (option != 0) {
+            profile = await handleSearch(1, url + '/api/user/search', { 'search': search });
+            document.getElementById('profile_radio').checked = true;
+        }
+    }
+    if (option != 0 && option != 1) {
+        document.getElementById('both_radio').checked = true;
     }
     if (search === "" || books === false && profile === false) {
         const empty = document.createElement('table');
@@ -103,7 +140,10 @@ async function handleGoogleAPI(googBooks) {
                        <h6>Google Rating:</h6>
                     </div>                
                     <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
-                        <h3><a href="javascript:" onclick='redirectBookPage(this)' id=${googBooks[i]._id}>${googBooks[i].title}</a></h3>
+                        <div class='row'>
+                            <h3 class='col-md col-lg col-xl'><a href="javascript:" onclick='redirectBookPage(this)' id=${googBooks[i]._id}>${googBooks[i].title}</a></h3>
+                            <h3 class='col-xl-3 col-lg-3 col-sm col-md-4'><span class="badge badge-warning text-white" style="background-color:#ad3ccf;">Book</span></h3>
+                        </div>
                         <small>${googBooks[i].authors}</small>
                         <p class='lead'>${googBooks[i].description}</p>
                     </div>
@@ -114,7 +154,6 @@ async function handleGoogleAPI(googBooks) {
             document.getElementById('image_' + i).appendChild(stars);
             
     }
-    bookList = googBooks;
 }
 
 async function parseURL() {
@@ -128,7 +167,7 @@ async function parseURL() {
     if (data === null) {
         return "";
     }
-    return data.q
+    return data
 
 }
 
@@ -158,5 +197,11 @@ async function redirectBookPage(element) {
     let book = element.id;
     window.location.href = url + '/auth/bookPage.html?book=' + book;
     
+}
+
+async function redirectProfilePage(element) {
+    let user = element.id;
+    window.location.href = url + '/auth/profile.html?user=' + user;
+
 }
 
