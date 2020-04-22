@@ -22,7 +22,8 @@ async function getProfile() {
     let urlData = await parseURL();
     let newURL = url + '/api/user/read';
     let userID = urlData.user;
-    const data = { 'id': userID };
+    let decoded = decodeURIComponent(userID);
+    const data = { 'id': decoded };
     let resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Profile Doesn't Exist");
@@ -52,5 +53,17 @@ async function parseURL() {
         return "";
     }
     return data;
+
+}
+
+async function redirectFriendsList(element) {
+    let book = element.id;
+    window.location.href = url + '/auth/bookPage.html?book=' + book;
+
+}
+
+async function redirectReadingList(element) {
+    let user = element.id;
+    window.location.href = url + '/auth/profile.html?user=' + user;
 
 }

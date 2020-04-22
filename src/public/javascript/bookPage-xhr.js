@@ -41,10 +41,11 @@ async function addToList() {
 }
 
 async function getBook() {
-    let id = await parseURL();
-
+    let urlData = await parseURL();
+    let decoded = decodeURIComponent(urlData.book);
+    console.log(decoded);
     let newURL = url + '/api/book/read';
-    const data = { 'id': id };
+    const data = { 'id': decoded };
     let resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Book Doesn't exist");
@@ -82,6 +83,6 @@ async function parseURL() {
     if (data === null) {
         return "";
     }
-    return data.book;
+    return data;
 
 }

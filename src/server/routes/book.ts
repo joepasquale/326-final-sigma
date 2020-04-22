@@ -50,8 +50,7 @@ router.post('/add', async (req, res) => {
 
 router.post('/read', async (req, res) => {
     let id = req.body.id;
-    let decoded = decodeURIComponent(id);
-    await Book.findOne({ _id: decoded })
+    await Book.findOne({ _id: id})
         .then(book => {
             if (!book) return res.status(400).send("No Book Found");
             res.json(book);
