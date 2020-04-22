@@ -63,7 +63,7 @@
     <div class="container shadow p-3 my-5 bg-white" style="background-color: white;">
         <!--Book page example starts-->
         <div class="row">
-            <h1 id="title" style="margin-left: 15px;">[BOOK TITLE]</h1>
+            <h1 id="title" style="margin-left: 15px;"></h1> <!-- booktitle here -->
         </div>
         <div class="row">
             <div class="col-sm-2">
@@ -72,34 +72,40 @@
             <div class="col-sm-10">
                 <div class="container">
                     <div class="row" style="font-size: 30px;">
-                        <div class="col-sm-2">
-                            <label id="quickAdd" required for="quickAdd"><p>In List</p></label> <!--Which List-->
+                        <div class="col-sm-3">
+                            <label id="quickAdd" required for="quickAdd"><p>Current list:</p></label> <!--Which List-->
                         </div>
-                        <div class="col-sm-10">
-                            <select id="quickAdd">
-                                <option value="none">None</option> <!-- by adding to NONE, it would remove from users list?-->
-                                <option value="wantR">Want to Read</option> <!-- by selecting any list, it would add/move to that list-->
-                                <option value="curR">Currently Reading</option>
-                                <option value="comR">Completed Reading</option>
-                                <option value="stopR">Stopped Reading</option>
-                            </select>
-                            <button onclick="addToList()" class="addList" style="margin-right: 15px;">Add to</button>
+                        <div class="col-sm-7">
+
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="background-color: crimson;" id = "currentList"> <!-- should change to which list its in, default None-->
+                                List drop down
+                              </a>
+                            
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" onclick="addToList()" value="none" href="#">None</a> <!-- by adding to NONE, it would remove from users list?-->
+                                <a class="dropdown-item" onclick="addToList()" value="wantR" href="#">Want to Read</a> <!-- by selecting any list, it would add/move to that list-->
+                                <a class="dropdown-item" onclick="addToList()" value="curR" href="#">Currently Reading</a>
+                                <a class="dropdown-item" onclick="addToList()" value="comR" href="#">Completed Reading</a>
+                                <a class="dropdown-item" onclick="addToList()" value="stopR" href="#">Stopped Reading</a>
+                              </div>
+                            <!--<button onclick="addToList()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Add to</button>-->
                         </div>
 
                     </div>
-                    <div class="row" style="font-size: 30px;">
+                    <div class="row" style="font-size: 30px;"> <!-- genre here -->
                         <p id="genre"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
+                    <div class="row" style="font-size: 30px;"> <!-- author here -->
                         <p id="author"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
+                    <div class="row" style="font-size: 30px;"> <!-- rating here -->
                         <p id="googleRating"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
+                    <div class="row" style="font-size: 30px;"> <!-- published date here -->
                         <p id="publishedDate"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
+                    <div class="row" style="font-size: 30px;"> <!-- publisher here -->
                         <p id="publisher"></p>
                     </div>
                 </div>
