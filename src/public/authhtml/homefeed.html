@@ -116,17 +116,17 @@
     </nav>
     <!--Top bar End-->
 
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+    <!--<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
         <div class="row">
             <div class="col-sm-4">
                 <p style="font-size: 40px;">Make an update?</p>
             </div>
             <div class="col-sm-8">
-                <button id="updateButtom" class="updateButton" onclick="movePage()">Update</button> <!-- Moves you to the homefeedAdd page-->
+                <button id="updateButtom" class="updateButton" onclick="movePage()">Update</button> <!-- Moves you to the homefeedAdd page->
             </div>
 
         </div>
-    </div>
+    </div> -->
 
 
     <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
@@ -142,16 +142,15 @@
 
                     <div class="col">
                         <!-- Friend Name and their update-->
-                        <p>
-                            [Friend Name] did [Update]<br>
-                            <span>At [Timestamp and Date]</span>
+                        <p id = "reviewerName">
+                            [Friend Name] Reviewed
                         </p>
                     </div>
                 </div>
                 <br>
                 <div class="col-sm-12">
                     <!-- Personal Message left by User-->
-                    <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
+                    <p id="updateText"> UPDATE TEXT </p>
                 </div>
             </div>
             <div class="col-sm-2">
@@ -171,15 +170,14 @@
 
                 <div class="col-sm-11">
                     <!-- Friend Name and their comment-->
-                    <p>
-                        [Friend Name] Commented<br>
-                        <span class="timeStamp">At [Timestamp and Date]</span>
+                    <p id = "reviewerName">
+                        [Friend Name] commented
                     </p>
                 </div>
 
                 <div class="col-sm-12">
                     <!-- Personal Message left by User-->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+                    <p id="commentText"> COMMENT TEXT </p>
                 </div>
             </div>
         </div>
@@ -199,8 +197,10 @@
 
                 <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                     <!-- Personal Message left by User-->
-                    <textarea id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
-                    <button class="submitComment" onclick="submitComment()" style="margin-right: 15px;">Submit</button>
+                    <div class="form-group green-border-focus">
+                        <textarea class="form-control" id="reviewText" rows="3"  placeholder="Leave a comment..." style="width: 1000px;"></textarea>
+                    </div>
+                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
                 </div>
             </div>
         </div>
@@ -219,16 +219,15 @@
 
                     <div class="col">
                         <!-- Friend Name and their update-->
-                        <p>
-                            [Friend Name] did [Update]<br>
-                            <span>At [Timestamp and Date]</span>
+                        <p id = "reviewerName">
+                            [Friend Name] Reviewed
                         </p>
                     </div>
                 </div>
                 <br>
                 <div class="col-sm-12">
                     <!-- Personal Message left by User-->
-                    <p> This is their optional message made when they add an update to their list. Perhaps we should add a character limit? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. Aliquam accumsan ante a tellus rhoncus fermentum nec non nulla. Fusce eros odio, rutrum eget auctor ullamcorper, pharetra vel lacus. Proin convallis commodo massa, ut viverra eros consectetur vitae. Vestibulum metus orci, pellentesque ac rhoncus sed, lacinia in ipsum. Nam consectetur, diam ut elementum elementum, lorem sem mollis enim, porttitor lacinia mi libero at ex. Cras id cursus ex, et molestie elit. Curabitur mattis magna vitae arcu vulputate, ac maximus lacus pharetra. </p>
+                    <p id="updateText"> UPDATE TEXT </p>
                 </div>
             </div>
             <div class="col-sm-2">
@@ -253,8 +252,10 @@
 
                 <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                     <!-- Personal Message left by User-->
-                    <textarea id="commentText" required cols="100" rows="3" placeholder="Leave a comment..."></textarea>
-                    <button class="submitComment" onclick="submitComment()" style="margin-right: 15px;">Submit</button>
+                    <div class="form-group green-border-focus">
+                        <textarea class="form-control" id="reviewText" rows="3"  placeholder="Leave a comment..." style="width: 1000px;"></textarea>
+                    </div>
+                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
                 </div>
             </div>
         </div>
