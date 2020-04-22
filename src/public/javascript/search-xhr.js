@@ -48,7 +48,6 @@ async function handleSearch(type /*0 book, 1 profile*/, url) {
    
 
 async function Search() {
-    let googBooks = [];
     let search = await parseURL();
     let books = false;
     let profile = false;
@@ -104,7 +103,7 @@ async function handleGoogleAPI(googBooks) {
                        <h6>Google Rating:</h6>
                     </div>                
                     <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
-                        <h3><a href="javascript:" onclick='redirectBookPage(this)'>${googBooks[i].title}</a></h3>
+                        <h3><a href="javascript:" onclick='redirectBookPage(this)' id=${googBooks[i]._id}>${googBooks[i].title}</a></h3>
                         <small>${googBooks[i].authors}</small>
                         <p class='lead'>${googBooks[i].description}</p>
                     </div>
@@ -113,7 +112,9 @@ async function handleGoogleAPI(googBooks) {
             div.id = 'google_search_' + i;
             document.getElementById('search_list').appendChild(div);
             document.getElementById('image_' + i).appendChild(stars);
-        }
+            
+    }
+    bookList = googBooks;
 }
 
 async function parseURL() {
@@ -154,8 +155,8 @@ async function parseJSON(json) {
 }
 
 async function redirectBookPage(element) {
-    let book = element.innerHTML;
-    window.location.href = url + '/auth/bookPage.html?title=' + book;
+    let book = element.id;
+    window.location.href = url + '/auth/bookPage.html?book=' + book;
     
 }
 

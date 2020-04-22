@@ -3,6 +3,9 @@ import { Book } from '../models/book';
 import { User } from '../models/user';
 
 router.put('/add', async (req, res) => {
+    console.log(req.body.googleRating);
+    console.log(req.body.imageLinks);
+
     if (!req.body.title) return res.status(400).send("invalid Title");
     let titl = req.body.title;
     let auth = (!req.body.authors ? "" : req.body.authors);
@@ -46,8 +49,8 @@ router.put('/add', async (req, res) => {
     res.json(book);
 });
 
-router.get('/:title', async (req, res) => {
-    let title = req.params.title
+router.post('/read', async (req, res) => {
+    let title = req.body.title
     let decoded = decodeURIComponent(title);
     let book = await Book.findOne({ title: decoded });
     if (!book) return res.status(400).send("No Book Found");

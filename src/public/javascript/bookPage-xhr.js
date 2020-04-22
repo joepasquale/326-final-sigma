@@ -35,14 +35,14 @@ async function addToList() {
     let Review = document.getElementById("reviewText").value;
 
     const data = { "List" : List};
-        const newURL = "http://localhost:4000/api/book/addList";  //Check later***************************
+    const newURL = "http://localhost:4000/api/book/addList";  //Check later***************************
     const resp = await postData(newURL, data);
 }
 
 async function getBook() {
-    let title = await parseURL();
+    let id = await parseURL();
     let newURL = url + '/api/book/read';
-    const data = { 'title': title };
+    const data = { '_id': id };
     let resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Book Doesn't exist");
