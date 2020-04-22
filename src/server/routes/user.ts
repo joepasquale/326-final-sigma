@@ -3,8 +3,7 @@ import { User } from '../models/user';
 
 router.post('/read', async (req, res) => {
     let id = req.body.id;
-    let decoded = decodeURIComponent(id);
-    await User.findOne({ _id: decoded }, { password: 0 })
+    await User.findOne({ _id: id }, { password: 0 })
         .then(user => {
             if (!user) return res.status(400).send("No User Found");
             res.json(user);
