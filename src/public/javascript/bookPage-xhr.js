@@ -21,8 +21,9 @@ async function postData(url, data) {
 async function addReview() {
 
     let Review = document.getElementById("reviewText").value;
+    let UserName = document.getElementById("username").value; //revist once users are added********************
 
-    const data = {"Review" : Review};
+    const data = {"Review" : Review, "UserName" : UserName};
     const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
     const resp = await postData(newURL, data);
 }
@@ -63,6 +64,7 @@ async function handleBook(bookData) {
     document.getElementById('publisher').innerHTML = bookData.publisher;
     document.getElementById('image_cover').src = bookData.imageLinks.thumbnail;
     document.getElementById('googleRating').innerHTML = bookData.googleRating;
+    document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
 }
 
 

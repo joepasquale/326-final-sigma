@@ -66,17 +66,16 @@
             <h1 id="title" style="margin-left: 15px;"></h1> <!-- booktitle here -->
         </div>
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-2 col-md-2 col-lg-2">
                 <img src="" id="image_cover" style="max-height:300px; max-width:200px;"></img>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-10 col-md-10 col-lg-10">
                 <div class="container">
                     <div class="row" style="font-size: 30px;">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
                             <label id="quickAdd" required for="quickAdd"><p>Current list:</p></label> <!--Which List-->
                         </div>
-                        <div class="col-sm-7">
-
+                        <div class="col-sm-7 col-md-7 col-lg-7">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="background-color: crimson;" id = "currentList"> <!-- should change to which list its in, default None-->
                                 List drop down
@@ -94,19 +93,19 @@
 
                     </div>
                     <div class="row" style="font-size: 30px;"> <!-- genre here -->
-                        <p id="genre"></p>
+                        <p>Genre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="genre" style="color: darkred;"></p>
                     </div>
                     <div class="row" style="font-size: 30px;"> <!-- author here -->
-                        <p id="author"></p>
+                        <p>Author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="author" style="color: darkred;"></p>
                     </div>
                     <div class="row" style="font-size: 30px;"> <!-- rating here -->
-                        <p id="googleRating"></p>
+                        <p>Rating:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="googleRating" style="color: darkred;"></p>
                     </div>
                     <div class="row" style="font-size: 30px;"> <!-- published date here -->
-                        <p id="publishedDate"></p>
+                        <p>Date Published:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="publishedDate" style="color: darkred;"></p>
                     </div>
                     <div class="row" style="font-size: 30px;"> <!-- publisher here -->
-                        <p id="publisher"></p>
+                        <p>Publisher:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="publisher"  style="color: darkred;"></p>
                     </div>
                 </div>
             </div>
@@ -124,15 +123,14 @@
 
             <div class="col-sm-11">
                 <!-- Friend Name and their comment-->
-                <p>
-                    [Friend Name] Reviewed<br>
-                    <span class="timeStamp">At [Timestamp and Date]</span>
+                <p id = "reviewerName">
+                    [Friend Name] Reviewed
                 </p>
             </div>
 
             <div class="col-sm-12">
                 <!-- Personal Message left by User-->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+                <p id="reviewText">REVIEW TEXT </p>
             </div>
         </div>
         <div class="row">
@@ -145,15 +143,14 @@
 
             <div class="col-sm-11">
                 <!-- Friend Name and their comment-->
-                <p>
-                    [Friend Name] Reviewed<br>
-                    <span class="timeStamp">At [Timestamp and Date]</span>
+                <p id = "reviewerName">
+                    [Friend Name] Reviewed
                 </p>
             </div>
 
             <div class="col-sm-12">
                 <!-- Personal Message left by User-->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis turpis in libero venenatis viverra. Fusce sollicitudin odio lorem, vitae interdum tellus accumsan id. Duis ut lacus ac velit auctor faucibus vitae consectetur massa. Maecenas nec lectus et augue finibus efficitur. Aliquam sagittis, leo nec pellentesque ullamcorper, eros enim consequat tortor, quis euismod mi magna sit amet turpis. Nullam magna dui, facilisis id justo eu, vehicula efficitur tellus. </p>
+                <p id="reviewText">REVIEW TEXT </p>
             </div>
 
             <div class="col-sm-11">
