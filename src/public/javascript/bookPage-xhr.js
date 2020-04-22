@@ -41,16 +41,32 @@ async function addToList() {
 
 async function getBook() {
     let id = await parseURL();
+
     let newURL = url + '/api/book/read';
-    const data = { '_id': id };
+    const data = { 'id': id };
     let resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Book Doesn't exist");
+        window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
     let j = await resp.json();
-    console.log(j);
+    await handleBook(j);
 }
+
+async function handleBook(bookData) {
+    console.log(bookData);
+    document.getElementById('title').innerHTML = bookData.title;
+    document.getElementById('author').innerHTML = bookData.authors;
+    document.getElementById('publishedDate').innerHTML = bookData.publishedDate;
+    document.getElementById('publisher').innerHTML = bookData.publisher;
+    document.getElementById('image_cover').src = bookData.imageLinks.thumbnail;
+    document.getElementById('googleRating').innerHTML = bookData.googleRating;
+}
+
+
+
+
 
 async function parseURL() {
     let url = document.location.href,
@@ -63,6 +79,6 @@ async function parseURL() {
     if (data === null) {
         return "";
     }
-    return data.title;
+    return data.book;
 
 }

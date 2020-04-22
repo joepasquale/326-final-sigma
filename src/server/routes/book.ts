@@ -2,10 +2,7 @@ const router = require("express").Router();
 import { Book } from '../models/book';
 import { User } from '../models/user';
 
-router.put('/add', async (req, res) => {
-    console.log(req.body.googleRating);
-    console.log(req.body.imageLinks);
-
+router.post('/add', async (req, res) => {
     if (!req.body.title) return res.status(400).send("invalid Title");
     let titl = req.body.title;
     let auth = (!req.body.authors ? "" : req.body.authors);
@@ -14,7 +11,8 @@ router.put('/add', async (req, res) => {
         "type": "",
         "identifier": ""
     } ] : req.body.ISBN);
-    let desc =(!req.body.description ? "" : req.body.description);
+    let desc = (!req.body.description ? "" : req.body.description);
+    let pubDate = (!req.body.publishedDate ? "" : req.body.publishedDate);
     let rate = (!req.body.googleRating ? 0 : req.body.googleRating);
     let imageLinks = (!req.body.imageLinks ? {
         "smallThumbnail": "",
@@ -24,6 +22,7 @@ router.put('/add', async (req, res) => {
         'title': titl,
         'authors': auth,
         'publisher': publ,
+        'publishedDate': pubDate,
         'description': desc,
         'googleRating': rate,
         'imageLinks': imageLinks,
@@ -31,12 +30,12 @@ router.put('/add', async (req, res) => {
             $elemMatch: { type: ISBN[0].type, identifier:ISBN[0].identifier}
         }
     });
-    //await Book.findOne({ 'ISBN': { $elemMatch: { identifier: req.body.ISBN[0].identifier } } });
     if (!book) {
         book = new Book({
             title: titl,
             authors: auth,
             publisher: publ,
+            publlishedDate: pubDate,
             ISBN: ISBN,
             description: desc,
             googleRating: rate,
@@ -50,14 +49,20 @@ router.put('/add', async (req, res) => {
 });
 
 router.post('/read', async (req, res) => {
-    let title = req.body.title
-    let decoded = decodeURIComponent(title);
-    let book = await Book.findOne({ title: decoded });
-    if (!book) return res.status(400).send("No Book Found");
-    res.json(book);
+    let id = req.body.id;
+    let decoded = decodeURIComponent(id);
+    await Book.findOne({ _id: decoded })
+        .then(book => {
+            if (!book) return res.status(400).send("No Book Found");
+            res.json(book);
+        })
+        .catch(err => {
+            return res.status(400).send("No Book Found");
+        });
+    res.end();
 });
 
-router.post('/:title/review/create', async (req, res) => {
+router.post('/review/create', async (req, res) => {
 
 });
 

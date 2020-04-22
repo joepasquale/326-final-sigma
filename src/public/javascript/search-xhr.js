@@ -1,10 +1,10 @@
 const url = "http://localhost:4000";
 const googleAPI = "https://www.googleapis.com/books/v1/volumes?q=";
 
-async function fetchData(url, data, method) {
+async function fetchData(url, data) {
     const resp = await fetch(url,
         {
-            method: method,
+            method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin',
@@ -31,7 +31,7 @@ async function handleSearch(type /*0 book, 1 profile*/, url) {
             }
             return false;
         } else {
-            resp = await fetchData(url, data, 'POST');
+            resp = await fetchData(url, data);
             if (resp != 200) {
                 return false;
             }
@@ -76,7 +76,7 @@ async function Search() {
 async function handleGoogleAPI(googBooks) {
         for (let i = 0; i < googBooks.length; i++) {
             newURL = url + '/api/book/add';
-            let resp = await fetchData(newURL, googBooks[i], 'PUT');
+            let resp = await fetchData(newURL, googBooks[i]);
             if (resp.status != 200) {
                 console.log(await resp.text());
                 continue;
