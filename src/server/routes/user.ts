@@ -1,5 +1,6 @@
 const router = require("express").Router();
 import { User } from '../models/user';
+import { auth } from '../middleware/auth';
 
 router.post('/read', async (req, res) => {
     let id = req.body.id;
@@ -27,6 +28,11 @@ router.post('/search', async (req, res) => {
         });
 
 });
+
+router.post('/me', auth, async (req, res) => {
+    res.json(req.user);
+});
+
 
 
 

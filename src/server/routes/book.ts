@@ -15,14 +15,16 @@ router.post('/add', async (req, res) => {
     let pubDate = (!req.body.publishedDate ? "" : req.body.publishedDate);
     let rate = (!req.body.googleRating ? 0 : req.body.googleRating);
     let imageLinks = (!req.body.imageLinks ? {
-        "smallThumbnail": "",
-        "thumbnail": ""
+        "smallThumbnail": "../resources/no_image_book.jpg",
+        "thumbnail": "../resources/no_image_book.jpg"
     } : req.body.imageLinks);
+    let cat = (!req.body.categories ? "" : req.body.categories);
     let book = await Book.findOne({
         'title': titl,
         'authors': auth,
         'publisher': publ,
         'publishedDate': pubDate,
+        'categories': cat,
         'description': desc,
         'googleRating': rate,
         'imageLinks': imageLinks,
@@ -35,8 +37,9 @@ router.post('/add', async (req, res) => {
             title: titl,
             authors: auth,
             publisher: publ,
-            publlishedDate: pubDate,
+            publishedDate: pubDate,
             ISBN: ISBN,
+            categories: cat,
             description: desc,
             googleRating: rate,
             imageLinks: imageLinks,
@@ -45,6 +48,7 @@ router.post('/add', async (req, res) => {
         });
         await book.save();
     }       
+   
     res.json(book);
 });
 

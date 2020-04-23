@@ -27,36 +27,58 @@ async function authUser() {
         window.sessionStorage.setItem('token', "");
     } else {
         let token = await resp.text();
-        window.sessionStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
         window.location.href = url + "/auth/homefeed.html"
     }
 }
 
 async function registerUser() {
-    let email = document.getElementById("inputEmail").value;//
+    let isErroring = false;
+    let email = document.getElementById("inputEmail").value;
     let username = document.getElementById("inputUserName").value;
     let passwordA = document.getElementById("inputPasswordA").value;
     let passwordB = document.getElementById("inputPasswordB").value;
     if ((passwordA.length <= 5) || (passwordA.length >= 21)) { //Check if password is the correct length (6-20), responds and stops if not
-        document.getElementById("validateInput").style.display = 'block';
-        let returnTextLength = "Password not of appropriate length (6-20 characters)";
+        let errorElem = document.getElementById("validateInput")
+        errorElem.innerHTML += "Password not of appropriate length (6-20 characters)\n";
+        errorElem.style.display = 'block';
         document.getElementById("passwordHelpBlock").className = "text-danger";
-        document.getElementById("passwordHelpBlock").innerHTML = returnTextLength;
-        return;
+        isErroring = true;
     }
-    else if (passwordA != passwordB) { //Check if passwords match, responds and stops if not
-        document.getElementById("validateInput").style.display = 'block';
-        let returnTextMatch = "Passwords do not match";
+    if (passwordA != passwordB) { //Check if passwords match, responds and stops if not
+        let errorElem = document.getElementById("validateInput");
+        errorElem.innerHTML += "Passwords do not match\n";
+        errorElem.style.display = 'block';
         document.getElementById("passwordHelpBlock").className = "text-danger";
-        document.getElementById("passwordHelpBlock").innerHTML = returnTextMatch;
+        isErroring = true;
+    }
+   /* if (username) {
+        let errorElem = document.getElementById("validateInput").style.display = 'block';
+        errorElem.innerHTML += "Passwords do not match";
+        document.getElementById("passwordHelpBlock").className = "text-danger";
+        isErroring = true;
+    }
+    if (email) { //Check if passwords match, responds and stops if not
+        let errorElem = document.getElementById("validateInput").style.display = 'block';
+        errorElem.innerHTML += "Passwords do not match";
+        document.getElementById("passwordHelpBlock").className = "text-danger";
+        isErroring = true;
+    }*/
+    if (isErroring === true) {
         return;
     }
     const data = { "email": email, "username": username, "password": passwordA };
     const newURL = url + "/api/login/register";
     const resp = await postData(newURL, data);
     if (resp.status != 200) {
-      
+        let error = await resp.text()
+        let errorElem = document.getElementById("validateInput")
+        errorElem.innerHTML = error;
+        errorElem.style.display = 'block';
+        window.sessionStorage.setItem('token', "");
     } else {
-      
+        let token = await resp.text();
+        sessionStorage.setItem('token', token);
+        window.location.href = url + "/auth/homefeed.html"
     }
 }

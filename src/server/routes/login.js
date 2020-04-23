@@ -72,11 +72,7 @@ router.post('/register', function (req, res) { return __awaiter(_this, void 0, v
                 return [4 /*yield*/, user.generateAuthToken()];
             case 6:
                 token = _b.sent();
-                res.header('x-auth-token', token).send({
-                    _id: user._id,
-                    username: user.username,
-                    email: user.email
-                });
+                res.send(token);
                 return [2 /*return*/];
         }
     });
