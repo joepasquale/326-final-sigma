@@ -4,13 +4,11 @@
     "\\src",
     "\\src\\public",
     "\\src\\public\\authhtml",
-    "\\src\\public\\css",
-    "\\src\\public\\html",
     "\\src\\public\\javascript",
+    "\\src\\removed_html",
     "\\src\\server",
-    "\\src\\server\\middleware",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\public\\authhtml\\booklist.html",
+  "SelectedNode": "\\src\\public\\authhtml\\search-results.html",
   "PreviewInSolutionExplorer": false
 }

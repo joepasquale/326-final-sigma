@@ -56,14 +56,18 @@ async function parseURL() {
 
 }
 
-async function redirectFriendsList(element) {
-    let book = element.id;
-    window.location.href = url + '/auth/bookPage.html?book=' + book;
+async function redirectFriendsList() {
+    let urlData = await parseURL();
+    let userID = urlData.user;
+    let decoded = decodeURIComponent(userID);
+    window.location.href = url + '/auth/friendlist.html?user=' + decoded;
 
 }
 
-async function redirectReadingList(element) {
-    let user = element.id;
-    window.location.href = url + '/auth/profile.html?user=' + user;
+async function redirectReadingList() {
+    let urlData = await parseURL();
+    let userID = urlData.user;
+    let decoded = decodeURIComponent(userID);
+    window.location.href = url + '/auth/booklist.html?user=' + decoded;
 
 }
