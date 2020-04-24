@@ -18,37 +18,25 @@ async function postData(url, data) {
 }
 
 
-async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFEED
+async function addReview() {
 
     let Review = document.getElementById("reviewText").value;
-    let UserName = document.getElementById("currentUser").value;
+    let UserName = document.getElementById("username").value; //revist once users are added********************
 
     const data = {"Review" : Review, "UserName" : UserName};
-    const newURL = "http://localhost:4000/api/book/review";
-    const resp = await postData(newURL, data); 
-    
-    await fetch(newURL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(function (dat) { 
-        console.log('Request success: ', dat.results);
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });
+    const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
+    const resp = await postData(newURL, data);
 }
+
+
+
 
 async function addToList() {
 
-    let addToList = document.getElementById("listDrop").value;
+    let Review = document.getElementById("reviewText").value;
 
-    const data = { "List" : addToList};
-    const newURL = "http://localhost:4000/api/book/addList";  
+    const data = { "List" : List};
+    const newURL = "http://localhost:4000/api/book/addList";  //Check later***************************
     const resp = await postData(newURL, data);
 }
 
