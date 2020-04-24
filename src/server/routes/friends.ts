@@ -56,5 +56,8 @@ router.post('/find', async (req, res) => {
 
 });
 
+router.post('/remove', async (req, res) => {
+
+});
 
 export { router };
