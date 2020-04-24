@@ -57,7 +57,14 @@ router.post('/register', function (req, res) { return __awaiter(_this, void 0, v
                 user = new user_1.User({
                     username: req.body.username,
                     email: req.body.email,
-                    password: req.body.password
+                    password: req.body.password,
+                    info: {
+                        lastname: req.body.lastname,
+                        firstname: req.body.firstname,
+                        favorite_book: "",
+                        favorite_genre: "None"
+                    },
+                    friends: [],
                 });
                 return [4 /*yield*/, bcrypt.genSalt(10)];
             case 3:
@@ -72,11 +79,7 @@ router.post('/register', function (req, res) { return __awaiter(_this, void 0, v
                 return [4 /*yield*/, user.generateAuthToken()];
             case 6:
                 token = _b.sent();
-                res.header('x-auth-token', token).send({
-                    _id: user._id,
-                    username: user.username,
-                    email: user.email
-                });
+                res.send(token);
                 return [2 /*return*/];
         }
     });
