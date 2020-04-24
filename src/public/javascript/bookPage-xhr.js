@@ -76,6 +76,7 @@ async function getBook() {
 async function handleBook(bookData) {
     console.log(bookData);
     document.title = 'Shelf - ' + bookData.title;
+    document.getElementById('genre').innerHTML = bookData.categories;
     document.getElementById('title').innerHTML = bookData.title;
     document.getElementById('author').innerHTML = bookData.authors;
     document.getElementById('publishedDate').innerHTML = bookData.publishedDate;
