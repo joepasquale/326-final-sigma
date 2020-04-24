@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const listSchema = new mongoose.Schema({
-    requester: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
-    reciever: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
     status: {
         type: Number,
         enums: [

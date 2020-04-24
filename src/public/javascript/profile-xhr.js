@@ -1,19 +1,25 @@
+let userProfile;
 
-
-async function getProfile() {
-    let urlData = await parseURL();
+async function readProfile(id) {
     let newURL = url + '/api/user/read';
-    let userID = urlData.user;
-    let decoded = decodeURIComponent(userID);
-    const data = { 'id': decoded };
-    let resp = await postData(newURL, data);
+    const data = { "id": id };
+    const resp = await postData(newURL, data);
     if (resp.status != 200) {
         console.log("Profile Doesn't Exist");
         window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
     let j = await resp.json();
-    Profile = j;
+    return j;
+}
+
+async function getProfile() {
+    let urlData = await parseURL();
+    let userID = urlData.user;
+    let decoded = decodeURIComponent(userID);
+    let j = await readProfile(decoded);
+    console.log(j);
+    userProfile = j;
     await handleProfile(j);
 }
 
@@ -38,24 +44,16 @@ async function sendProfileInfo() {
 }
 
 async function getProfileInfo() {
-    let newURL = url + "/api/user/read";
-    let data = { 'id': currentUser._id };
-    let resp = await postData(newURL, data);
-    if (resp.status != 200) {
-        console.log("test");
-    } else {
-        let profile = await resp.json();
-        document.getElementById("first_name").value = profile.info.firstname;
-        document.getElementById("last_name").value = profile.info.lastname;
-        document.getElementById("favorite_book").value = profile.info.favorite_book;
-        let drop = document.getElementById("favgenre");
-        let val = profile.info.favorite_genre;
-        for (let i = 0; i < drop.options.length; i++) {
-            if (drop.options[i].value === val) {
-                drop.options[i].selected = true;
-            }
-        }
-        
+    let profile = await readProfile(currentUser._id);
+    document.getElementById("first_name").value = profile.info.firstname;
+    document.getElementById("last_name").value = profile.info.lastname;
+    document.getElementById("favorite_book").value = profile.info.favorite_book;
+    let drop = document.getElementById("favgenre");
+    let val = profile.info.favorite_genre;
+    for (let i = 0; i < drop.options.length; i++) {
+       if (drop.options[i].value === val) {
+           drop.options[i].selected = true;
+       }
     }
 }
 
@@ -150,13 +148,23 @@ async function handleOtherUser(profileData) {
                         <label class='lead' id="email_lab">${profileData.email}</label>
                     </div>
                         <div class="col">
-                             <button class="btn btn-md btn-success mt-3"><i class="fas fa-plus"></i> Add Friend</button>
+                             <button class="btn btn-md btn-success mt-3" onclick="sendFriendRequest()"><i class="fas fa-plus"></i> Add Friend</button>
                         </div>
                     </div>
                    `;
 
 }
 
+
+async function sendFriendRequest() {
+    let userB = await readProfile(currentUser._id);
+    const data = {
+        "UserA": userProfile,
+        "UserB": userB,
+    };
+    const newURL = url + '/api/friend/request';
+    const resp = await postData(newURL, data);
+}
 
 async function handleProfile(profileData) {
     document.title = 'Shelf - ' + profileData.username;

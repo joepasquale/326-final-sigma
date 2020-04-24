@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 
-mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB..', err));
 const PORT = process.env.PORT || 4000;

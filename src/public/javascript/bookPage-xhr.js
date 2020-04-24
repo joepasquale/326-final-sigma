@@ -1,4 +1,6 @@
 
+let Book;
+
 async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFEED
 
     let Review = document.getElementById("reviewText").value;
@@ -6,11 +8,7 @@ async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFE
 
     const data = {"Review" : Review, "UserName" : UserName};
     const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
-    const resp = await postData(newURL, data);
-
-    const newURL = "http://localhost:4000/api/book/review";
-    const resp = await postData(newURL, data); 
-    
+    const resp = await postData(newURL, data);    
     await fetch(newURL, {
         method: 'POST',
         headers: {
@@ -71,6 +69,7 @@ async function getBook() {
         return;
     }
     let j = await resp.json();
+    Book = j;
     await handleBook(j);
 }
 
@@ -86,10 +85,6 @@ async function handleBook(bookData) {
     document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
     document.getElementbyId('reviewerText').innerHTML = bookData.userReview[0].reviewText
 }
-
-
-
-
 
 async function parseURL() {
     let url = document.location.href,

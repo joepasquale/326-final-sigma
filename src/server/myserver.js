@@ -10,7 +10,7 @@ var book_1 = require("./routes/book");
 var friends_1 = require("./routes/friends");
 app.use(express.json());
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
     .then(function () { return console.log('Connected to MongoDB...'); })
     .catch(function (err) { return console.error('Could not connect to MongoDB..', err); });
 var PORT = process.env.PORT || 4000;
