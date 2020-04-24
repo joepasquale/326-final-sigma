@@ -34,22 +34,25 @@ async function authUser() {
 
 async function registerUser() {
     let isErroring = false;
+    document.getElementById("validateInput").innerHTML = "";
     let email = document.getElementById("inputEmail").value;
     let username = document.getElementById("inputUserName").value;
     let passwordA = document.getElementById("inputPasswordA").value;
     let passwordB = document.getElementById("inputPasswordB").value;
     if ((passwordA.length <= 5) || (passwordA.length >= 21)) { //Check if password is the correct length (6-20), responds and stops if not
         let errorElem = document.getElementById("validateInput")
-        errorElem.innerHTML += "Password not of appropriate length (6-20 characters)\n";
+        let p = document.createElement("P");
+        p.innerHTML = "Password not of appropriate length (6-20 characters)\n";
+        errorElem.appendChild(p);
         errorElem.style.display = 'block';
-        document.getElementById("passwordHelpBlock").className = "text-danger";
-        isErroring = true;
+        isErroring == true;
     }
     if (passwordA != passwordB) { //Check if passwords match, responds and stops if not
         let errorElem = document.getElementById("validateInput");
-        errorElem.innerHTML += "Passwords do not match\n";
+        let p = document.createElement("P");
+        p.innerHTML = "Passwords Do Not Match";
+        errorElem.appendChild(p);
         errorElem.style.display = 'block';
-        document.getElementById("passwordHelpBlock").className = "text-danger";
         isErroring = true;
     }
    /* if (username) {
