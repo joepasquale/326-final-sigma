@@ -4,9 +4,11 @@ const bodyParser = require('body-parser')
 const app = express();
 
 import { router as login } from "./routes/login";
+import { router as search } from "./routes/search";
 import { router as user } from "./routes/user";
 import { router as book } from "./routes/book";
-
+import { router as html } from "./routes/html";
+import { auth } from './middleware/auth';
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -22,6 +24,9 @@ app.use('/resources', express.static('../public/resources'));
 app.use('/css', express.static('../public/css'));
 app.use('/javascript', express.static('../public/javascript'));
 app.use('/', express.static('../public/html'));
+//app.use('/auth', auth);
+app.use('/', html);
+app.use('/api/', search);
 app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login);
 app.use('/api/user', user);
