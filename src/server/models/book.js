@@ -6,7 +6,6 @@ var bookSchema = new mongoose.Schema({
     authors: [{ type: String }],
     publisher: { type: String },
     publishedDate: { type: String },
-    categories: [{ type: String }],
     ISBN: [{
             type: { type: String },
             identifier: {

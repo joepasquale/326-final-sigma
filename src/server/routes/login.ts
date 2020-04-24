@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const router = require("express").Router();
 import { User } from '../models/user';
 
-
 router.post('/register', async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send("Email already in use");
@@ -11,20 +10,18 @@ router.post('/register', async (req, res) => {
     user = new User({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
-        info:{
-            lastname: req.body.lastname,
-            firstname: req.body.firstname,
-            favorite_book: "",
-            favorite_genre: "None"
-        },
-        friends: [],
+        password: req.body.password
     });
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
     const token = await user.generateAuthToken();
-    res.send(token);
+    res.header('x-auth-token', token).send(
+        {
+         _id:user._id,
+        username: user.username,
+        email: user.email
+    });
 
 });
 
@@ -36,7 +33,6 @@ router.post('/', async (req, res) => {
     const token = await user.generateAuthToken();
     res.send(token);
 });
-
 
 
 export { router };
