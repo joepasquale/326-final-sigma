@@ -2,8 +2,10 @@
 
 <head>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/NavBarStyle.css" />
 
     <style>
@@ -72,7 +74,8 @@
             <a class="navbar-brand" href="#">
                 <img src="../resources/logo.png" width="105" height="48" class="d-inline-block align-top" alt="Shelf">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -95,7 +98,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link lead"  href="javascript:" onclick="handleNavSignout()">
+                        <a class="nav-link lead" href="javascript:" onclick="handleNavSignout()">
                             <i class="fas fa-sign-out-alt"></i>
                             Sign Out
                         </a>
@@ -127,139 +130,144 @@
         </div>
     </div> -->
 
+    <div id="feedbox">
+        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <!--start of first block example-->
 
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-        <!--start of first block example-->
+            <div class="row">
+                <div class="col-sm-10">
+                    <div style="float:left; width: 100%;">
+                        <div class="col">
+                            <!-- This is where profile pic is displayed for each update-->
+                            <img src="../resources/Dog.PNG" height="168" width="168"></img>
+                        </div>
 
-        <div class="row">
-            <div class="col-sm-10">
-                <div style="float:left; width: 100%;">
-                    <div class="col">
-                        <!-- This is where profile pic is displayed for each update-->
-                        <img src="../resources/Dog.PNG" height="168" width="168"></img>
+                        <div class="col">
+                            <!-- Friend Name and their update-->
+                            <p id="reviewerName">
+                                [Friend Name] Reviewed
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">
+                        <!-- Personal Message left by User-->
+                        <p id="updateText"> UPDATE TEXT </p>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <!-- This is where book pic is displayed for each update-->
+                    <img src="../resources/shining.jpg" height="336" width="168"></img>
+                </div>
+            </div>
+
+
+            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+                <div class="row">
+
+                    <div class="col-sm-1">
+                        <!-- This is where profile pic is displayed for each comment-->
+                        <img src="../resources/avatar.png" height="84" width="84"></img>
                     </div>
 
-                    <div class="col">
-                        <!-- Friend Name and their update-->
+                    <div class="col-sm-11">
+                        <!-- Friend Name and their comment-->
                         <p id="reviewerName">
-                            [Friend Name] Reviewed
+                            [Friend Name] commented
                         </p>
                     </div>
-                </div>
-                <br>
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p id="updateText"> UPDATE TEXT </p>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <!-- This is where book pic is displayed for each update-->
-                <img src="../resources/shining.jpg" height="336" width="168"></img>
-            </div>
-        </div>
 
+                    <div class="col-sm-12">
+                        <!-- Personal Message left by User-->
+                        <p id="commentText"> COMMENT TEXT </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+                <div class="row">
+
+                    <div class="col-sm-1">
+                        <!-- This is where profile pic is displayed for each comment-->
+                        <img src="../resources/emergy.png" height="84" width="84"></img>
+                    </div>
+
+                    <div class="col-sm-11">
+                        <!-- Prompts user if they want to comment-->
+                        <p class="textUI" id="textUI">Leave a comment?</p>
+                    </div>
+
+                    <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
+                        <!-- Personal Message left by User-->
+                        <div class="form-group green-border-focus">
+                            <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..."
+                                style="width: 1000px;"></textarea>
+                        </div>
+                        <button onclick="submitComment()" class="btn btn-secondary" type="Submit"
+                            style="margin-right: 15px;">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--end of first block example-->
 
         <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <!--start of second block example-->
             <div class="row">
+                <div class="col-sm-10">
+                    <div style="float:left; width: 100%;">
+                        <div class="col">
+                            <!-- This is where profile pic is displayed for each update-->
+                            <img src="../resources/avatar.png" height="168" width="168"></img>
+                        </div>
 
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/avatar.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Friend Name and their comment-->
-                    <p id="reviewerName">
-                        [Friend Name] commented
-                    </p>
-                </div>
-
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p id="commentText"> COMMENT TEXT </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <div class="row">
-
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/emergy.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Prompts user if they want to comment-->
-                    <p class="textUI" id="textUI">Leave a comment?</p>
-                </div>
-
-                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                    <!-- Personal Message left by User-->
-                    <div class="form-group green-border-focus">
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..." style="width: 1000px;"></textarea>
+                        <div class="col">
+                            <!-- Friend Name and their update-->
+                            <p id="reviewerName">
+                                [Friend Name] Reviewed
+                            </p>
+                        </div>
                     </div>
-                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
-                </div>
-            </div>
-        </div>
-
-    </div> <!--end of first block example-->
-
-    <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-        <!--start of second block example-->
-        <div class="row">
-            <div class="col-sm-10">
-                <div style="float:left; width: 100%;">
-                    <div class="col">
-                        <!-- This is where profile pic is displayed for each update-->
-                        <img src="../resources/avatar.png" height="168" width="168"></img>
-                    </div>
-
-                    <div class="col">
-                        <!-- Friend Name and their update-->
-                        <p id="reviewerName">
-                            [Friend Name] Reviewed
-                        </p>
+                    <br>
+                    <div class="col-sm-12">
+                        <!-- Personal Message left by User-->
+                        <p id="updateText"> UPDATE TEXT </p>
                     </div>
                 </div>
-                <br>
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p id="updateText"> UPDATE TEXT </p>
+                <div class="col-sm-2">
+                    <!-- This is where book pic is displayed for each update-->
+                    <img src="../resources/harrypotter.jpg" height="336" width="168"></img>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <!-- This is where book pic is displayed for each update-->
-                <img src="../resources/harrypotter.jpg" height="336" width="168"></img>
-            </div>
-        </div>
 
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <!-- comment example-->
-            <div class="row">
+            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+                <!-- comment example-->
+                <div class="row">
 
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/emergy.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Prompts user if they want to comment-->
-                    <p class="textUI" id="textUI">Leave a comment?</p>
-                </div>
-
-                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                    <!-- Personal Message left by User-->
-                    <div class="form-group green-border-focus">
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..." style="width: 1000px;"></textarea>
+                    <div class="col-sm-1">
+                        <!-- This is where profile pic is displayed for each comment-->
+                        <img src="../resources/emergy.png" height="84" width="84"></img>
                     </div>
-                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
+
+                    <div class="col-sm-11">
+                        <!-- Prompts user if they want to comment-->
+                        <p class="textUI" id="textUI">Leave a comment?</p>
+                    </div>
+
+                    <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
+                        <!-- Personal Message left by User-->
+                        <div class="form-group green-border-focus">
+                            <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..."
+                                style="width: 1000px;"></textarea>
+                        </div>
+                        <button onclick="submitComment()" class="btn btn-secondary" type="Submit"
+                            style="margin-right: 15px;">Submit</button>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-
     </div>
 
     <!--Footer Start-->
@@ -271,9 +279,15 @@
     <!--Footer End-->
     <script src="../javascript/NavRedirect.js"></script>
     <!--Booststrap JS files-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 
