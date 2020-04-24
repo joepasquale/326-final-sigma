@@ -4,7 +4,7 @@
 Sigma
 
 ## Name of Application:
-Shelf: **(Access via Heroku)[https://google.com]**
+Shelf: **[Access via Heroku](https://google.com)**
 
 ## Team Overview:
 - Daniel Coley, https://www.github.com/DANSC111
@@ -16,3 +16,9 @@ Shelf: **(Access via Heroku)[https://google.com]**
 ## User Interface & CRUD Interactions
 
 ## Contributions
+ - Josh
+    - 
+ - Dan
+    - 
+ - Joe
+    -
