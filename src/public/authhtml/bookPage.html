@@ -28,19 +28,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="javascript:" onclick="handleNavBookList()">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link lead" href="javascript:" onclick="handleNavProfile()">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link lead"  href="javascript:" onclick="handleNavSignout()">
+                        <a class="nav-link lead" href="#">
                             <i class="fas fa-sign-out-alt"></i>
                             Sign Out
                         </a>
@@ -76,42 +76,36 @@
                             <label id="quickAdd" required for="quickAdd"><p>Current list:</p></label> <!--Which List-->
                         </div>
                         <div class="col-sm-7 col-md-7 col-lg-7">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: crimson;" id="currentList">
-                                <!-- should change to which list its in, default None-->
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="background-color: crimson;" id = "currentList"> <!-- should change to which list its in, default None-->
                                 List drop down
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              </a>
+                            
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" onclick="addToList()" value="none" href="#">None</a> <!-- by adding to NONE, it would remove from users list?-->
                                 <a class="dropdown-item" onclick="addToList()" value="wantR" href="#">Want to Read</a> <!-- by selecting any list, it would add/move to that list-->
                                 <a class="dropdown-item" onclick="addToList()" value="curR" href="#">Currently Reading</a>
                                 <a class="dropdown-item" onclick="addToList()" value="comR" href="#">Completed Reading</a>
                                 <a class="dropdown-item" onclick="addToList()" value="stopR" href="#">Stopped Reading</a>
-                            </div>
+                              </div>
                             <!--<button onclick="addToList()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Add to</button>-->
                         </div>
 
                     </div>
-                    <div class="row" style="font-size: 30px;">
-                        <!-- genre here -->
+                    <div class="row" style="font-size: 30px;"> <!-- genre here -->
                         <p>Genre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="genre" style="color: darkred;"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
-                        <!-- author here -->
+                    <div class="row" style="font-size: 30px;"> <!-- author here -->
                         <p>Author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="author" style="color: darkred;"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
-                        <!-- rating here -->
+                    <div class="row" style="font-size: 30px;"> <!-- rating here -->
                         <p>Rating:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="googleRating" style="color: darkred;"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
-                        <!-- published date here -->
+                    <div class="row" style="font-size: 30px;"> <!-- published date here -->
                         <p>Date Published:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="publishedDate" style="color: darkred;"></p>
                     </div>
-                    <div class="row" style="font-size: 30px;">
-                        <!-- publisher here -->
-                        <p>Publisher:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="publisher" style="color: darkred;"></p>
+                    <div class="row" style="font-size: 30px;"> <!-- publisher here -->
+                        <p>Publisher:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p id="publisher"  style="color: darkred;"></p>
                     </div>
                 </div>
             </div>
@@ -129,7 +123,7 @@
 
             <div class="col-sm-11">
                 <!-- Friend Name and their comment-->
-                <p id="reviewerName">
+                <p id = "reviewerName">
                     [Friend Name] Reviewed
                 </p>
             </div>
@@ -149,7 +143,7 @@
 
             <div class="col-sm-11">
                 <!-- Friend Name and their comment-->
-                <p id="reviewerName">
+                <p id = "reviewerName">
                     [Friend Name] Reviewed
                 </p>
             </div>
@@ -167,7 +161,7 @@
             <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
                 <!-- Personal Message left by User-->
                 <div class="form-group green-border-focus">
-                    <textarea class="form-control" id="reviewText" rows="3" placeholder="Leave a review..." style="width: 1000px;"></textarea>
+                    <textarea class="form-control" id="reviewText" rows="3"  placeholder="Leave a review..." style="width: 1000px;"></textarea>
                 </div>
                 <button onclick="addReview()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
             </div>
@@ -185,7 +179,6 @@
     <!--Footer End-->
     <!--Our JavaScript Start -->
     <script src="../javascript/bookPage-xhr.js"></script>
-    <script src="../javascript/NavRedirect.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -51,23 +51,14 @@ var userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    info: {
-        firstname: { type: String },
-        lastname: { type: String },
-        favorite_book: { type: String },
-        favorite_genre: { type: String }
-    },
-    friends: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Friends'
-        }]
+    }
 });
 userSchema.index({ username: 'text' });
 userSchema.methods.generateAuthToken = function () {
     return __awaiter(this, void 0, void 0, function () {
         var token;
         return __generator(this, function (_a) {
-            token = jwt.sign({ _id: this._id, username: this.username }, 'jwtPrivateKey', { expiresIn: '1h' });
+            token = jwt.sign({ _id: this._id, username: this.username }, 'jwtPrivateKey');
             return [2 /*return*/, token];
         });
     });

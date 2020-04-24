@@ -31,19 +31,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link lead" href="javascript:" onclick="handleNavBookList()">
+                        <a class="nav-link lead" href="/auth/booklist.html">
                             <i class="fas fa-list"></i>
                             My Books
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link lead" href="javascript:" onclick="handleNavProfile()">
+                        <a class="nav-link lead" href="/auth/profile.html">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link lead" href="javascript:" onclick="handleNavSignout()">
+                        <a class="nav-link lead" href="#">
                             <i class="fas fa-sign-out-alt"></i>
                             Sign Out
                         </a>
@@ -71,10 +71,57 @@
                 <div class="text-center pt-3 pb-1">
                     <img src="../resources/avatar.png" class="rounded-circle" alt="avatar">
                 </div>
-                <h2 id="username" class="text-center pb-3"></h2>
+                <h2 id="username" class="text-center pb-3">Username</h2>
             </div>
-            <div class="container shadow-sm col-lg-8 mt-5 bg-white"  id="profile_info">
-                
+            <div class="container shadow-sm col-lg-8 mt-5 bg-white">
+                <div class="row mt-3">
+                    <div class="col">
+                        <h4>First Name</h4>
+                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name">
+                    </div>
+                    <div class="col">
+                        <h4>Last Name</h4>
+                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <h4>Favorite Book</h4>
+                        <input type="text" class="form-control" name="favorite_book" id="favorite_book" placeholder="book title">
+                    </div>
+                    <div class="col">
+                        <h4>Favorite Genre</h4>
+                        <select class="form-control" id="favgenre">
+                            <option value="TestA">None</option>
+                            <option value="TestA">Fantasy</option>
+                            <option value="TestB">Sci-Fi</option>
+                            <option value="TestC">Horror</option>
+                            <option value="TestC">Western</option>
+                            <option value="TestC">Romance</option>
+                            <option value="TestC">Thriller</option>
+                            <option value="TestC">Mystery</option>
+                            <option value="TestC">Detective</option>
+                            <option value="TestC">Dystopia</option>
+                            <option value="TestC">Action Adventure</option>
+                            <option value="TestC">Young Adult</option>
+                            <option value="TestC">Non-Fiction</option>
+                            <option value="TestC">TextBook</option>
+                            <option value="TestC">Poetry</option>
+                            <option value="TestC">Biography</option>
+                            <option value="TestC">Play</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row my-3">
+
+                    <button class="btn btn-md btn-success ml-3 mr-3"><i class="fas fa-check-circle"></i> Save</button>
+
+                    <button class="btn btn-md btn-secondary"><i class="fas fa-redo"></i> Reset</button>
+
+                </div>
+
+
+
             </div>
         </div>
         <div class="row">
@@ -117,7 +164,7 @@
                     <hr />
                 </div>
                 <div class="d-flex justify-content-center mb-3">
-                    <a href="javascript:" onclick="redirectFriendsList()" class="text-center">load more</a>
+                    <a href="#" class="text-center">load more</a>
                 </div>
             </div>
             <div class="container shadow-sm col-lg-6 my-5 bg-white">
@@ -162,7 +209,7 @@
                     <hr />
                 </div>
                 <div class="d-flex justify-content-center mb-3">
-                    <a href="javascript:" onclick="redirectReadingList()" class="text-center">load more</a>
+                    <a href="#" class="text-center">load more</a>
                 </div>
             </div>
 
@@ -179,7 +226,6 @@
     <!--Footer End-->
     <!--Our JavaScript Start -->
     <script src="../javascript/profile-xhr.js"></script>
-    <script src="../javascript/NavRedirect.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
