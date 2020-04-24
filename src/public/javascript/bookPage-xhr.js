@@ -33,6 +33,23 @@ async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFE
 async function addToList() {
 
     let addToList = document.getElementById("listDrop").value;
+    let currentBook = getBook();
+
+    if(listDrop == 0){ //none
+
+    }
+    else if(listDrop == 1){ //Want R
+        
+    }
+    else if(listDrop == 2){ //Cur R
+        
+    }
+    else if(listDrop == 3){// Com R
+        
+    }
+    else{ // Stop R
+        
+    }
 
     const data = { "List" : addToList};
     const newURL = "http://localhost:4000/api/book/addList";
