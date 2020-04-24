@@ -1,11 +1,13 @@
 const url = "http://localhost:4000";
 
-async function submitComment() {
+async function submitComment() { //COMMENTS ARE ON HOMEFEED, REVIEWS ARE ON BOOK PAGES
 
     let Comment = document.getElementById("commentText").value;
+    let UserName = document.getElementById("currentUser").value; 
 
-    const data = {"Comment" : Comment};
-        const newURL = "http://localhost:4000/api/home/comment";  //Check later **************************
+    const data = {"Comment" : Comment, "UserName" : UserName};
+    const newURL = "http://localhost:4000/api/home/comment"; 
+    const resp = await postData(newURL, data);  
     await fetch(newURL, {
         method: 'POST',
         headers: {
@@ -20,17 +22,18 @@ async function submitComment() {
         .catch(function (error) {
             console.log('Request failure: ', error);
         });
+        
 }
 
-async function submitComment() {
-
-    let Comment = document.getElementById("commentText").value;
-    let UserName = document.getElementById("username").value; //revist once users are added********************
-
-    const data = {"Comment" : Comment, "UserName" : UserName};
-    const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
-    const resp = await postData(newURL, data);
-}
+//async function submitComment() { OLD SUBMITCOMMENT FUNCTION
+//
+//    let Comment = document.getElementById("commentText").value;
+//    let UserName = document.getElementById("currentUser").value; 
+//
+//    const data = {"Comment" : Comment, "UserName" : UserName};
+//    const newURL = "http://localhost:4000/api/book/comment";  
+//    const resp = await postData(newURL, data);
+//}
 
 async function handleBook(bookData) {
     console.log(bookData);
