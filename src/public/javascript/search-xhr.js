@@ -1,50 +1,38 @@
-const url = "http://localhost:4000";
 const googleAPI = "https://www.googleapis.com/books/v1/volumes?q=";
-
-async function fetchData(url, data) {
-    const resp = await fetch(url,
-        {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            body: JSON.stringify(data)
-        });
-    return resp;
-}
-
-
 
 //returns false if empty else returns false;
 async function handleSearch(type /*0 book, 1 profile*/, url, data) {
+    let val = true;
     if (type === 0) {
-            resp = await fetch(url)
-            if (resp.status === 400) {
-                return false;
-            }
-            let j = await resp.json();
-            let googBooks = await parseJSON(j);
-            if (googBooks != null) {
-                await handleGoogleAPI(googBooks);
-                return true;
-            }
-            return false;
+        await fetch(url,{
+        }).then(async function (resp) {
+                
+                    if (resp.status == 400) {
+                        return false;
+                    }
+                    let j = await resp.json();
+                    let googBooks = await parseJSON(j);
+                    if (googBooks != null) {
+                        await handleGoogleAPI(googBooks);
+                        return true;
+                    }
+                    return false;
+                })
+            .catch(async function (err) {val = false;});
+            
         } else {
-            resp = await fetchData(url, data);
-        if (resp.status != 200) {
-                return false;
-            }
-        let profile = await resp.json();
+            resp = await postData(url, data);
+            if (resp.status != 200) {
+                    return false;
+                }
+            let profile = await resp.json();
             if (profile != null) {
                 await handleProfileSearch(profile);
                 return true;
             }
             return false;
-        }
+    }
+    return val;
 }
 
 async function handleProfileSearch(profile){
@@ -113,7 +101,7 @@ async function Search() {
 async function handleGoogleAPI(googBooks) {
         for (let i = 0; i < googBooks.length; i++) {
             newURL = url + '/api/book/add';
-            let resp = await fetchData(newURL, googBooks[i]);
+            let resp = await postData(newURL, googBooks[i]);
             if (resp.status != 200) {
                 console.log(await resp.text());
                 continue;
@@ -183,6 +171,7 @@ async function parseJSON(json) {
             'authors': json.items[i].volumeInfo.authors,
             'publisher': json.items[i].volumeInfo.publisher,
             'publishedDate': json.items[i].volumeInfo.publishedDate,
+            'categories': json.items[i].volumeInfo.categories,
             'ISBN': json.items[i].volumeInfo.industryIdentifiers,
             'description': json.items[i].volumeInfo.description,
             'googleRating': json.items[i].volumeInfo.averageRating,

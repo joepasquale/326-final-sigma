@@ -3,12 +3,13 @@
     "",
     "\\src",
     "\\src\\public",
-    "\\src\\public\\authhtml",
     "\\src\\public\\javascript",
     "\\src\\removed_html",
     "\\src\\server",
+    "\\src\\server\\middleware",
+    "\\src\\server\\models",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\public\\authhtml\\search-results.html",
+  "SelectedNode": "\\src\\server\\routes\\friends.ts",
   "PreviewInSolutionExplorer": false
 }

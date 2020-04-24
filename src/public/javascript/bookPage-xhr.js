@@ -1,24 +1,5 @@
-const url = "http://localhost:4000";
 
-
-async function postData(url, data) {
-    const resp = await fetch(url,
-        {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            body: JSON.stringify(data)
-        });
-    return resp;
-}
-
-
-async function addReview() {
+async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFEED
 
     let Review = document.getElementById("reviewText").value;
     let UserName = document.getElementById("username").value; //revist once users are added********************
@@ -26,6 +7,24 @@ async function addReview() {
     const data = {"Review" : Review, "UserName" : UserName};
     const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
     const resp = await postData(newURL, data);
+
+    const newURL = "http://localhost:4000/api/book/review";
+    const resp = await postData(newURL, data); 
+    
+    await fetch(newURL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+        .then(function (dat) { 
+        console.log('Request success: ', dat.results);
+    })
+        .catch(function (error) {
+            console.log('Request failure: ', error);
+        });
 }
 
 
@@ -33,11 +32,13 @@ async function addReview() {
 
 async function addToList() {
 
-    let Review = document.getElementById("reviewText").value;
+    let addToList = document.getElementById("listDrop").value;
 
-    const data = { "List" : List};
-    const newURL = "http://localhost:4000/api/book/addList";  //Check later***************************
+    const data = { "List" : addToList};
+    const newURL = "http://localhost:4000/api/book/addList";
     const resp = await postData(newURL, data);
+
+
 }
 
 async function getBook() {

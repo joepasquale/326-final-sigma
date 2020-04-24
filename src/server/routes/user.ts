@@ -1,5 +1,6 @@
 const router = require("express").Router();
 import { User } from '../models/user';
+import { auth } from '../middleware/auth';
 
 router.post('/read', async (req, res) => {
     let id = req.body.id;
@@ -27,6 +28,21 @@ router.post('/search', async (req, res) => {
         });
 
 });
+
+
+router.post('/info/update', async (req, res) => {
+    console.log(req.body.info);
+    await User.findOneAndUpdate(
+        { username: req.body.username },
+        { $set: { info: req.body.info } }
+    )
+    res.status(200).send("user updated");
+});
+
+router.post('/me', auth, async (req, res) => {
+    res.json(req.user);
+});
+
 
 
 
