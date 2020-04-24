@@ -4,23 +4,11 @@ let currentUser = "";
 async function auth() {
     let newURL = url + '/api/user/me';
     let token = sessionStorage.getItem('token');
-    console.log(token);
-    await fetch(newURL, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'x-auth-token': token,
-            'Content-Type': 'application/json'
-            },
-        redirect: 'follow'
-    }).then( async (resp) => {
+    await postData(newURL, {}).then( async (resp) => {
         if (resp.status != 200) {
             window.location.href = url + "/login.html";
         }
         currentUser = await resp.json();
-        console.log(currentUser);
         })
         .catch(async (err) => {
             console.log("failed");
@@ -37,6 +25,7 @@ async function postData(url, data) {
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
+                'x-auth-token': sessionStorage.getItem('token'),
                 'Content-Type': 'application/json'
             },
             redirect: 'follow',
@@ -44,7 +33,5 @@ async function postData(url, data) {
         });
     return resp;
 }
-
-
 
 auth();

@@ -29,6 +29,15 @@ router.post('/search', async (req, res) => {
 
 });
 
+
+router.post('/info/update', async (req, res) => {
+    await User.findOneAndUpdate(
+        { username: req.body.username },
+        { $set: { info: req.body.info } }
+    )
+    res.status(200).send("user updated");
+});
+
 router.post('/me', auth, async (req, res) => {
     res.json(req.user);
 });

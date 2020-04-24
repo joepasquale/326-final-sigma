@@ -7,6 +7,7 @@ var app = express();
 var login_1 = require("./routes/login");
 var user_1 = require("./routes/user");
 var book_1 = require("./routes/book");
+var friends_1 = require("./routes/friends");
 app.use(express.json());
 app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost:27017/shelf', { useNewUrlParser: true })
@@ -22,4 +23,5 @@ app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login_1.router);
 app.use('/api/user', user_1.router);
 app.use('/api/book', book_1.router);
+app.use('/api/friend', friends_1.router);
 //# sourceMappingURL=myserver.js.map

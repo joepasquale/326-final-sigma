@@ -6,7 +6,7 @@ const app = express();
 import { router as login } from "./routes/login";
 import { router as user } from "./routes/user";
 import { router as book } from "./routes/book";
-
+import { router as friends } from "./routes/friends";
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -26,5 +26,6 @@ app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login);
 app.use('/api/user', user);
 app.use('/api/book', book);
+app.use('/api/friend', friends);
 
 

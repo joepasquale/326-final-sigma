@@ -24,13 +24,23 @@ async function authUser() {
     const resp = await postData(newURL, data);
     if (resp.status != 200) {
         document.getElementById("validateInput").style.display = 'block';
-        window.sessionStorage.setItem('token', "");
+        window.sessionStorage.clear();
     } else {
         let token = await resp.text();
         sessionStorage.setItem('token', token);
         window.location.href = url + "/auth/homefeed.html"
     }
 }
+
+
+/*TODO:
+ * need to validiate all info from input
+Username: no spaces, numbers, letters, symbols, between 3-30 characters
+Password: no spaces, numbers, letters, symbols, between 6-20 characters, passwords must match
+email: must be an email, no spaces, numbers, letters, symbols, 5-50 characters
+firstname: no spaces, 2-15 characters, only letters, hyphen,
+lastname: 2-25 characters, no spaces, hypen,
+*/
 
 async function registerUser() {
     let isErroring = false;
@@ -39,7 +49,9 @@ async function registerUser() {
     let username = document.getElementById("inputUserName").value;
     let passwordA = document.getElementById("inputPasswordA").value;
     let passwordB = document.getElementById("inputPasswordB").value;
-    if ((passwordA.length <= 5) || (passwordA.length >= 21)) { //Check if password is the correct length (6-20), responds and stops if not
+    let firstname = document.getElementById("inputFirstName").value;
+    let lastname = document.getElementById("inputLastName").value;
+    if ((passwordA.length < 6) || (passwordA.length > 20)) { //Check if password is the correct length (6-20), responds and stops if not
         let errorElem = document.getElementById("validateInput")
         let p = document.createElement("P");
         p.innerHTML = "Password not of appropriate length (6-20 characters)\n";
@@ -70,7 +82,7 @@ async function registerUser() {
     if (isErroring === true) {
         return;
     }
-    const data = { "email": email, "username": username, "password": passwordA };
+    const data = { "email": email, "username": username, "password": passwordA, "firstname":firstname, "lastname":lastname };
     const newURL = url + "/api/login/register";
     const resp = await postData(newURL, data);
     if (resp.status != 200) {
@@ -78,7 +90,7 @@ async function registerUser() {
         let errorElem = document.getElementById("validateInput")
         errorElem.innerHTML = error;
         errorElem.style.display = 'block';
-        window.sessionStorage.setItem('token', "");
+        window.sessionStorage.clear();
     } else {
         let token = await resp.text();
         sessionStorage.setItem('token', token);

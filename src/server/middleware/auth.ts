@@ -6,7 +6,6 @@ function auth(req, res, next) {
     try {
         const jwtDecoded = jwt.verify(token, 'jwtPrivateKey');
         req.user = jwtDecoded;
-        console.log(req.user)
         next();
     } catch (err) {
         res.status(400).send('Invalid Token')

@@ -51,7 +51,16 @@ var userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    info: {
+        firstname: { type: String },
+        lastname: { type: String },
+        favorite_book: { type: String },
+        favorite_genre: { type: String }
+    },
+    friends: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Friends'
+        }]
 });
 userSchema.index({ username: 'text' });
 userSchema.methods.generateAuthToken = function () {
