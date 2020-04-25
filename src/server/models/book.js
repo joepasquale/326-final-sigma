@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var mongoose = require('mongoose');
 var bookSchema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -17,11 +17,11 @@ var bookSchema = new mongoose.Schema({
     googleRating: { type: Number },
     imageLinks: {
         smallThumbnail: { type: String },
-        thumbnail: { type: String },
+        thumbnail: { type: String }
     },
     userRating: [{
             username: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            rating: { type: Number },
+            rating: { type: Number }
         }],
     userReview: [{
             username: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -31,4 +31,3 @@ var bookSchema = new mongoose.Schema({
 });
 var Book = mongoose.model('Book', bookSchema);
 exports.Book = Book;
-//# sourceMappingURL=book.js.map

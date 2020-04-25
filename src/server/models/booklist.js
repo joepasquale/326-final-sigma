@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var mongoose = require('mongoose');
 var listSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -16,4 +16,3 @@ var listSchema = new mongoose.Schema({
 });
 var List = mongoose.model('List', listSchema);
 exports.List = List;
-//# sourceMappingURL=booklist.js.map

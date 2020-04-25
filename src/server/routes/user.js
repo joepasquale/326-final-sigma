@@ -36,73 +36,69 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var bcrypt = require('bcrypt');
 var router = require("express").Router();
 exports.router = router;
 var user_1 = require("../models/user");
-router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, salt, _a, token;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0: return [4 /*yield*/, user_1.User.findOne({ email: req.body.email })];
+var auth_1 = require("../middleware/auth");
+router.post('/read', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = req.body.id;
+                return [4 /*yield*/, user_1.User.findOne({ _id: id }, { password: 0 })
+                        .then(function (user) {
+                        if (!user)
+                            return res.status(400).send("No User Found");
+                        res.json(user);
+                    })["catch"](function (err) {
+                        return res.status(400).send("No User Found");
+                    })];
             case 1:
-                user = _b.sent();
-                if (user)
-                    return [2 /*return*/, res.status(400).send("Email already in use")];
-                return [4 /*yield*/, user_1.User.findOne({ username: req.body.username })];
-            case 2:
-                user = _b.sent();
-                if (user)
-                    return [2 /*return*/, res.status(400).send("Username already in use")];
-                user = new user_1.User({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: req.body.password,
-                    info: {
-                        lastname: req.body.lastname,
-                        firstname: req.body.firstname,
-                        favorite_book: "",
-                        favorite_genre: "None"
-                    },
-                    friends: []
-                });
-                return [4 /*yield*/, bcrypt.genSalt(10)];
-            case 3:
-                salt = _b.sent();
-                _a = user;
-                return [4 /*yield*/, bcrypt.hash(user.password, salt)];
-            case 4:
-                _a.password = _b.sent();
-                return [4 /*yield*/, user.save()];
-            case 5:
-                _b.sent();
-                return [4 /*yield*/, user.generateAuthToken()];
-            case 6:
-                token = _b.sent();
-                res.send(token);
+                _a.sent();
+                res.end();
                 return [2 /*return*/];
         }
     });
 }); });
-router.post('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, validPassword, token;
+router.post('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var search;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, user_1.User.findOne({ username: req.body.username })];
+            case 0:
+                search = req.body.search;
+                if (!search)
+                    return [2 /*return*/, res.status(400).send("No profile found")];
+                return [4 /*yield*/, user_1.User.find({ $text: { $search: search } }, { password: 0 })
+                        .then(function (profiles) {
+                        if (!profiles || profiles.length === 0)
+                            return res.status(400).send("No profiles found");
+                        res.send(profiles);
+                    })["catch"](function (err) {
+                        return res.status(400).send("error");
+                    })];
             case 1:
-                user = _a.sent();
-                if (!user)
-                    return [2 /*return*/, res.status(400).send("Invalid username of password")];
-                return [4 /*yield*/, bcrypt.compare(req.body.password, user.password)];
-            case 2:
-                validPassword = _a.sent();
-                if (!validPassword)
-                    return [2 /*return*/, res.status(400).send("Invalid username of password")];
-                return [4 /*yield*/, user.generateAuthToken()];
-            case 3:
-                token = _a.sent();
-                res.send(token);
+                _a.sent();
                 return [2 /*return*/];
         }
+    });
+}); });
+router.post('/info/update', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log(req.body.info);
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ username: req.body.username }, { $set: { info: req.body.info } })];
+            case 1:
+                _a.sent();
+                res.status(200).send("user updated");
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/me', auth_1.auth, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        res.json(req.user);
+        return [2 /*return*/];
     });
 }); });

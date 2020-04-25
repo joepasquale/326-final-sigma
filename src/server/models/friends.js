@@ -1,9 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var mongoose = require('mongoose');
 var friendsSchema = new mongoose.Schema({
     requester: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    reciever: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    receiver: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     status: {
         type: Number,
         enums: [
@@ -15,4 +15,3 @@ var friendsSchema = new mongoose.Schema({
 });
 var Friend = mongoose.model('Friend', friendsSchema);
 exports.Friend = Friend;
-//# sourceMappingURL=friends.js.map
