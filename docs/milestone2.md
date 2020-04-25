@@ -84,7 +84,12 @@ The review create endpoint for the book provides a way for the client to add a u
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the review create endpoint is:
 `localhost:4000/api/book/review/create`
-There are 0 required parameters and 0 optional parameters for this endpoint.
+There are 2 required parameters and 1 optional parameter for this endpoint.
+| Parameter | Description                                | Example     |
+|-----------|--------------------------------------------|-------------|
+| id        | ID of the book being rated                 | 1           |
+| rating    | A rating out of 5 on how good the book was | 4.5         |
+| review    | A review of the book                       | I loved it! |
 
 ##### Responses
 There is no response from this endpoint.
@@ -257,6 +262,27 @@ There is 1 required parameter and zero optional parameters for this endpoint.
 There is no response from this endpoint.
 
 ### Login
+#### Register API
+##### Overview
+The register endpoint for the API allows the client to send a request to the server to store a new user.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
+`localhost:4000/api/login/register`
+There are 5 required parameter and zero optional parameters for this endpoint.
+| Parameter      | Description                           | Example            |
+|----------------|---------------------------------------|--------------------|
+| username       | The name of the user                  | joep               |
+| email          | The email address of the user         | joep@gmail.com     |
+| password       | The password of the user              | password123
+| firstname      | The first name of the user            | Joe                |
+| lastname       | The last name of the user             | Pasquale           |
+
+##### Responses
+The login API returns all response data as a JSON object. The full details for the response format are shown below:
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| token          | string     | The authentication token of the user  |
 
 ## User Interface & CRUD Interactions
 
@@ -276,3 +302,4 @@ The following were the contributions made for this milestone:
  - Joe
     - API Documentation
     - Setup Documentation
+    - Friends List
