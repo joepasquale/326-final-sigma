@@ -6,23 +6,20 @@ import { Book, User } from '../models/user';
 
 
 router.post('/add', async (req, res) => {
-    const bookUpdate = await.Book.findOneAndUpdate;
-        { user:req.body.User, book:req.body.Book},
+    const bookUpdate = await Book.findOneAndUpdate(
+        { user: req.body.User, book: req.body.Book },
         { $set: { status: req.body.List } },
-        { upsert: true, new: true }
-
+        { upsert: true, new: true });
     await User.findOneAndUpdate(
         { _id: req.body.User },
-        { $push: { booklist: bookUpdate } }
-    )
-
+        { $push: { booklist: bookUpdate } });
 });
 
 router.post('/update', async (req, res) => {
-    const bookUpdate = await.Book.findOneAndUpdate;
-    { user:req.body.User, book:req.body.Book},
-    { $set: { status: req.body.List } },
-    { upsert: true, new: true }
+    const bookUpdate = await Book.findOneAndUpdate(
+        { user: req.body.User, book: req.body.Book },
+        { $set: { status: req.body.List } },
+        { upsert: true, new: true });
 
 });
 
