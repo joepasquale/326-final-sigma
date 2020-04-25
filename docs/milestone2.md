@@ -97,7 +97,7 @@ There is no response from this endpoint.
 ### User
 #### Read API
 ##### Overview
-The read endpoint for the API allows the client to read the information for a user on the server. 
+The read endpoint for the API allows the client to read the information for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
 `localhost:4000/api/user/read`
@@ -120,7 +120,7 @@ The user API returns all response data as a JSON object. The full details for th
 
 #### Search API
 ##### Overview
-The search endpoint for the API allows the client to search for a user on the server. 
+The search endpoint for the API allows the client to search for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
 `localhost:4000/api/user/search`
@@ -137,7 +137,7 @@ The user API returns all response data as a JSON object. The full details for th
 
 #### Update API
 ##### Overview
-The update endpoint for the API allows the client to update information for a user on the server. 
+The update endpoint for the API allows the client to update information for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
 `localhost:4000/api/user/info/update`
@@ -156,7 +156,7 @@ There is no response from the server for this endpoint.
 
 #### Me API
 ##### Overview
-The me endpoint for the API allows the client to read the information for themselves on the server. 
+The me endpoint for the API allows the client to read the information for themselves on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
 `localhost:4000/api/user/me`
@@ -286,11 +286,63 @@ The login API returns all response data as a JSON object. The full details for t
 
 ## User Interface & CRUD Interactions
 
+### Create
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/create.png)
+
+
+When the user is visiting a profile page that is not their own they have the option to add the other user as a friend. When the user presses the add friend button a new friend object is made and added to both users data. The friend schema is set up where it has sender and receiver fields and a status indicating the status of the users friendship. When the button is pressed 2 friend objects get created. One for each user with different status numbers. The id for each object gets added to an array of friends in the users schema.
+
+
+### Update
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/update.png)
+
+When a user is on their own profile page they are able to enter information about themselves. The user info is stored in a field of the user schema called info. When the user presses the save button the updated info entered in the input boxes will be set to the user's info field.
+
+### Read
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/read.png)
+
+The user is able to search for books and profiles using the search bar. This will search for user profiles from the database and return the search results to the user. To find books the app uses the Google Books API. The app queries the API and returns a list of books. We selected certain information from the API and add the books to our database and present the user with info. This does a combination of create and read as
+we are creating books and reading user profiles.
+
+### Delete
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/deletecreate.png)
+
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/Screenshots/delete.png)
+
+When a user goes to a book page they have the option to add the book to their booklist. This is done by clicking one of the options in the drop down menu. The user also has an option to delete the book from their list (if it is in their list) by selected the option none. the above code snippet shows how this is achieved. The booklist schema has a reference to a user and a book. The user itself has an array of references to booklist objects.
+
 ## Contributions
 The following were the contributions made for this milestone:
 
  - Josh
-    - 
+    - Responsible For:
+      - search Book
+      - heroku/database integration
+      - profile profile
+      - login/sign up
+    - Frontend JS:
+      - authorization of users
+      - login xhr
+      - part of the bookPage xhr
+      - booklist xhr
+      - profile xhr
+      - search xhr
+    - Server JS:
+      - server side authorization
+      - book model
+      - user model
+      - friends model
+      - helped with booklist model
+      - login routes
+      - friends routes
+      - user routes
+      - book routes
+      - helped with booklist routes
+      - main server file (myserver.ts)
  - Dan
     - Homefeed xhr
     - BookPage xhr

@@ -1,4 +1,4 @@
-const url = "https://limitless-garden-19995.herokuapp.com";
+const url = "https://localhost:4000";
 let currentUser = "";
 
 async function auth() {
