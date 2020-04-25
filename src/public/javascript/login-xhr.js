@@ -1,4 +1,4 @@
-const url = "http://localhost:4000";
+const url = "https://limitless-garden-19995.herokuapp.com/";
 
 async function postData(url, data) {
     const resp = await fetch(url,
