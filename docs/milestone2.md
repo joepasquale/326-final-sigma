@@ -211,4 +211,5 @@ The following were the contributions made for this milestone:
  - Dan
     - 
  - Joe
-    -
+    -API Documentation
+    -Setup Documentation
