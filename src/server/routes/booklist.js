@@ -36,45 +36,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var mongoose = require('mongoose');
-var jwt = require('jsonwebtoken');
-var userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    info: {
-        firstname: { type: String },
-        lastname: { type: String },
-        favorite_book: { type: String },
-        favorite_genre: { type: String }
-    },
-    booklist: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'List'
-        }],
-    friends: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Friends'
-        }]
-});
-userSchema.index({ username: 'text' });
-userSchema.methods.generateAuthToken = function () {
-    return __awaiter(this, void 0, void 0, function () {
-        var token;
-        return __generator(this, function (_a) {
-            token = jwt.sign({ _id: this._id, username: this.username }, 'jwtPrivateKey', { expiresIn: '1h' });
-            return [2 /*return*/, token];
-        });
+var router = require("express").Router();
+exports.router = router;
+var user_1 = require("../models/user");
+var book_1 = require("../models/book");
+router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var bookUpdate;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, book_1.Book.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.List } }, { upsert: true, "new": true })];
+            case 1:
+                bookUpdate = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { booklist: bookUpdate } })];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
-};
-var User = mongoose.model('User', userSchema);
-exports.User = User;
+}); });
+router.post('/update', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var bookUpdate;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, book_1.Book.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.List } }, { upsert: true, "new": true })];
+            case 1:
+                bookUpdate = _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var bookUpdate;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, book_1.Book.findOneAndRemove({ user: req.body.User, book: req.body.Book })];
+            case 1:
+                bookUpdate = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndRemove({ _id: req.body.User }, { $pull: { booklist: bookUpdate } })];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/find', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/];
+    });
+}); });

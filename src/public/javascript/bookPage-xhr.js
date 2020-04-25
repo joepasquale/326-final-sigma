@@ -31,25 +31,10 @@ async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFE
 async function addToList() {
 
     let addToList = document.getElementById("listDrop").value;
-    let currentBook = getBook();
+    let currentBook = Book;
+    let User = currentUser;
 
-    if(listDrop == 0){ //none
-
-    }
-    else if(listDrop == 1){ //Want R
-        
-    }
-    else if(listDrop == 2){ //Cur R
-        
-    }
-    else if(listDrop == 3){// Com R
-        
-    }
-    else{ // Stop R
-        
-    }
-
-    const data = { "List" : addToList};
+    const data = { "List" : addToList, "Book" : Book , "User" : User};
     const newURL = "http://localhost:4000/api/book/addList";
     const resp = await postData(newURL, data);
 
@@ -76,6 +61,7 @@ async function getBook() {
 async function handleBook(bookData) {
     console.log(bookData);
     document.title = 'Shelf - ' + bookData.title;
+    document.getElementById('genre').innerHTML = bookData.categories;
     document.getElementById('title').innerHTML = bookData.title;
     document.getElementById('author').innerHTML = bookData.authors;
     document.getElementById('publishedDate').innerHTML = bookData.publishedDate;

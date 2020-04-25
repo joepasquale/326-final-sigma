@@ -4,12 +4,11 @@
     "\\src",
     "\\src\\public",
     "\\src\\public\\javascript",
-    "\\src\\removed_html",
     "\\src\\server",
     "\\src\\server\\middleware",
     "\\src\\server\\models",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\server\\routes\\friends.ts",
+  "SelectedNode": "\\src\\server\\routes\\booklist.ts",
   "PreviewInSolutionExplorer": false
 }

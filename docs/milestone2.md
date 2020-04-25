@@ -266,6 +266,13 @@ The following were the contributions made for this milestone:
  - Josh
     - 
  - Dan
-    - 
+    - Homefeed xhr
+    - BookPage xhr
+    - booklist route
+    - booklist model
+    - Part of login xhr (signup portion)
+    - HTML tweaks due to xhr (homefeed.html bookpage.html signup.html)
+
  - Joe
-    -
+    - API Documentation
+    - Setup Documentation

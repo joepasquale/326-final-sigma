@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
@@ -8,11 +8,11 @@ var login_1 = require("./routes/login");
 var user_1 = require("./routes/user");
 var book_1 = require("./routes/book");
 var friends_1 = require("./routes/friends");
+var booklist_1 = require("./routes/booklist");
 app.use(express.json());
 app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
-    .then(function () { return console.log('Connected to MongoDB...'); })
-    .catch(function (err) { return console.error('Could not connect to MongoDB..', err); });
+    .then(function () { return console.log('Connected to MongoDB...'); })["catch"](function (err) { return console.error('Could not connect to MongoDB..', err); });
 var PORT = process.env.PORT || 4000;
 app.listen(PORT, function () { return console.log("Server listening on " + PORT); });
 app.use('/resources', express.static('../public/resources'));
@@ -23,5 +23,5 @@ app.use('/auth', express.static('../public/authhtml'));
 app.use('/api/login', login_1.router);
 app.use('/api/user', user_1.router);
 app.use('/api/book', book_1.router);
+app.use('/api/booklist', booklist_1.router);
 app.use('/api/friend', friends_1.router);
-//# sourceMappingURL=myserver.js.map

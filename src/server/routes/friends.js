@@ -36,73 +36,64 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var bcrypt = require('bcrypt');
 var router = require("express").Router();
 exports.router = router;
+var friends_1 = require("../models/friends");
 var user_1 = require("../models/user");
-router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, salt, _a, token;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0: return [4 /*yield*/, user_1.User.findOne({ email: req.body.email })];
+router.post('/request', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var relationshipA, relationshipB;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, reciever: req.body.UserB }, { $set: { status: 1 } }, { upsert: true, "new": true })];
             case 1:
-                user = _b.sent();
-                if (user)
-                    return [2 /*return*/, res.status(400).send("Email already in use")];
-                return [4 /*yield*/, user_1.User.findOne({ username: req.body.username })];
+                relationshipA = _a.sent();
+                return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, reciever: req.body.UserA }, { $set: { status: 2 } }, { upsert: true, "new": true })];
             case 2:
-                user = _b.sent();
-                if (user)
-                    return [2 /*return*/, res.status(400).send("Username already in use")];
-                user = new user_1.User({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: req.body.password,
-                    info: {
-                        lastname: req.body.lastname,
-                        firstname: req.body.firstname,
-                        favorite_book: "",
-                        favorite_genre: "None"
-                    },
-                    friends: []
-                });
-                return [4 /*yield*/, bcrypt.genSalt(10)];
+                relationshipB = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserA }, { $push: { friends: relationshipA } })];
             case 3:
-                salt = _b.sent();
-                _a = user;
-                return [4 /*yield*/, bcrypt.hash(user.password, salt)];
+                _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserB }, { $push: { friends: relationshipB } })];
             case 4:
-                _a.password = _b.sent();
-                return [4 /*yield*/, user.save()];
-            case 5:
-                _b.sent();
-                return [4 /*yield*/, user.generateAuthToken()];
-            case 6:
-                token = _b.sent();
-                res.send(token);
+                _a.sent();
                 return [2 /*return*/];
         }
     });
 }); });
-router.post('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, validPassword, token;
+router.post('/accept', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, receiver: req.body.UserB }, { $set: { status: 3 } });
+        friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, receiver: req.body.A }, { $set: { status: 3 } });
+        return [2 /*return*/];
+    });
+}); });
+router.post('/reject', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var relationshipA, relationshipB;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, user_1.User.findOne({ username: req.body.username })];
+            case 0: return [4 /*yield*/, friends_1.Friend.findOneAndRemove({ requester: req.body.UserA, receiver: req.body.UserB })];
             case 1:
-                user = _a.sent();
-                if (!user)
-                    return [2 /*return*/, res.status(400).send("Invalid username of password")];
-                return [4 /*yield*/, bcrypt.compare(req.body.password, user.password)];
+                relationshipA = _a.sent();
+                return [4 /*yield*/, friends_1.Friend.findOneAndRemove({ requester: req.body.UserB, reciever: req.body.UserA })];
             case 2:
-                validPassword = _a.sent();
-                if (!validPassword)
-                    return [2 /*return*/, res.status(400).send("Invalid username of password")];
-                return [4 /*yield*/, user.generateAuthToken()];
+                relationshipB = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserA }, { $pull: { friends: relationshipA._id } })];
             case 3:
-                token = _a.sent();
-                res.send(token);
+                _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserB }, { $pull: { friends: relationshipB._id } })];
+            case 4:
+                _a.sent();
                 return [2 /*return*/];
         }
+    });
+}); });
+router.post('/find', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/];
+    });
+}); });
+router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/];
     });
 }); });

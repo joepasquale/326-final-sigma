@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var jwt = require('jsonwebtoken');
 function auth(req, res, next) {
     var token = req.header('x-auth-token');
@@ -8,7 +8,6 @@ function auth(req, res, next) {
     try {
         var jwtDecoded = jwt.verify(token, 'jwtPrivateKey');
         req.user = jwtDecoded;
-        console.log(req.user);
         next();
     }
     catch (err) {
@@ -16,4 +15,3 @@ function auth(req, res, next) {
     }
 }
 exports.auth = auth;
-//# sourceMappingURL=auth.js.map
