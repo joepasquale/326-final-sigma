@@ -75,7 +75,7 @@
     <!--Page Content Start-->
     <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
         <!--User Name-->
-        <h3 class="mb-3">Username's Friend(s)</h3>
+        <h3 id="username-list" class="mb-3"></h3>
         <!--Tabs-->
         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
             <li class="nav-item">
@@ -124,7 +124,7 @@
                                 <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
                                 <td class="align-middle">jvasilevsky@umass.edu</td>
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="right" title="Remove Friend">
+                                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="right" title="Remove Friend" onclick="removeFriend()">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>
@@ -156,7 +156,7 @@
                                 <td class="align-middle"><a href="">Joshua Vasilevsky</a></td>
                                 <td class="align-middle">jvasilevsky@umass.edu</td>
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-outline-success btn-circle" data-toggle="tooltip" data-placement="top" title="Accept Friend Request">
+                                    <button type="button" class="btn btn-outline-success btn-circle" data-toggle="tooltip" data-placement="top" title="Accept Friend Request" onclick="addFriend()">
                                         <i class="fa fa-check"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Deny Friend Request">
@@ -215,6 +215,8 @@
     <!--Footer End-->
     <!--Our JavaScript Start -->
     <script src="../javascript/NavRedirect.js"></script>
+    <script src="../javascript/friendslist-xhr.js"></script>
+    <script src="../javascript/profile-xhr.js"></script>
     <!--Our JavaScript End-->
     <!--Booststrap JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
