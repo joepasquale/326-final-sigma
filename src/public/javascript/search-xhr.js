@@ -124,7 +124,7 @@ async function handleGoogleAPI(googBooks) {
             div.innerHTML = `
                 <div class='row'>
                     <div id=${"image_" + i} class='container col'> 
-                       <img class="mb-2" src=${!googBooks[i].imageLinks.thumbnail ? "" : googBooks[i].imageLinks.thumbnail} />
+                       <img class="mb-2 img-thumbnail" src=${!googBooks[i].imageLinks.thumbnail ? "" : googBooks[i].imageLinks.thumbnail} />
                        <h6>Google Rating:</h6>
                     </div>                
                     <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
