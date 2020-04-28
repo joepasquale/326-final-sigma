@@ -8,6 +8,11 @@ async function handleNavBookList() {
     window.location.href = url + '/auth/booklist.html?user=' + currentUser._id;
 }
 
+async function handleNavFriends() {
+    window.location.href = url + '/auth/friendlist.html?user=' + currentUser._id;
+}
+
+
 
 async function handleNavSignout() {
     sessionStorage.clear();

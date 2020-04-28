@@ -127,7 +127,7 @@ async function handleGoogleAPI(googBooks) {
                        <img class="mb-2 img-thumbnail" src=${!googBooks[i].imageLinks.thumbnail ? "" : googBooks[i].imageLinks.thumbnail} />
                        <h6>Google Rating:</h6>
                     </div>                
-                    <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
+                    <div class='container col-md-9 col-sm-8 col-lg-10 col-xl-10'>
                         <div class='row'>
                             <h3 class='col-md col-lg col-xl'><a href="javascript:" onclick='redirectBookPage(this)' id=${googBooks[i]._id}>${googBooks[i].title}</a></h3>
                             <h3 class='col-xl-3 col-lg-3 col-sm col-md-4'><span class="badge badge-warning text-white" style="background-color:#ad3ccf;">Book</span></h3>

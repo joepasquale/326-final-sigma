@@ -95,7 +95,7 @@ async function handleBook(bookData) {
                     <div class='container col'> 
                        <img class="mb-2 img-thumbnail" src=${!bookData.imageLinks.thumbnail ? "" : bookData.imageLinks.thumbnail} />
                     </div> 
-                    <div class='container col-md-9 col-sm-6 col-lg-9 col-xl-10'>
+                    <div class='container col-md-9 col-sm-8 col-lg-10 col-xl-10'>
                         <div  class='container border rounded' style="background-color: #fafafa;">
                             <div class='row py-3'>
                                 <div id='gogRate' class='col'>
@@ -129,7 +129,7 @@ async function handleBook(bookData) {
                     </div>
                  </div>
                  <hr/>
-                <p class='lead'>${bookData.description}</p>
+                <p class=''>${bookData.description}</p>
                 `;
 
 
@@ -138,36 +138,48 @@ async function handleBook(bookData) {
     if (bookData.authors != null && bookData.authors.length !== 0 && bookData.authors[0] !== "") {
         let p = document.createElement("p");
         p.style = "margin:0px; padding:0px;";
-        p.innerHTML = `<h4>Author:&nbsp<span class="lead" style="font-size:24px">${bookData.authors}</span></h4>`;
+        p.innerHTML = `<h4>Author:&nbsp;<span class="lead" style="font-size:24px">${bookData.authors}</span></h4>`;
         document.getElementById('bookinfo').appendChild(p);
     }
     if (bookData.categories != null || bookData.categories.length !== 0 && bookData.categories[0] !== "") {
         let p = document.createElement("p");
         p.style = "margin:0px; padding:0px;";
-        p.innerHTML = `<h4>Genre:&nbsp<span class="lead" style="font-size:24px">${bookData.categories}</span></h4>`;
+        p.innerHTML = `<h4>Genre:&nbsp;<span class="lead" style="font-size:24px">${bookData.categories}</span></h4>`;
         document.getElementById('bookinfo').appendChild(p);
     }
     if (bookData.publisher != null && bookData.publisher !== "") {
         let p = document.createElement("p");
         p.style = "margin:0px; padding:0px;";
-        p.innerHTML = `<h4>Publisher:&nbsp<span class="lead" style="font-size:24px">${bookData.publisher}</span></h4>`;
+        p.innerHTML = `<h4>Publisher:&nbsp;<span class="lead" style="font-size:24px">${bookData.publisher}</span></h4>`;
         document.getElementById('bookinfo').appendChild(p);
     }
     if (bookData.publishedDate != null && bookData.publishedDate !== "") {
         let p = document.createElement("p");
         p.style = "margin:0px; padding:0px;";
-        p.innerHTML = `<h4>Published:&nbsp<span class="lead" style="font-size:24px">${bookData.publishedDate}</span></h4>`;
+        p.innerHTML = `<h4>Published:&nbsp;<span class="lead" style="font-size:24px">${bookData.publishedDate}</span></h4>`;
         document.getElementById('bookinfo').appendChild(p);
     }
     document.getElementById('gogRate').appendChild(stars);
     document.getElementById('userRate').appendChild(userStars);
 
 
+    await handleComments(bookData);
 
 
-    //document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
-    //document.getElementbyId('reviewerText').innerHTML = bookData.userReview[0].reviewText
     
+}
+
+async function handleComments(bookData) {
+        //document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
+        //document.getElementbyId('reviewerText').innerHTML = bookData.userReview[0].reviewText
+    
+    const div = document.createElement('div');
+    div.className = 'container';
+    div.innerHTML = `
+         
+        `;
+    document.getElementById('bookreviews').appendChild(div);
+
 }
 
 async function parseURL() {
