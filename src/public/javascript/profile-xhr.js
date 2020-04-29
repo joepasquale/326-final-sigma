@@ -1,23 +1,10 @@
 let userProfile;
 
-async function readProfile(id) {
-    let newURL = url + '/api/user/read';
-    const data = { "id": id };
-    const resp = await postData(newURL, data);
-    if (resp.status != 200) {
-        console.log("Profile Doesn't Exist");
-        window.location.href = url + '/auth/search-results.html?q=';
-        return;
-    }
-    let j = await resp.json();
-    return j;
-}
-
 async function getProfile() {
     let urlData = await parseURL();
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);
-    let j = await readProfile(decoded);
+    let j = await getUser(decoded);
     console.log(j);
     userProfile = j;
     await handleProfile(j);
@@ -44,7 +31,7 @@ async function sendProfileInfo() {
 }
 
 async function getProfileInfo() {
-    let profile = await readProfile(currentUser._id);
+    let profile = await getUser(currentUser._id);
     document.getElementById("first_name").value = profile.info.firstname;
     document.getElementById("last_name").value = profile.info.lastname;
     document.getElementById("favorite_book").value = profile.info.favorite_book;
@@ -157,7 +144,7 @@ async function handleOtherUser(profileData) {
 
 
 async function sendFriendRequest() {
-    let userB = await readProfile(currentUser._id);
+    let userB = await getUser(currentUser._id);
     const data = {
         "UserA": userProfile,
         "UserB": userB,
@@ -178,21 +165,6 @@ async function handleProfile(profileData) {
     }
   
  
-}
-
-async function parseURL() {
-    let url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        data = {}, tmp;
-    for (let i = 0, l = params.length; i < l; i++) {
-        tmp = params[i].split('=');
-        data[tmp[0]] = tmp[1];
-    }
-    if (data === null) {
-        return "";
-    }
-    return data;
-
 }
 
 async function redirectFriendsList() {

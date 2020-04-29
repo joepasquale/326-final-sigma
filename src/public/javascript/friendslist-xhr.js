@@ -1,27 +1,18 @@
 let userProfile;
 
-async function readProfile(id) {
-    let newURL = url + '/api/user/read';
-    const data = { "id": id };
-    const resp = await postData(newURL, data);
-    if (resp.status != 200) {
-        console.log("Profile Doesn't Exist");
-        window.location.href = url + '/auth/search-results.html?q=';
-        return;
-    }
-    let j = await resp.json();
-    return j;
-}
 
-async function getProfile() {
+async function loadFriends() {
     let urlData = await parseURL();
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);
-    let j = await readProfile(decoded);
-    console.log(j);
+    let j = await getUser(decoded);
     userProfile = j;
-    await handleProfile(j);
+    document.getElementById('username-list').innerHTML = userProfile.username + "'s Friends";
+    let resp = await postData("/api/friend/all", { 'array': userProfile.friends })
+    console.log(resp);
+    console.log(userProfile.friends);
 }
+
 
 async function acceptFriend() {
     let userB = await readProfile(currentUser._id);

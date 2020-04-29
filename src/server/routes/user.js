@@ -47,16 +47,18 @@ router.post('/read', function (req, res) { return __awaiter(void 0, void 0, void
             case 0:
                 id = req.body.id;
                 return [4 /*yield*/, user_1.User.findOne({ _id: id }, { password: 0 })
-                        .then(function (user) {
+                        .exec(function (err, user) {
+                        if (err) {
+                            console.log(err);
+                            return res.status(400).send("No User Found");
+                        }
                         if (!user)
                             return res.status(400).send("No User Found");
+                        console.log(user);
                         res.json(user);
-                    })["catch"](function (err) {
-                        return res.status(400).send("No User Found");
                     })];
             case 1:
                 _a.sent();
-                res.end();
                 return [2 /*return*/];
         }
     });
@@ -71,10 +73,12 @@ router.post('/search', function (req, res) { return __awaiter(void 0, void 0, vo
                     return [2 /*return*/, res.status(400).send("No profile found")];
                 return [4 /*yield*/, user_1.User.find({ $text: { $search: search } }, { password: 0 })
                         .then(function (profiles) {
+                        console.log("profile found or not found");
                         if (!profiles || profiles.length === 0)
                             return res.status(400).send("No profiles found");
                         res.send(profiles);
                     })["catch"](function (err) {
+                        console.log("search error");
                         return res.status(400).send("error");
                     })];
             case 1:

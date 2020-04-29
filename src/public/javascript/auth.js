@@ -34,4 +34,32 @@ async function postData(url, data) {
     return resp;
 }
 
+async function getUser(id) {
+    let newURL = url + '/api/user/read';
+    const data = { "id": id };
+    const resp = await postData(newURL, data);
+    if (resp.status != 200) {
+        console.log("Profile Doesn't Exist");
+        window.location.href = url + '/auth/search-results.html?q=';
+        return;
+    }
+    let j = await resp.json();
+    return j;
+}
+
+async function parseURL() {
+    let url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (let i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+    }
+    if (data === null) {
+        return "";
+    }
+    return data;
+
+}
+
 auth();

@@ -1,32 +1,16 @@
 
-async function getUser() {
+async function loadBooks() {
     let urlData = await parseURL();
-    let newURL = url + '/api/user/read';
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);
-    const data = { 'id': decoded };
-    let resp = await postData(newURL, data);
-    if (resp.status != 200) {
-        console.log("Profile Doesn't Exist");
-        window.location.href = url + '/auth/search-results.html?q=';
-        return;
-    }
-    let j = await resp.json();
-    return j;
-}
-
-async function loadBooks() {
-    let j = await getUser();
+    let j = await getUser(decoded);
     await handleUser(j);
     await getList(j);
 }
 
-
 async function handleUser(user) {
     document.getElementById('username').innerHTML = user.username+"'s Book List";
 }
-
-
 
 /*0 want to read
  * 1 currently reading

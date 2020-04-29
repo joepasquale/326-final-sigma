@@ -63,7 +63,7 @@ var userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId, ref: 'List'
         }],
     friends: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Friends'
+            type: mongoose.Schema.Types.ObjectId, ref: 'Friend'
         }]
 });
 userSchema.index({ username: 'text' });

@@ -1,18 +1,20 @@
 const router = require("express").Router();
 import { User } from '../models/user';
+import { Friend } from '../models/friends';
 import { auth } from '../middleware/auth';
 
 router.post('/read', async (req, res) => {
     let id = req.body.id;
     await User.findOne({ _id: id }, { password: 0 })
-        .then(user => {
+        .exec(function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.status(400).send("No User Found");
+            }
             if (!user) return res.status(400).send("No User Found");
-            res.json(user);
-        })
-        .catch(err => {
-            return res.status(400).send("No User Found");
+            console.log(user);
+            res.json(user);     
         });
-    res.end();
 });
 
 router.post('/search', async (req, res) => {
@@ -20,10 +22,12 @@ router.post('/search', async (req, res) => {
     if (!search) return res.status(400).send("No profile found");
     await User.find({ $text: { $search: search } }, {password:0} )
         .then(profiles => {
+            console.log("profile found or not found");
             if (!profiles || profiles.length === 0) return res.status(400).send("No profiles found");
             res.send(profiles);
     })
         .catch(err => {
+            console.log("search error");
             return res.status(400).send("error");
         });
 

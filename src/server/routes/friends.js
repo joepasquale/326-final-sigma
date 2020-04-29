@@ -44,10 +44,10 @@ router.post('/request', function (req, res) { return __awaiter(void 0, void 0, v
     var relationshipA, relationshipB;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, reciever: req.body.UserB }, { $set: { status: 1 } }, { upsert: true, "new": true })];
+            case 0: return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, receiver: req.body.UserB }, { $set: { status: 1 } }, { upsert: true, "new": true })];
             case 1:
                 relationshipA = _a.sent();
-                return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, reciever: req.body.UserA }, { $set: { status: 2 } }, { upsert: true, "new": true })];
+                return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, receiver: req.body.UserA }, { $set: { status: 2 } }, { upsert: true, "new": true })];
             case 2:
                 relationshipB = _a.sent();
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserA }, { $push: { friends: relationshipA } })];
@@ -74,7 +74,7 @@ router.post('/reject', function (req, res) { return __awaiter(void 0, void 0, vo
             case 0: return [4 /*yield*/, friends_1.Friend.findOneAndRemove({ requester: req.body.UserA, receiver: req.body.UserB })];
             case 1:
                 relationshipA = _a.sent();
-                return [4 /*yield*/, friends_1.Friend.findOneAndRemove({ requester: req.body.UserB, reciever: req.body.UserA })];
+                return [4 /*yield*/, friends_1.Friend.findOneAndRemove({ requester: req.body.UserB, receiver: req.body.UserA })];
             case 2:
                 relationshipB = _a.sent();
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserA }, { $pull: { friends: relationshipA._id } })];
@@ -87,9 +87,21 @@ router.post('/reject', function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); });
-router.post('/find', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var friendslist, docfriends;
     return __generator(this, function (_a) {
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                friendslist = req.body.array;
+                return [4 /*yield*/, friends_1.Friend.find({ '_id': { $in: friendslist } })
+                        .populate('reciever', '_id username email')
+                        .populate('requester', '_id username email')];
+            case 1:
+                docfriends = _a.sent();
+                console.log(docfriends);
+                res.send(docfriends);
+                return [2 /*return*/];
+        }
     });
 }); });
 router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
