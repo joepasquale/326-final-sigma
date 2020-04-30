@@ -63,6 +63,7 @@
         }
     </style>
     <script src="../javascript/auth.js"></script>
+    <script src="../javascript/populateFeed.js"></script>
     <title>Shelf - Feed</title>
 </head>
 
@@ -124,24 +125,19 @@
         </div>
     </nav>
     <!--Top bar End-->
-    <!--<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-        <div class="row">
-            <div class="col-sm-4">
-                <p style="font-size: 40px;">Make an update?</p>
-            </div>
-            <div class="col-sm-8">
-                <button id="updateButtom" class="updateButton" onclick="movePage()">Update</button> <!-- Moves you to the homefeedAdd page->
-            </div>
 
+    <div id ="noUpdates" class="container shadow-sm p-3 my-5 bg-white" style="background-color: white" >
+        <div class="col">
+            <p style="font-size: 20px;"></p>
         </div>
-    </div> -->
+    </div>
 
     <div id="feedbox">
         <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <!--start of first block example-->
+            <!--start of an update-->
 
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-8">
                     <div style="float:left; width: 100%;">
                         <div class="col">
                             <!-- This is where profile pic is displayed for each update-->
@@ -149,27 +145,32 @@
                         </div>
 
                         <div class="col">
-                            <!-- Friend Name and their update-->
-                            <p id="reviewerName">
-                                [Friend Name] Reviewed
+                            <!-- Friend Name, Book Title, and their update-->
+                            <p id="updatePost">
+                                [Friend Name] [Action] [Book Name]
                             </p>
+
                         </div>
                     </div>
                     <br>
-                    <div class="col-sm-12">
+                    <div class="col">
                         <!-- Personal Message left by User-->
-                        <p id="updateText"> UPDATE TEXT </p>
+                        <p id="updateText"> [UPDATE TEXT] </p>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                
+                <div class="col">
                     <!-- This is where book pic is displayed for each update-->
                     <img src="../resources/shining.jpg" height="336" width="168"></img>
                 </div>
+                <div class="col">
+                </div>
+
             </div>
 
 
-            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-                <div class="row">
+            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!-- comments go here-->
+                <div class="row" >
 
                     <div class="col-sm-1">
                         <!-- This is where profile pic is displayed for each comment-->
@@ -190,11 +191,11 @@
                 </div>
             </div>
 
-            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!-- post a comment from current user-->
                 <div class="row">
 
                     <div class="col-sm-1">
-                        <!-- This is where profile pic is displayed for each comment-->
+                        <!-- This is where profile pic is displayed for each comment by the user-->
                         <img src="../resources/emergy.png" height="84" width="84"></img>
                     </div>
 
@@ -213,65 +214,12 @@
                             style="margin-right: 15px;">Submit</button>
                     </div>
                 </div>
-            </div>
+            </div> <!-- user comment end here-->
 
         </div>
-        <!--end of first block example-->
+        <!--end of an update-->
 
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <!--start of second block example-->
-            <div class="row">
-                <div class="col-sm-10">
-                    <div style="float:left; width: 100%;">
-                        <div class="col">
-                            <!-- This is where profile pic is displayed for each update-->
-                            <img src="../resources/avatar.png" height="168" width="168"></img>
-                        </div>
-
-                        <div class="col">
-                            <!-- Friend Name and their update-->
-                            <p id="reviewerName">
-                                [Friend Name] Reviewed
-                            </p>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-sm-12">
-                        <!-- Personal Message left by User-->
-                        <p id="updateText"> UPDATE TEXT </p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <!-- This is where book pic is displayed for each update-->
-                    <img src="../resources/harrypotter.jpg" height="336" width="168"></img>
-                </div>
-            </div>
-
-            <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-                <!-- comment example-->
-                <div class="row">
-
-                    <div class="col-sm-1">
-                        <!-- This is where profile pic is displayed for each comment-->
-                        <img src="../resources/emergy.png" height="84" width="84"></img>
-                    </div>
-
-                    <div class="col-sm-11">
-                        <!-- Prompts user if they want to comment-->
-                        <p class="textUI" id="textUI">Leave a comment?</p>
-                    </div>
-
-                    <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                        <!-- Personal Message left by User-->
-                        <div class="form-group green-border-focus">
-                            <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..."
-                                style="width: 1000px;"></textarea>
-                        </div>
-                        <button onclick="submitComment()" class="btn btn-secondary" type="Submit"
-                            style="margin-right: 15px;">Submit</button>
-                    </div>
-                </div>
-            </div>
+        
 
         </div>
     </div>
