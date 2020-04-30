@@ -94,12 +94,11 @@ router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 
             case 0:
                 friendslist = req.body.array;
                 return [4 /*yield*/, friends_1.Friend.find({ '_id': { $in: friendslist } })
-                        .populate('reciever', '_id username email')
-                        .populate('requester', '_id username email')];
+                        .populate('receiver', '_id username email firstname lastname')
+                        .populate('requester', '_id username email firstname lastname')];
             case 1:
                 docfriends = _a.sent();
-                console.log(docfriends);
-                res.send(docfriends);
+                res.json(docfriends);
                 return [2 /*return*/];
         }
     });

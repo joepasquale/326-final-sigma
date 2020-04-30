@@ -56,10 +56,9 @@ router.post('/all', async (req, res) => {
     let friendslist = req.body.array;
     let docfriends = await Friend.find(
         { '_id': { $in: friendslist } })
-        .populate('receiver', '_id username email')
-        .populate('requester', '_id username email');
-    console.log(docfriends);
-    res.send(docfriends);
+        .populate('receiver', '_id username email firstname lastname')
+        .populate('requester', '_id username email firstname lastname');
+    res.json(docfriends);
 });
 
 router.post('/remove', async (req, res) => {

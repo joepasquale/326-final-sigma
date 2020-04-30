@@ -5,10 +5,9 @@
     "\\src\\public",
     "\\src\\public\\javascript",
     "\\src\\server",
-    "\\src\\server\\middleware",
     "\\src\\server\\models",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\server\\routes\\booklist.ts",
+  "SelectedNode": "\\src\\server\\routes\\user.ts",
   "PreviewInSolutionExplorer": false
 }
