@@ -62,9 +62,15 @@ router.post('/request', function (req, res) { return __awaiter(void 0, void 0, v
 }); });
 router.post('/accept', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, receiver: req.body.UserB }, { $set: { status: 3 } });
-        friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, receiver: req.body.A }, { $set: { status: 3 } });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserA, receiver: req.body.UserB }, { $set: { status: 3 } })];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, receiver: req.body.UserA }, { $set: { status: 3 } })];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
 }); });
 router.post('/reject', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -94,8 +100,8 @@ router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 
             case 0:
                 friendslist = req.body.array;
                 return [4 /*yield*/, friends_1.Friend.find({ '_id': { $in: friendslist } })
-                        .populate('receiver', '_id username email firstname lastname')
-                        .populate('requester', '_id username email firstname lastname')];
+                        .populate('receiver', '_id username email info')
+                        .populate('requester', '_id username email info')];
             case 1:
                 docfriends = _a.sent();
                 res.json(docfriends);

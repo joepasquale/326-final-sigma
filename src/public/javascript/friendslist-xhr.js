@@ -22,55 +22,50 @@ async function handleFriendsList(friends) {
             let tr = document.createElement('tr');
             tr.innerHTML = `
              <td class="align-middle">
-                   ${friends[i].requester.username}
+                 <a href="${url + "/auth/profile.html?user=" + friends[i].receiver._id}">${friends[i].receiver.username}</a>
                 </td>
-                <td class="align-middle"><a href="">${friends[i].requester.username}</a></td>
-                <td class="align-middle">${friends[i].requester.username}</td>
+                <td class="align-middle">${friends[i].receiver.info.firstname} ${friends[i].receiver.info.lastname}</td>
+                <td class="align-middle">${friends[i].receiver.email}</td>
                 <td class="align-middle">
-                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="right" title="Remove Friend" onclick="removeFriend()">
+                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="right" value="${friends[i].receiver._id}" title="Remove Friend" onclick="rejectFriend(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
             `;
-            console.log(tr);
-            console.log(tab);
-            document.getElementById('main').appendChild(tr);
+            document.getElementById('friends_body').appendChild(tr);
         } else if (status === 1) {
             let tr = document.createElement('tr');
             tr.innerHTML = `
              <td class="align-middle">
-                ${friends[i].requester.username}
+                <a href=""${url + "/auth/profile.html?user=" + friends[i].receiver._id}">${friends[i].receiver.username}</a>
                 </td>
-                <td class="align-middle"><a href="">${friends[i].requester.username}</a></td>
-                <td class="align-middle">${friends[i].requester.username}</td>
+                <td class="align-middle">${friends[i].receiver.info.firstname} ${friends[i].receiver.info.lastname}</td>
+                <td class="align-middle">${friends[i].receiver.email}</td>
                 <td class="align-middle">
-                    <button type="button" class="btn btn-outline-success btn-circle" data-toggle="tooltip" data-placement="top" title="Accept Friend Request" onclick="addFriend()">
+                    <button type="button" class="btn btn-outline-success btn-circle" data-toggle="tooltip" data-placement="top" value="${friends[i].receiver._id}" title="Accept Friend Request" onclick="acceptFriend(this)">
                         <i class="fa fa-check"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Deny Friend Request">
+                    <button type="button" class="btn btn-outline-danger btn-circle" data-toggle="tooltip" data-placement="top" value="${friends[i].receiver._id}" title="Deny Friend Request" onclick="rejectFriend(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
             `;
-            document.getElementById('main').appendChild(tr);
+            document.getElementById('requests_body').appendChild(tr);
         } else {
-            //tab = document.getElementById('sent')
             let tr = document.createElement('tr');
             tr.innerHTML = `
              <td class="align-middle"><a href="${url + "/auth/profile.html?user=" + friends[i].receiver._id}">
                    ${friends[i].receiver.username}
                     </a>
                 </td>
-                <td class="align-middle">${friends[i].receiver.firstname} ${friends[i].receiver.lastname}</td>
-                <td class="align-middle">j${friends[i].requester.email}</td>
+                <td class="align-middle">${friends[i].receiver.info.firstname} ${friends[i].receiver.info.lastname}</td>
+                <td class="align-middle">j${friends[i].receiver.email}</td>
                 <td class="align-middle">
                     <small>Pending...</small>
 
                 </td>
             `;
             let tab = document.getElementById("sent_body").appendChild(tr);
-            console.log(tab);
-            //tab.innerHTML="test"
         }
     }
 }
@@ -80,41 +75,26 @@ async function handleFriendsList(friends) {
 
 
 
-async function acceptFriend() {
-    let userB = await readProfile(currentUser._id);
+async function acceptFriend(idElem) {
+    let id = idElem.value;
+    console.log(id);
     const data = {
-        "UserA": userProfile,
-        "UserB": userB,
+        "UserA": id,
+        "UserB": currentUser._id,
     };
-    let list = document.getElementById('friends' + id);
-    let listitem = list.createElement('tr');
-    listItem.innerHTML = `
-    <td class="align-middle">
-        <div style="width:45px;">
-            <img src="../resources/avatar.png" alt="..." class="rounded-circle" style="width:50px; height:50px;" }>
-        </div>
-    </td>
-    <td class="align-middle"><a href=">${userB.info.firstname} ${userB.info.lastname}</a></td>
-    <td class="align-middle">${userB.info.email}/td>
-        <td class="align-middle">
-        </td>
-    </tr>`;
-    const newURL = url + '/api/friends/accept';
+    const newURL = url + '/api/friend/accept';
     const resp = await postData(newURL, data);
+    window.location.href = window.location.href;
 }
 
-async function denyFriend() {
-
-    let userB = await readProfile(currentUser._id);
+async function rejectFriend(idElem) {
+    let id = idElem.value;
+    console.log(id);
     const data = {
-        "UserA": userProfile,
-        "UserB": userB,
+        "UserA": id,
+        "UserB": currentUser._id,
     };
-    const newURL = url + '/api/friends/reject';
+    const newURL = url + '/api/friend/reject';
     const resp = await postData(newURL, data);
-
-}
-
-async function removeFriend() {
-
+    window.location.href = window.location.href;
 }

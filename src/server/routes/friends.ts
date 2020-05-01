@@ -25,12 +25,12 @@ router.post('/request', async (req, res) => {
 });
 
 router.post('/accept', async (req, res) => {
-    Friend.findOneAndUpdate(
+    await Friend.findOneAndUpdate(
         { requester: req.body.UserA, receiver: req.body.UserB },
         { $set: { status: 3 } }
     )
-    Friend.findOneAndUpdate(
-        { requester: req.body.UserB, receiver: req.body.A },
+    await Friend.findOneAndUpdate(
+        { requester: req.body.UserB, receiver: req.body.UserA },
         { $set: { status: 3 } }
     )
 });
@@ -56,8 +56,8 @@ router.post('/all', async (req, res) => {
     let friendslist = req.body.array;
     let docfriends = await Friend.find(
         { '_id': { $in: friendslist } })
-        .populate('receiver', '_id username email firstname lastname')
-        .populate('requester', '_id username email firstname lastname');
+        .populate('receiver', '_id username email info')
+        .populate('requester', '_id username email info');
     res.json(docfriends);
 });
 
