@@ -1,6 +1,3 @@
-
-
-
 async function addUpdates(){
 
     if( arrayOfUpdates < 1){ // Put text stating no updates if database array of user updates is less than 1
@@ -10,8 +7,6 @@ async function addUpdates(){
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
         console.log("TEST");
-
-        
     }
     else{ // Output html of X number of updates to the feed
 
@@ -24,6 +19,13 @@ async function addUpdates(){
         for(i ; i=0; i--){ //for loop goes down until all posts are outputted to HTML
             let feedDiv = document.getElementById("feedbox");
             let postHTML = document.createElement("div"); //Here is where the HTML gets outputted to homefeed.html
+            let messageStr = "";
+            if(arrayOfUpdates[i].status === 0){
+                let messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+".";
+            }
+            else{
+                let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpadtes[i].list.status + " list.";
+            }
             postHTML.innerHTML = `<div class="row">
             <div class="col-8">
                 <div style="float:left; width: 100%;">
@@ -35,7 +37,7 @@ async function addUpdates(){
                     <div class="col">
                         <!-- Friend Name, Book Title, and their update-->
                         <p id="updatePost">
-                            [Friend Name] [Action] [Book Name]
+                            ${messageStr}
                         </p>
 
                     </div>
@@ -103,13 +105,10 @@ async function addUpdates(){
                 </div>
             </div>
         </div> <!-- user comment end here-->
-
     </div>`;
         }
-
-
-    }
-
 }
+
+
 
 addUpdates();
