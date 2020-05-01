@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var router = require("express").Router();
 exports.router = router;
 var user_1 = require("../models/user");
