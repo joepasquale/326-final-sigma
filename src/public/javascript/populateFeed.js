@@ -25,7 +25,8 @@ async function addUpdates(){
             }
             else{
                 let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpadtes[i].list.status + " list.";
-            }
+            } //MESSAGE FOR FUTURE DAN, PLEASE ADD THE UPDATE REVIEW TO INNERHTML WHEN ITS ADDED TO DB 
+            //as well as comment innerhtml
             postHTML.innerHTML = `<div class="row">
             <div class="col-8">
                 <div style="float:left; width: 100%;">
@@ -51,7 +52,7 @@ async function addUpdates(){
             
             <div class="col">
                 <!-- This is where book pic is displayed for each update-->
-                <img src="../resources/shining.jpg" height="336" width="168"></img>
+                <img src="${arrayOfUpadtes[i].book.imageLinks.thumbnail}" height="336" width="168"></img>
             </div>
             <div class="col">
             </div>
