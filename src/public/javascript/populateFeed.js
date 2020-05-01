@@ -1,15 +1,17 @@
 
-const url = "http://localhost:4000";
-let currentUser = "";
+
 
 async function addUpdates(){
 
     if( arrayOfUpdates < 1){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
-        p.innerHTML = "No feed updates. Add friends here [LINK] to see their updates!";
+        p.innerHTML = `No feed updates. Add friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a> to see their updates!`;
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
+        console.log("TEST");
+
+        
     }
     else{ // Output html of X number of updates to the feed
 
