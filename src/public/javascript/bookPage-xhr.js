@@ -93,7 +93,7 @@ async function handleBook(bookData) {
             <hr/>
                 <div class='row'>
                     <div class='container col'> 
-                       <img class="mb-2 img-thumbnail" src=${!bookData.imageLinks.thumbnail ? "" : bookData.imageLinks.thumbnail} />
+                       <img class="mb-2 img-thumbnail" src=${bookData.imageLinks.thumbnail} />
                     </div> 
                     <div class='container col-md-9 col-sm-8 col-lg-10 col-xl-10'>
                         <div  class='container border rounded' style="background-color: #fafafa;">
