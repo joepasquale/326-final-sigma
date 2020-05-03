@@ -1,43 +1,6 @@
-
 let Book;
 
-async function addReview() { //REVIEWS ARE ON BOOK PAGES, COMMENTS ARE ON HOMEFEED
-
-    let Review = document.getElementById("reviewText").value;
-    let UserName = document.getElementById("username").value; //revist once users are added********************
-
-    const data = {"Review" : Review, "UserName" : UserName};
-    //const newURL = "http://localhost:4000/api/book/review";  //Check later **************************
-    const resp = await postData(newURL, data);    
-    await fetch(newURL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(function (dat) { 
-        console.log('Request success: ', dat.results);
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });
-}
-
-
-
-
-async function addToList() {
-
-    let addToList = document.getElementById("listDrop").value;
-    let currentBook = Book;
-    let User = currentUser;
-
-    const data = { "List" : addToList, "Book" : Book , "User" : User};
-   // const newURL = "http://localhost:4000/api/book/addList";
-    const resp = await postData(newURL, data);
-
+async function addReview() {
 
 }
 
@@ -117,10 +80,8 @@ async function handleBook(bookData) {
                                       <button class="btn btn-md btn-secondary dropdown-toggle" style="background-color: #335482;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-plus"></i> Add To
                                       </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                      <div class="dropdown-menu" id="drop_down" aria-labelledby="dropdownMenuButton">
+                                           
                                       </div>
                                   </div>
                                </div>
@@ -131,9 +92,40 @@ async function handleBook(bookData) {
                  <hr/>
                 <p class=''>${bookData.description}</p>
                 `;
-
-
     document.getElementById('bookcontent').appendChild(div);
+    let drop_down = document.getElementById("drop_down");
+    console.log(drop_down);
+    let nURL = url + "/api/booklist/find";
+    const dat = {"User": currentUser, "Book": Book};
+    const response = await postData(nURL, dat);
+    let relationship = await response.json();
+    let status = 0;
+    if(relationship){
+       status = relationship.status;
+    }
+    if(status !== 1 ){
+        drop_down.innerHTML +=`
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 1)">Want to Read</button>`;
+    }
+    if(status !== 2 ){
+        drop_down.innerHTML +=`
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 2)">Currently Reading</button>`;
+    }
+    if(status !== 3 ){
+        drop_down.innerHTML +=`
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 3)">Finished Reading</button>`;
+    }
+    if(status !== 4 ){
+        drop_down.innerHTML +=`
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 4)">Dropped</button>`;
+    }
+    if(status !== 0){
+        drop_down.innerHTML += `
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="removeFromList(this, 0)">Remove From List</button>`;
+    }
+
+  
     
     if (bookData.authors != null && bookData.authors.length !== 0 && bookData.authors[0] !== "") {
         let p = document.createElement("p");

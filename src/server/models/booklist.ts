@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const listSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
@@ -15,6 +16,6 @@ const listSchema = new mongoose.Schema({
 });
 
 
-let List = mongoose.model('List', listSchema);
+let Booklist = mongoose.model('Booklist', listSchema);
 
-export { List };
+export { Booklist };

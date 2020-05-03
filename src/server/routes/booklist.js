@@ -38,41 +38,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var router = require("express").Router();
 exports.router = router;
+var booklist_1 = require("../models/booklist");
 var user_1 = require("../models/user");
-var book_1 = require("../models/book");
 router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var bookUpdate;
+    var relationship;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, book_1.Book.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.List } }, { upsert: true, "new": true })];
+            case 0: return [4 /*yield*/, booklist_1.Booklist.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.Status } }, { upsert: true, "new": true })];
             case 1:
-                bookUpdate = _a.sent();
-                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { booklist: bookUpdate } })];
+                relationship = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $addToSet: { booklist: relationship } })];
             case 2:
                 _a.sent();
                 return [2 /*return*/];
         }
     });
 }); });
-router.post('/update', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var bookUpdate;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, book_1.Book.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.List } }, { upsert: true, "new": true })];
-            case 1:
-                bookUpdate = _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
 router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var bookUpdate;
+    var relationship;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, book_1.Book.findOneAndRemove({ user: req.body.User, book: req.body.Book })];
+            case 0: return [4 /*yield*/, booklist_1.Booklist.findOneAndRemove({ user: req.body.User, book: req.body.Book })];
             case 1:
-                bookUpdate = _a.sent();
-                return [4 /*yield*/, user_1.User.findOneAndRemove({ _id: req.body.User }, { $pull: { booklist: bookUpdate } })];
+                relationship = _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $pull: { booklist: relationship } })];
             case 2:
                 _a.sent();
                 return [2 /*return*/];
@@ -80,7 +69,29 @@ router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); });
 router.post('/find', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var relationship;
     return __generator(this, function (_a) {
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, booklist_1.Booklist.findOne({ user: req.body.User, book: req.body.Book })];
+            case 1:
+                relationship = _a.sent();
+                res.json(relationship);
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var booklist, docfriends;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                booklist = req.body.array;
+                return [4 /*yield*/, booklist_1.Booklist.find({ '_id': { $in: booklist } })
+                        .populate('book', '_id title authors imageLinks categories googleRating')];
+            case 1:
+                docfriends = _a.sent();
+                res.json(docfriends);
+                return [2 /*return*/];
+        }
     });
 }); });

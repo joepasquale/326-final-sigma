@@ -74,6 +74,9 @@ async function handleFriend(id, urlAddition){
     }));
 }
 
+async function test() {
+    console.log("faf");
+ }
 
 async function acceptFriend(idElem) {
    await handleFriend(idElem.value, "/api/friend/accept");
@@ -82,6 +85,31 @@ async function acceptFriend(idElem) {
 async function rejectFriend(idElem) {
    await handleFriend(idElem.value, "/api/friend/reject");
 }
+
+
+async function handleList(book, listNumber, urlAddition){
+    const data = {
+        "Book": book,
+        "User": currentUser._id,
+        "Status": listNumber
+    };
+    const newURL = url + "/api/booklist/"+urlAddition;
+    const resp = await postData(newURL, data)
+    .then( setTimeout(function() {
+        window.location.reload(true);
+    }));
+}
+
+
+async function addToList(elem, listNumber){
+    console.log(elem.value);
+    await handleList(elem.value, listNumber, "add");
+}
+
+async function removeFromList(elem, listNumber){
+    await handleList(elem.value, listNumber, "remove");
+}
+
 
 
 auth();

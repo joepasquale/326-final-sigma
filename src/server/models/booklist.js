@@ -14,5 +14,5 @@ var listSchema = new mongoose.Schema({
         ]
     }
 });
-var List = mongoose.model('List', listSchema);
-exports.List = List;
+var Booklist = mongoose.model('Booklist', listSchema);
+exports.Booklist = Booklist;
