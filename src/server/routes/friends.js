@@ -109,8 +109,21 @@ router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 
         }
     });
 }); });
-router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.post('/find', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var relationship;
     return __generator(this, function (_a) {
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, friends_1.Friend.findOne({ requester: req.body.UserA, receiver: req.body.UserB })];
+            case 1:
+                relationship = _a.sent();
+                if (!!relationship) return [3 /*break*/, 3];
+                return [4 /*yield*/, friends_1.Friend.findOne({ requester: req.body.UserB, receiver: req.body.UserA })];
+            case 2:
+                relationship = _a.sent();
+                _a.label = 3;
+            case 3:
+                res.json(relationship);
+                return [2 /*return*/];
+        }
     });
 }); });

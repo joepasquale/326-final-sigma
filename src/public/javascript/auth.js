@@ -62,4 +62,26 @@ async function parseURL() {
 
 }
 
+async function handleFriend(id, urlAddition){
+    const data = {
+        "UserA": id,
+        "UserB": currentUser._id,
+    };
+    const newURL = url + urlAddition;
+    const resp = await postData(newURL, data)
+    .then( setTimeout(function() {
+        window.location.reload(true);
+    }));
+}
+
+
+async function acceptFriend(idElem) {
+   await handleFriend(idElem.value, "/api/friend/accept");
+}
+
+async function rejectFriend(idElem) {
+   await handleFriend(idElem.value, "/api/friend/reject");
+}
+
+
 auth();

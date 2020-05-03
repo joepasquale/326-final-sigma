@@ -61,8 +61,16 @@ router.post('/all', async (req, res) => {
     res.json(docfriends);
 });
 
-router.post('/remove', async (req, res) => {
-
+router.post('/find', async (req, res) => {
+    let relationship = await Friend.findOne(
+        {requester: req.body.UserA , receiver: req.body.UserB}
+    );
+    if(!relationship){
+        relationship = await Friend.findOne(
+            {requester: req.body.UserB , receiver: req.body.UserA}
+        );
+    }
+   res.json(relationship);
 });
 
 export { router };

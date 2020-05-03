@@ -5,9 +5,8 @@ async function getProfile() {
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);
     let j = await getUser(decoded);
-    console.log(j);
     userProfile = j;
-    await handleProfile(j);
+    await handleProfile(userProfile);
 }
 
 async function sendProfileInfo() {
@@ -112,55 +111,91 @@ async function handleOtherUser(profileData) {
         <div class="row mt-3">
             <div class="col">
                 <h4>First Name:</h4>
-                 <label class='lead' id="firstname_lab">${profileData.info.firstname}</label>
-                    </div>
-                <div class="col">
-                    <h4>Last Name:</h4>
-                     <label class='lead' id="lastname_lab">${profileData.info.lastname}</label>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col">
-                        <h4>Favorite Book:</h4>
-                        <label class='lead' id="favbook_lab">${(profileData.info.favorite_book == null || profileData.info.favorite_book === "" ? "None" : profileData.info.favorite_book)}</label>
-                    </div>
-                        <div class="col">
-                            <h4>Favorite Genre:</h4>
-                            <label class='lead' id="favgenre_lab">${profileData.info.favorite_genre}</label>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                    <div class="col">
-                        <h4>Email:</h4>
-                        <label class='lead' id="email_lab">${profileData.email}</label>
-                    </div>
-                        <div class="col">
-                             <button class="btn btn-md btn-success mt-3" onclick="sendFriendRequest()"><i class="fas fa-plus"></i> Add Friend</button>
-                        </div>
-                    </div>
+                <label class='lead' id="firstname_lab">${profileData.info.firstname}</label>
+            </div>
+            <div class="col">
+                <h4>Last Name:</h4>
+                <label class='lead' id="lastname_lab">${profileData.info.lastname}</label>
+            </div>
+        </div>
+        <div class="row mt-2" >
+            <div class="col">
+                <h4>Favorite Book:</h4>
+                <label class='lead' id="favbook_lab">${(profileData.info.favorite_book == null || profileData.info.favorite_book === "" ? "None" : profileData.info.favorite_book)}</label>
+            </div>
+            <div class="col">
+                <h4>Favorite Genre:</h4>
+                <label class='lead' id="favgenre_lab">${profileData.info.favorite_genre}</label>
+            </div>
+        </div>
+        <div class="row mt-2" id="add_button">
+            <div class="col">
+                <h4>Email:</h4>
+                <label class='lead' id="email_lab">${profileData.email}</label>
+            </div>
+        </div>    
                    `;
 
+    let newURL = url + "/api/friend/find";
+    const data = {"UserA":currentUser, "UserB": profileData };
+    let resp = await postData(newURL, data);
+    let relationship = await resp.json();
+    let friend_button = document.createElement('div');
+    friend_button.className = "col";
+    console.log(friend_button);
+    if(!relationship){
+        friend_button.innerHTML=
+        ` 
+            <button class="btn btn-md btn-success mt-3" onclick="sendFriendRequest()"><i class="fas fa-plus"></i> Add Friend</button>
+        `;
+    }else{
+        let status = relationship.status;
+        if(status == 1){
+            friend_button.innerHTML=
+            `
+            <button class="btn btn-md btn-success" value="${userProfile._id}" onclick="acceptFriend(this)"><i class="fas fa-plus"></i> Accept Request</button>
+            <button class="btn btn-md btn-danger my-2" value="${userProfile._id}" onclick="rejectFriend(this)"><i class="fas fa-times"></i> Reject Request</button>
+           
+            `;
+        }
+        if(status == 2){
+            friend_button.innerHTML=
+            `  
+               <small>Friend Request Pending...</small>
+            `;     
+        }
+        if(status == 3){
+            friend_button.innerHTML=
+            `  
+            <button class="btn btn-md btn-danger" value="${userProfile._id}" onclick="rejectFriend(this)"><i class="fas fa-times"></i> Remove Friend</button>
+            `;
+        }
+        
+    }
+    document.getElementById('add_button').appendChild(friend_button);
 }
 
 
 async function sendFriendRequest() {
     let userB = await getUser(currentUser._id);
-    const data = {
+    const data = {  
         "UserA": userProfile,
         "UserB": userB,
     };
     const newURL = url + '/api/friend/request';
-    const resp = await postData(newURL, data);
+    const resp = await postData(newURL, data).then(
+        setTimeout(function() {
+            window.location.reload(true);
+        })
+    );
 }
 
 async function handleProfile(profileData) {
     document.title = 'Shelf - ' + profileData.username;
     document.getElementById('username').innerHTML = profileData.username;
     if (profileData._id === currentUser._id) {
-        console.log('true\n' + "CurrentUser: " + currentUser._id + "\n" + 'userProfile: ' + profileData._id);
         await handleIsUser(profileData);
     } else {
-        console.log('false');
         await handleOtherUser(profileData);
     }
   
