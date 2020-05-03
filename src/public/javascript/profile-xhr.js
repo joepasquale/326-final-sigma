@@ -13,7 +13,6 @@ async function sendProfileInfo() {
     let firstname = document.getElementById("first_name").value;
     let lastname = document.getElementById("last_name").value;
     let favorite_book = document.getElementById("favorite_book").value;
-    console.log(favorite_book);
     let favgenre = document.getElementById("favgenre");
     let favorite_genre = favgenre.options[favgenre.selectedIndex].value;
     let newURL = url + "/api/user/info/update";
@@ -142,7 +141,6 @@ async function handleOtherUser(profileData) {
     let relationship = await resp.json();
     let friend_button = document.createElement('div');
     friend_button.className = "col";
-    console.log(friend_button);
     if(!relationship){
         friend_button.innerHTML=
         ` 
@@ -161,7 +159,8 @@ async function handleOtherUser(profileData) {
         if(status == 2){
             friend_button.innerHTML=
             `  
-               <small>Friend Request Pending...</small>
+                <div  class='container w-75 border rounded text-center my-3 py-2' style="background-color: #fafafa;">Friend Request Pending...</div>
+              
             `;     
         }
         if(status == 3){

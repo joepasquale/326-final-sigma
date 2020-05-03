@@ -37,31 +37,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var router = require("express").Router();
-var user_1 = require("../models/user");
+exports.router = router;
 var update_1 = require("../models/update");
-function updateAdd(req, res, next) {
-    return __awaiter(this, void 0, void 0, function () {
-        var update;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    update = new update_1.Update({
-                        user: req.body.User,
-                        book: req.body.Book,
-                        toList: req.body.To,
-                        fromList: req.body.From
-                    });
-                    return [4 /*yield*/, update.save()];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { Updates: update } })];
-                case 2:
-                    _a.sent();
-                    next();
-                    return [2 /*return*/];
-            }
-        });
+router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var friendslist, friendsUpdates;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                friendslist = req.body.array;
+                return [4 /*yield*/, update_1.Update.find({ 'user': { $in: friendslist } })
+                        .populate('user', '_id username email info updates')
+                        .populate('book', '_id title authors imageLinks categories googleRating')
+                        .sort({ 'time': 'descending' })];
+            case 1:
+                friendsUpdates = _a.sent();
+                res.json(friendsUpdates);
+                return [2 /*return*/];
+        }
     });
-}
-exports.updateAdd = updateAdd;
-;
+}); });

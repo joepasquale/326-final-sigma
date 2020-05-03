@@ -103,7 +103,6 @@ async function handleGoogleAPI(googBooks) {
             newURL = url + '/api/book/add';
             let resp = await postData(newURL, googBooks[i]);
             if (resp.status != 200) {
-                console.log(await resp.text());
                 continue;
             }
             googBooks[i] = await resp.json();

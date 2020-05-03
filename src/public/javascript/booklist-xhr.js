@@ -23,26 +23,27 @@ async function handleUser() {
  * 3 dropped
  * */
 async function getList(books) {
-    console.log(books);
+  
     let wantCount = 0;
     let readCount = 0;
     let finishedCount = 0;
     let dropCount = 0;
     for (let i = 0; i < books.length; i++) {
+        if(books[i].book == null) continue;
         let val = books[i].status;
         let book = books[i].book;
         if (val === 1) {
             wantCount++;
-            await handleList(book, wantCount, 'wishlist');
+            await handleList(book, wantCount, 'wishlist', val);
         } else if (val === 2) {
             readCount++;
-            await handleList(book, readCount, 'reading');
+            await handleList(book, readCount, 'reading', val);
         } else if (val === 3) {
             finishedCount++;
-            await handleList(book, finishedCount, 'finished');
+            await handleList(book, finishedCount, 'finished', val);
         } else {
             dropCount++;
-            await handleList(book, dropCount, 'dropped');
+            await handleList(book, dropCount, 'dropped', val);
         }
     }
     if (wantCount === 0) {
@@ -62,9 +63,27 @@ async function getList(books) {
 
 async function handleHeader(id) {
     document.getElementById(id+"_table").innerHTML = "";
-    document.getElementById(id+"_table").innerHTML =
+    if (userProfile._id === currentUser._id) {
+        document.getElementById(id+"_table").innerHTML =
+            `
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="${id+"_body"}">
+                </tbody>
+            `;
+    }else{
+        document.getElementById(id+"_table").innerHTML =
         `
-             <thead>
+            <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Image</th>
@@ -72,19 +91,17 @@ async function handleHeader(id) {
                     <th scope="col">Author</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Rating</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody id="${id+"_body"}">
             </tbody>
-         `;
+        `;
+    }
 }
 
-async function handleList(book, index, id) {
+async function handleList(book, index, id, status) {
     if (index === 1) await handleHeader(id);
     let list = document.getElementById(id+"_body");
-    console.log(id);
-    console.log(list);
     let listItem = document.createElement('tr');
     listItem.innerHTML = `
         <th class="align-middle" scope="row">${index}</th>
@@ -97,12 +114,20 @@ async function handleList(book, index, id) {
         <td class="align-middle">${book.authors}</td>
         <td class="align-middle">${book.categories}</td>
         <td class="align-middle" id=${id+index}>
-        </td>
-        <td class="align-middle">
-            <div class="dropdown-menu" id="drop_down" aria-labelledby="dropdownMenuButton">
-                                           
-            </div>
         </td>`;
+    if (userProfile._id === currentUser._id) {
+        listItem.innerHTML += `
+        <td class="align-middle">
+             <div class="dropdown mt-1">
+            <button class="btn btn-md btn-secondary dropdown-toggle" style="background-color: #335482;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-edit"></i> Move To
+            </button>
+            <div class="dropdown-menu" id="${"drop_down" + index + id}" aria-labelledby="dropdownMenuButton">
+             
+            </div>
+        </div>
+        </td>`;
+    }
     const stars = document.createElement('div');
     stars.className = 'container-xl';
     for (let j = book.googleRating; j > 0; j--) {
@@ -118,6 +143,29 @@ async function handleList(book, index, id) {
    
     list.appendChild(listItem);
     document.getElementById(id + index).appendChild(stars);
+    if (userProfile._id === currentUser._id) {
+        let drop_down = document.getElementById('drop_down' + index + id);
+        if(status !== 1 ){
+            drop_down.innerHTML +=`
+            <button class="dropdown-item" type="button" value="${book._id}" onclick="addToList(this, 1, ${status})">Want to Read</button>`;
+        }
+        if(status !== 2 ){
+            drop_down.innerHTML +=`
+            <button class="dropdown-item" type="button" value="${book._id}" onclick="addToList(this, 2 , ${status})">Currently Reading</button>`;
+        }
+        if(status !== 3 ){
+            drop_down.innerHTML +=`
+            <button class="dropdown-item" type="button" value="${book._id}" onclick="addToList(this, 3, ${status})">Finished Reading</button>`;
+        }
+        if(status !== 4 ){
+            drop_down.innerHTML +=`
+            <button class="dropdown-item" type="button" value="${book._id}" onclick="addToList(this, 4, ${status})">Dropped</button>`;
+        }
+        drop_down.innerHTML += `
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" type="button" value="${book._id}" onclick="removeFromList(this, 0, ${status})">Remove From List</button>`;
+    }
+    
 }
 
 async function handleEmptyList(id, message) {

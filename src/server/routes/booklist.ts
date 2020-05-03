@@ -7,7 +7,7 @@ import { updateAdd } from '../middleware/update'
 
 
 
-router.post('/add',updateAdd, async (req, res) => {
+router.post('/add', updateAdd, async (req, res) => {
     const relationship = await Booklist.findOneAndUpdate(
         { user: req.body.User, book: req.body.Book },
         { $set: { status: req.body.Status } },
@@ -17,7 +17,7 @@ router.post('/add',updateAdd, async (req, res) => {
         { $addToSet: { booklist: relationship } });
 });
 
-router.post('/remove',updateAdd, async (req, res) => {
+router.post('/remove', updateAdd, async (req, res) => {
     const relationship = await Booklist.findOneAndRemove(
         {user: req.body.User, book: req.body.Book }
     );

@@ -19,7 +19,6 @@ async function loadFriends() {
 
 
 async function handleOtherUser(friends){
-    console.log(friends);
     let friendsCount = 0;
     for (let i = 0; i < friends.length; i++) {
         let status = friends[i].status;
@@ -39,7 +38,7 @@ async function handleOtherUser(friends){
         }
     }
     if(friendsCount === 0){
-       console.log('test');
+      
         await noResults("No Friends", "friends_body", "friends_table");
     }else{
        let thead = document.createElement("thead");
@@ -72,15 +71,14 @@ async function handleFriendsList(friends) {
     nav.appendChild(request);
     nav.appendChild(sent);
     for (let i = 0; i < friends.length; i++) {
-        let status = friends[i].status;
-        console.log(status);
+        if(friends[i].reciever == null || friends[i].requester == null) continue;
         if (status === 3) {
             friendsCount++;
             let tr = document.createElement('tr');
             tr.innerHTML = `
             <th class="align-middle" scope="row">${i+1}</th>
              <td class="align-middle">
-                 <a href="${url + "/auth/profile.html?user=" + friends[i].receiver._id}">${friends[i].receiver.username}</a>
+                    <a href="${url + "/auth/profile.html?user=" + friends[i].receiver._id}">${friends[i].receiver.username}</a>
                 </td>
                 <td class="align-middle">${friends[i].receiver.info.firstname} ${friends[i].receiver.info.lastname}</td>
                 <td class="align-middle">${friends[i].receiver.email}</td>
@@ -174,7 +172,6 @@ async function addHeader(id){
     </tr>
     `;
     let elem = document.getElementById(id);
-    console.log(elem);
     elem.insertBefore(thead,elem[0] );
 }
 

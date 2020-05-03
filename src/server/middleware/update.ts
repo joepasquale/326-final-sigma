@@ -1,6 +1,5 @@
 const router = require("express").Router();
 import { User } from '../models/user';
-import { Book } from '../models/book';
 import { Update } from '../models/update';
 
 async function updateAdd(req, res, next){
@@ -11,6 +10,10 @@ async function updateAdd(req, res, next){
         fromList: req.body.From
     });
  await update.save();
+ await User.findOneAndUpdate(
+    { _id: req.body.User },
+    { $push: { Updates: update } }
+)
  next();
 };
 

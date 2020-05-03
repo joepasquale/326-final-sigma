@@ -11,7 +11,6 @@ async function getBook() {
     const data = { 'id': decoded };
     let resp = await postData(newURL, data);
     if (resp.status != 200) {
-        console.log("Book Doesn't exist");
         window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
@@ -94,7 +93,6 @@ async function handleBook(bookData) {
                 `;
     document.getElementById('bookcontent').appendChild(div);
     let drop_down = document.getElementById("drop_down");
-    console.log(drop_down);
     let nURL = url + "/api/booklist/find";
     const dat = {"User": currentUser, "Book": Book};
     const response = await postData(nURL, dat);

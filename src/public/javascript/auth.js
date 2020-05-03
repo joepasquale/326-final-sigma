@@ -87,7 +87,7 @@ async function rejectFriend(idElem) {
 }
 
 
-async function handleList(book, listNumber, urlAddition, currentStatus){
+async function handlePostList(book, listNumber, urlAddition, currentStatus){
     const data = {
         "Book": book,
         "User": currentUser._id,
@@ -104,11 +104,11 @@ async function handleList(book, listNumber, urlAddition, currentStatus){
 
 
 async function addToList(elem, listNumber, currentStatus){
-    await handleList(elem.value, listNumber, "add", currentStatus);
+    await handlePostList(elem.value, listNumber, "add", currentStatus);
 }
 
 async function removeFromList(elem, listNumber, currentStatus){
-    await handleList(elem.value, listNumber, "remove", currentStatus);
+    await handlePostList(elem.value, listNumber, "remove", currentStatus);
 }
 
 
