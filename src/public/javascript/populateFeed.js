@@ -21,24 +21,22 @@ async function addUpdates(){
             let postHTML = document.createElement("div"); //Here is where the HTML gets outputted to homefeed.html
             let messageStr = "";
             if(arrayOfUpdates[i].status === 0){
-                let messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+".";
+                let messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+"at"+arrayOfUpdates[i].update.timeStamp+".";
             }
             else{
-                let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpdates[i].list.status + " list.";
+                let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpdates[i].list.status + " list at"+arrayOfUpdates[i].update.timeStamp+".";
             } 
             
             //MESSAGE FOR FUTURE DAN, PLEASE ADD THE UPDATE REVIEW TO INNERHTML WHEN ITS ADDED TO DB 
-            //as well as comment innerhtml
             postHTML.innerHTML = `
             <div id="updateDiv" class="row">
                 <div class="col-8">
                     <div style="float:left; width: 100%;">
                         <div class="col">
-                            <img src="${arrayOfUpdates[i].user.avatar}" height="168" width="168"></img>
                         </div>
                         <div class="col">
                             <p id="updatePost">
-                                ${reviewStr}
+                                ${messageStr}
                             </p>
                         </div>
                     </div>
@@ -76,11 +74,10 @@ async function addComments(){
         `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
             <div class="row" >
                 <div class="col-sm-1">
-                    <img src="${arrayOfUpdates[i].user.avatar}" height="84" width="84"></img>
                 </div>
                 <div class="col-sm-11">
                     <p id="reviewerName">
-                        ${arrayOfUpdates[i].user.username} commented
+                        ${arrayOfUpdates[i].user.username} commented at ${arrayOfComments.timestamp}.
                     </p>
                 </div>
                 <div class="col-sm-12">
@@ -91,7 +88,6 @@ async function addComments(){
         <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> 
             <div class="row">
                 <div class="col-sm-1">
-                    <img src="${arrayOfUpdates[i].user.avatar}" height="84" width="84"></img>
                 </div>
                 <div class="col-sm-11">
                     <p class="textUI" id="textUI">Leave a comment?</p>
