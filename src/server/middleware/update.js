@@ -36,24 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var jwt = require('jsonwebtoken');
-function auth(req, res, next) {
+var router = require("express").Router();
+var update_1 = require("../models/update");
+function updateAdd(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var token, jwtDecoded;
+        var update;
         return __generator(this, function (_a) {
-            token = req.header('x-auth-token');
-            if (!token)
-                return [2 /*return*/, res.status(401).send('No Token Provided.')];
-            try {
-                jwtDecoded = jwt.verify(token, 'jwtPrivateKey');
-                req.user = jwtDecoded;
-                next();
+            switch (_a.label) {
+                case 0:
+                    update = new update_1.Update({
+                        user: req.body.User,
+                        book: req.body.Book,
+                        toList: req.body.To,
+                        fromList: req.body.From
+                    });
+                    return [4 /*yield*/, update.save()];
+                case 1:
+                    _a.sent();
+                    next();
+                    return [2 /*return*/];
             }
-            catch (err) {
-                res.status(400).send('Invalid Token');
-            }
-            return [2 /*return*/];
         });
     });
 }
-exports.auth = auth;
+exports.updateAdd = updateAdd;
+;

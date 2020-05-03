@@ -87,11 +87,13 @@ async function rejectFriend(idElem) {
 }
 
 
-async function handleList(book, listNumber, urlAddition){
+async function handleList(book, listNumber, urlAddition, currentStatus){
     const data = {
         "Book": book,
         "User": currentUser._id,
-        "Status": listNumber
+        "Status": listNumber,
+        "To": listNumber,
+        "From": currentStatus
     };
     const newURL = url + "/api/booklist/"+urlAddition;
     const resp = await postData(newURL, data)
@@ -101,13 +103,12 @@ async function handleList(book, listNumber, urlAddition){
 }
 
 
-async function addToList(elem, listNumber){
-    console.log(elem.value);
-    await handleList(elem.value, listNumber, "add");
+async function addToList(elem, listNumber, currentStatus){
+    await handleList(elem.value, listNumber, "add", currentStatus);
 }
 
-async function removeFromList(elem, listNumber){
-    await handleList(elem.value, listNumber, "remove");
+async function removeFromList(elem, listNumber, currentStatus){
+    await handleList(elem.value, listNumber, "remove", currentStatus);
 }
 
 

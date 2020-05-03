@@ -40,7 +40,8 @@ var router = require("express").Router();
 exports.router = router;
 var booklist_1 = require("../models/booklist");
 var user_1 = require("../models/user");
-router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var update_1 = require("../middleware/update");
+router.post('/add', update_1.updateAdd, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var relationship;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -54,7 +55,7 @@ router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 
         }
     });
 }); });
-router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.post('/remove', update_1.updateAdd, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var relationship;
     return __generator(this, function (_a) {
         switch (_a.label) {

@@ -105,24 +105,24 @@ async function handleBook(bookData) {
     }
     if(status !== 1 ){
         drop_down.innerHTML +=`
-        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 1)">Want to Read</button>`;
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 1, ${status})">Want to Read</button>`;
     }
     if(status !== 2 ){
         drop_down.innerHTML +=`
-        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 2)">Currently Reading</button>`;
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 2 , ${status})">Currently Reading</button>`;
     }
     if(status !== 3 ){
         drop_down.innerHTML +=`
-        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 3)">Finished Reading</button>`;
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 3, ${status})">Finished Reading</button>`;
     }
     if(status !== 4 ){
         drop_down.innerHTML +=`
-        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 4)">Dropped</button>`;
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="addToList(this, 4, ${status})">Dropped</button>`;
     }
     if(status !== 0){
         drop_down.innerHTML += `
         <div class="dropdown-divider"></div>
-        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="removeFromList(this, 0)">Remove From List</button>`;
+        <button class="dropdown-item" type="button" value="${bookData._id}" onclick="removeFromList(this, 0, ${status})">Remove From List</button>`;
     }
 
   
