@@ -15,7 +15,7 @@ router.post('/add', async (req, res) => {
  await update.save();
 });
 
-router.post('/find', async (req, res) => { //REVISIT
+router.post('/find', async (req, res) => { //Josh said he would do it
     //await User.findOne;
 
 
