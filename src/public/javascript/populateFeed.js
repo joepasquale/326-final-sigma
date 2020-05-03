@@ -1,16 +1,16 @@
 async function addUpdates(){
 
-    if( arrayOfUpdates < 1){ // Put text stating no updates if database array of user updates is less than 1
+    if( arrayOfUpdates.length < 1){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
         p.innerHTML = `No feed updates. Add friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a> to see their updates!`;
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
-        console.log("TEST");
+        //console.log("TEST");
     }
     else{ // Output html of X number of updates to the feed
 
-        if(arrayOfUpadtes > 9){ //if array is graeter than 9, then set original display limit to 10 updates
+        if(arrayOfUpdates.length > 9){ //if array is greater than 9, then set original display limit to 10 updates
             let i = 10;
         }
         else{
@@ -24,92 +24,92 @@ async function addUpdates(){
                 let messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+".";
             }
             else{
-                let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpadtes[i].list.status + " list.";
-            } //MESSAGE FOR FUTURE DAN, PLEASE ADD THE UPDATE REVIEW TO INNERHTML WHEN ITS ADDED TO DB 
-            //as well as comment innerhtml
-            postHTML.innerHTML = `<div class="row">
-            <div class="col-8">
-                <div style="float:left; width: 100%;">
-                    <div class="col">
-                        <!-- This is where profile pic is displayed for each update-->
-                        <img src="../resources/Dog.PNG" height="168" width="168"></img>
-                    </div>
-
-                    <div class="col">
-                        <!-- Friend Name, Book Title, and their update-->
-                        <p id="updatePost">
-                            ${messageStr}
-                        </p>
-
-                    </div>
-                </div>
-                <br>
-                <div class="col">
-                    <!-- Personal Message left by User-->
-                    <p id="updateText"> [UPDATE TEXT] </p>
-                </div>
-            </div>
+                let messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title} + " to their " + arrayOfUpdates[i].list.status + " list.";
+            } 
             
-            <div class="col">
-                <!-- This is where book pic is displayed for each update-->
-                <img src="${arrayOfUpadtes[i].book.imageLinks.thumbnail}" height="336" width="168"></img>
-            </div>
-            <div class="col">
-            </div>
-
-        </div>
-
-
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!-- comments go here-->
-            <div class="row" >
-
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment-->
-                    <img src="../resources/avatar.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Friend Name and their comment-->
-                    <p id="reviewerName">
-                        [Friend Name] commented
-                    </p>
-                </div>
-
-                <div class="col-sm-12">
-                    <!-- Personal Message left by User-->
-                    <p id="commentText"> COMMENT TEXT </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> <!-- post a comment from current user-->
-            <div class="row">
-
-                <div class="col-sm-1">
-                    <!-- This is where profile pic is displayed for each comment by the user-->
-                    <img src="../resources/emergy.png" height="84" width="84"></img>
-                </div>
-
-                <div class="col-sm-11">
-                    <!-- Prompts user if they want to comment-->
-                    <p class="textUI" id="textUI">Leave a comment?</p>
-                </div>
-
-                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                    <!-- Personal Message left by User-->
-                    <div class="form-group green-border-focus">
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..."
-                            style="width: 1000px;"></textarea>
+            //MESSAGE FOR FUTURE DAN, PLEASE ADD THE UPDATE REVIEW TO INNERHTML WHEN ITS ADDED TO DB 
+            //as well as comment innerhtml
+            postHTML.innerHTML = `
+            <div id="updateDiv" class="row">
+                <div class="col-8">
+                    <div style="float:left; width: 100%;">
+                        <div class="col">
+                            <img src="${arrayOfUpdates[i].user.avatar}" height="168" width="168"></img>
+                        </div>
+                        <div class="col">
+                            <p id="updatePost">
+                                ${reviewStr}
+                            </p>
+                        </div>
                     </div>
-                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit"
-                        style="margin-right: 15px;">Submit</button>
+                        <br>
+                    <div class="col">
+                        <p id="updateText"> ${arrayOfUpdates[i].book.review} </p>
+                    </div>
                 </div>
-            </div>
-        </div> <!-- user comment end here-->
-    </div>`;
+                <div class="col">
+                    <img src="${arrayOfUpdates[i].book.imageLinks.thumbnail}" height="336" width="168"></img>
+                </div>
+                <div class="col">
+                </div>
+            </div>`;
+
+            feedDiv.appendChild(postHTML);
         }
 }
 
+addUpdates(); //Fills the feed page with updates
+
+async function addComments(){
+
+    if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
+        let i = 5;
+    }
+    else{
+        let i = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
+    }
+    for(i ; i=0; i--){ //for loop goes down until all comments are outputted to HTML
+        let commentFeedDiv = document.getElementById("updateDiv");
+        let commentHTML = document.createElement("div"); 
+
+        commentHTML.innerHTML = 
+        `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <div class="row" >
+                <div class="col-sm-1">
+                    <img src="${arrayOfUpdates[i].user.avatar}" height="84" width="84"></img>
+                </div>
+                <div class="col-sm-11">
+                    <p id="reviewerName">
+                        ${arrayOfUpdates[i].user.username} commented
+                    </p>
+                </div>
+                <div class="col-sm-12">
+                    <p id="commentText"> ${commentStr} </p>
+                </div>
+            </div>
+        </div>
+        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> 
+            <div class="row">
+                <div class="col-sm-1">
+                    <img src="${arrayOfUpdates[i].user.avatar}" height="84" width="84"></img>
+                </div>
+                <div class="col-sm-11">
+                    <p class="textUI" id="textUI">Leave a comment?</p>
+                </div>
+                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
+                    <div class="form-group green-border-focus">
+                        <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..." style="width: 1000px;"></textarea>
+                    </div>
+                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+    
+    commentFeedDiv.appendChild(commentHTML);
+    }
 
 
-addUpdates();
+}
+
+addComments(); //Add comments to the updates if there are any
