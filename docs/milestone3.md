@@ -14,13 +14,13 @@ Shelf: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
 ## Database Documentation
 Our application uses a MongoDB non-relational database. 
 
-Friends document
-{
-    FriendsID: <ObjectId1>
-    Requester: UserID, // User who sent the friend request
-    Receiver: UserID, // User who received the friend request
-    Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends
-}
+Friends document\
+{\
+    FriendsID: <ObjectId1>\
+    Requester: UserID, // User who sent the friend request\
+    Receiver: UserID, // User who received the friend request\
+    Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends\
+}\
 
 User document
 {
