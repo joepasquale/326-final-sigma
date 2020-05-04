@@ -1,5 +1,37 @@
 let arrayOfUpdates= [];
 
+async function addComments(){
+
+    if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
+        let i = 5;
+    }
+    else{
+        let i = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
+    }
+    for(i ; i=0; i--){ //for loop goes down until all comments are outputted to HTML
+        let commentFeedDiv = document.getElementById("updateDiv");
+        let commentHTML = document.createElement("div"); 
+        //Comment HTML Below
+        commentHTML.innerHTML = 
+        `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
+            <div class="row" >
+                <div class="col-sm-11">
+                    <p id="reviewerName">
+                        ${arrayOfUpdates[i].user.username} commented at ${arrayOfComments.timestamp}.
+                    </p>
+                </div>
+                <div class="col-sm-12">
+                    <p id="commentText"> ${commentStr} </p>
+                </div>
+            </div>
+        </div>`;
+    
+    commentFeedDiv.appendChild(commentHTML);
+    }
+
+
+}
+
 async function addUpdates(){
     let newURL = url + "/api/updates/all";
     let resp = await postData(newURL, { 'User':currentUser._id });
@@ -25,7 +57,8 @@ async function addUpdates(){
         }
         for(i = 0 ; i<j; i++){ //for loop goes down until all posts are outputted to HTML
             let feedDiv = document.getElementById("feedbox");
-            let postHTML = document.createElement("div"); //Here is where the HTML gets outputted to homefeed.html
+            let postHTML = document.createElement("div");
+            let postHTML2 = document.createElement("div");
             postHTML.className="container shadow-sm p-3 my-5 bg-white";
             let messageStr = "";
             
@@ -45,7 +78,7 @@ async function addUpdates(){
             }
 
             if(arrayOfUpdates[i].toList === 0){
-                messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+"at"+arrayOfUpdates[i].time+".";
+                messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+" at "+arrayOfUpdates[i].time+".";
             }else {
                 messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title + " to their " + listString + " list at "+arrayOfUpdates[i].time+".";
             } 
@@ -75,42 +108,10 @@ async function addUpdates(){
                 </div>
             </div>`;
 
-            feedDiv.appendChild(postHTML);
-        }
-    }
-}
-
-async function addComments(){
-
-    if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
-        let i = 5;
-    }
-    else{
-        let i = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
-    }
-    for(i ; i=0; i--){ //for loop goes down until all comments are outputted to HTML
-        let commentFeedDiv = document.getElementById("updateDiv");
-        let commentHTML = document.createElement("div"); 
-
-        commentHTML.innerHTML = 
-        `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <div class="row" >
-                <div class="col-sm-1">
-                </div>
-                <div class="col-sm-11">
-                    <p id="reviewerName">
-                        ${arrayOfUpdates[i].user.username} commented at ${arrayOfComments.timestamp}.
-                    </p>
-                </div>
-                <div class="col-sm-12">
-                    <p id="commentText"> ${commentStr} </p>
-                </div>
-            </div>
-        </div>
-        <div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> 
-            <div class="row">
-                <div class="col-sm-1">
-                </div>
+            postHTML2.innerHTML = `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> 
+                <div class="row">
+                    <div class="col-sm-1">
+                    </div>
                 <div class="col-sm-11">
                     <p class="textUI" id="textUI">Leave a comment?</p>
                 </div>
@@ -118,15 +119,17 @@ async function addComments(){
                     <div class="form-group green-border-focus">
                         <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..." style="width: 1000px;"></textarea>
                     </div>
-                    <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
+                        <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>`;
-    
-    commentFeedDiv.appendChild(commentHTML);
+            </div>`
+            //Update structure goes as followed:
+            feedDiv.appendChild(postHTML); //Update by user
+            addComments(); //Comment(s) by user(s) (if any) (appendChild is called within addComments to the HTML output by addUpdate())
+            feedDiv.appendChild(PostHTML2); //Submit Comment Box
+        }
     }
-
-
 }
+
+
 
