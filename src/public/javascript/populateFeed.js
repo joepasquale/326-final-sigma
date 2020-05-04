@@ -12,6 +12,7 @@ async function addUpdates(){
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
         //console.log("TEST");
+
         
     }
     else{ // Output html of X number of updates to the feed
