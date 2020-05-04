@@ -16,7 +16,7 @@ Our application uses a MongoDB non-relational database.
 
 Friends document\
 {\
-    FriendsID: <ObjectId1>\
+    FriendsID: ObjectId1\
     Requester: UserID, // User who sent the friend request\
     Receiver: UserID, // User who received the friend request\
     Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends\
@@ -24,7 +24,7 @@ Friends document\
 
 User document\
 {\
-    UserID: <ObjectId1>\
+    UserID: ObjectId1\
     Username: String, // Username for this UserID\
     Email: String, // User's email address\
     Password: String, // User's password\
@@ -38,7 +38,7 @@ User document\
 
 Book document\
 {\
-    BookID: <ObjectId1>\
+    BookID: ObjectId1\
     Title: String, // Title of the book\
     Author: String // Author of the book\
     Publisher: String, // Publisher of the book\
@@ -53,7 +53,7 @@ Book document\
 
 BookList document\
 {\
-    BookListID: <ObjectId1>\
+    BookListID: ObjectId1\
     user: UserID, // ID of the user whom the list belongs to\
     book: BookID, // ID of book on the list\
     status: Number, // Denotes which list is selected; 1 is Want to read, 2 is Currently reading, 3 is Completed reading, 4 is Quit Reading\
@@ -61,7 +61,7 @@ BookList document\
 
 Update document\
 {\
-    UpdateID: <ObjectId1>\
+    UpdateID: ObjectId1\
     user: UserID, // ID of the user who is posting the update\
     book: BookID, // ID of book being posted about\
     time: Date, // Timestamp of when the update was posted\
@@ -71,7 +71,7 @@ Update document\
 
 Comment document\
 {\
-    CommentID: <ObjectId1>\
+    CommentID: ObjectId1\
     user: UserID, // ID of the user who is posting the comment\
     update: UpdateID, // Post where the comment is being made\
     time: Date, // Timestamp of when the update was posted\
@@ -86,7 +86,15 @@ The following were the contributions made for this milestone:
     -  
 
  - Dan
-    - 
+    - Update model
+    - Update route
+    - populateFeed.js
+    - homefeed.html
+    - booklist model
+    - booklist route
+    - comment model
 
  - Joe
-    - 
+    - Milestone 3 Document
+    - friends list
+    - At this point, emotional support
