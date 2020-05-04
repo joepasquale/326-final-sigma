@@ -4,12 +4,12 @@ let arrayOfComments= [];
 async function addComments(){
 
     if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
-        let i = 5;
+        let y = 5;
     }
     else{
-        let i = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
+        let y = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
     }
-    for(i ; i=0; i--){ //for loop goes down until all comments are outputted to HTML
+    for(j=0 ; j=y; j++){ //for loop goes down until all comments are outputted to HTML
         let commentFeedDiv = document.getElementById("updateDiv");
         let commentHTML = document.createElement("div"); 
         //Comment HTML Below
@@ -18,7 +18,7 @@ async function addComments(){
             <div class="row" >
                 <div class="col-sm-11">
                     <p id="reviewerName">
-                        ${arrayOfUpdates[i].user.username} commented at ${arrayOfComments.timestamp}.
+                        ${arrayOfUpdates[j].user.username} commented at ${arrayOfComments.timestamp}.
                     </p>
                 </div>
                 <div class="col-sm-12">
@@ -49,14 +49,14 @@ async function addUpdates(){
         
     }
     else{ // Output html of X number of updates to the feed
-        let j = 0;
+
         if(arrayOfUpdates.length > 10){ //if array is greater than 9, then set original display limit to 10 updates
-            j = 10;
+            x = 10;
         }
         else{
-            j = arrayOfUpdates.length; //if 9 or less, sets iteration to the number of items in the array
+            x = arrayOfUpdates.length; //if 9 or less, sets iteration to the number of items in the array
         }
-        for(i = 0 ; i<j; i++){ //for loop goes down until all posts are outputted to HTML
+        for(i = 0 ; i<x; i++){ //for loop goes down until all posts are outputted to HTML
             let feedDiv = document.getElementById("feedbox");
             let postHTML = document.createElement("div");
             let postHTML2 = document.createElement("div");
