@@ -38,30 +38,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var router = require("express").Router();
 exports.router = router;
-var friends_1 = require("../models/friends");
-var update_1 = require("../models/update");
-router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friendslist, friendid, updates;
+var book_1 = require("../models/book");
+var user_1 = require("../models/user");
+var review_1 = require("../models/review");
+router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var review;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, friends_1.Friend.find({ 'requester': req.body.User, 'status': 3 })];
+            case 0:
+                review = new review_1.Review({
+                    user: req.body.User,
+                    book: req.body.Book,
+                    message: req.body.Text,
+                    rating: req.body.Rating
+                });
+                return [4 /*yield*/, review.save()];
             case 1:
-                friendslist = _a.sent();
-                friendid = [];
-                friendslist.forEach(function (element) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-                    friendid.push(element.receiver);
-                    return [2 /*return*/];
-                }); }); });
-                return [4 /*yield*/, update_1.Update.find({
-                        'user': { $in: friendid }
-                    })
-                        .populate('user', '_id username email')
-                        .populate('book', 'title imageLinks')
-                        .sort({ 'time': -1 })];
+                _a.sent();
+                return [4 /*yield*/, book_1.Book.findOneAndUpdate({ _id: req.body.Book }, { $push: { userReview: review } })];
             case 2:
-                updates = _a.sent();
-                console.log(updates);
-                res.json(updates);
+                _a.sent();
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { reviews: review } })];
+            case 3:
+                _a.sent();
+                res.end();
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/find_books', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var reviews;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, review_1.Review.find({ book: req.body.Book })
+                    .populate('user', 'username _id')];
+            case 1:
+                reviews = _a.sent();
+                res.json(reviews);
                 return [2 /*return*/];
         }
     });

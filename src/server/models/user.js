@@ -67,6 +67,9 @@ var userSchema = new mongoose.Schema({
         }],
     updates: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Update'
+        }],
+    reviews: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Review'
         }]
 });
 userSchema.index({ username: 'text' });

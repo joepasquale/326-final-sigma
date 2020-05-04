@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+import {Review} from '../models/review';
 
 const bookSchema = new mongoose.Schema({
     title: {type: String, required:true},
@@ -19,14 +19,8 @@ const bookSchema = new mongoose.Schema({
         smallThumbnail: { type: String },
         thumbnail: { type: String },
     },
-    userRating: [{
-        username: {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        rating: { type: Number },
-    }],
     userReview: [{
-        username: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        time: { type: Date },
-        text: { type: String }
+        type: mongoose.Schema.Types.ObjectId, ref: 'Review'
     }]
 
 });

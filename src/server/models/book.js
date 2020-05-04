@@ -19,14 +19,8 @@ var bookSchema = new mongoose.Schema({
         smallThumbnail: { type: String },
         thumbnail: { type: String }
     },
-    userRating: [{
-            username: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            rating: { type: Number }
-        }],
     userReview: [{
-            username: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            time: { type: Date },
-            text: { type: String }
+            type: mongoose.Schema.Types.ObjectId, ref: 'Review'
         }]
 });
 var Book = mongoose.model('Book', bookSchema);

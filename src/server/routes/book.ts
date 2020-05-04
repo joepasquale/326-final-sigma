@@ -43,7 +43,6 @@ router.post('/add', async (req, res) => {
             description: desc,
             googleRating: rate,
             imageLinks: imageLinks,
-            userRating: [],
             userReview: []
         });
         await book.save();
