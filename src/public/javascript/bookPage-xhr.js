@@ -182,7 +182,7 @@ async function handleComments(bookData) {
         console.log(dateval);
         div.className="container shadow bg-white mb-5";
         div.innerHTML=`
-            <div class="row py-3">
+            <div class="row py-4 px-3">
                 <div class="col container">
                     <div class='col container border rounded ' style="background-color: #fafafa;">
                             <div class='row py-3'>
@@ -193,13 +193,16 @@ async function handleComments(bookData) {
                     </div>
                 </div>
                 <hr/>
-                <div class="col container col-md-9 col-sm-8 col-lg-10 col-xl-10">
-                    <div class="row container d-flex align-items-center" >
-                        <h3 class=""><a href="${url + "/auth/profile.html?user=" + comments[i].user._id}" style="color:black">${comments[i].user.username} </a></h3>
+                <div class="col container col-md-9 col-sm-9 col-12 col-lg-10 col-xl-10">
+                    <div class="row container d-flex align-items-center" id="${"reviewContent_"+i}">
+                        <big style="overflow:hidden;"><a href="${url + "/auth/profile.html?user=" + comments[i].user._id}" style="color:black; font-size:23px; ;">${comments[i].user.username}</a></big>
                         <small class="ml-2">${dateval.toDateString()}</small>
+                      
                     </div>    
-                    <div class='row container'>
-                        <p class="lead" style=" word-wrap:break-word;">${comments[i].message}</p>
+                    <div class='row'>
+                        <div class='container'>
+                            <p class="" style="word-wrap:break-word;">${comments[i].message}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,9 +210,14 @@ async function handleComments(bookData) {
 
             </div>
         `;
-
         document.getElementById('bookcomments').appendChild(div);
         document.getElementById('rating_'+i).appendChild(userRating);
+        if(comments[i].user._id === currentUser._id){
+            let removeButton = document.createElement('div');
+            removeButton.className = "col d-flex flex-row-reverse";
+            removeButton.innerHTML=`  <button class="btn" onclick="removeReview()"><i class="fas fa-times text-danger"></i></button>`;
+            document.getElementById("reviewContent_"+i).appendChild(removeButton);
+        }
     }
     let userBookRating = 0
     if(comments != null && comments.length > 0){
