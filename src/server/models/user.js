@@ -60,12 +60,12 @@ var userSchema = new mongoose.Schema({
         favorite_genre: { type: String }
     },
     booklist: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'List'
+            type: mongoose.Schema.Types.ObjectId, ref: 'Booklist'
         }],
     friends: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Friend'
         }],
-    Updates: [{
+    updates: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Update'
         }]
 });

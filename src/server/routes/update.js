@@ -38,20 +38,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var router = require("express").Router();
 exports.router = router;
-var update_1 = require("../models/update");
+var friends_1 = require("../models/friends");
 router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friendslist, friendsUpdates;
+    var friendslist;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                friendslist = req.body.array;
-                return [4 /*yield*/, update_1.Update.find({ 'user': { $in: friendslist } })
-                        .populate('user', '_id username email info updates')
-                        .populate('book', '_id title authors imageLinks categories googleRating')
-                        .sort({ 'time': 'descending' })];
+                console.log(req.body.User);
+                return [4 /*yield*/, friends_1.Friend.find({ 'requester': req.body.User })
+                        .populate({
+                        path: 'receiver',
+                        populate: {
+                            path: 'updates'
+                        }
+                    })];
             case 1:
-                friendsUpdates = _a.sent();
-                res.json(friendsUpdates);
+                friendslist = _a.sent();
+                res.json(friendslist);
                 return [2 /*return*/];
         }
     });

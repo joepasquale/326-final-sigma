@@ -56,8 +56,6 @@ async function addUpdates(){
         }
 }
 
-addUpdates(); //Fills the feed page with updates
-
 async function addComments(){
 
     if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
@@ -108,4 +106,14 @@ async function addComments(){
 
 }
 
-addComments(); //Add comments to the updates if there are any
+
+async function test(){
+    let j = await getUser(currentUser._id);
+    userProfile = j;
+    let newURL = url + "/api/updates/all";
+    console.log(userProfile.friends);
+    let resp = await postData(newURL, { 'User':userProfile._id });
+    //let message = resp.js
+    console.log( await resp.json());
+}
+

@@ -54,7 +54,7 @@ function updateAdd(req, res, next) {
                     return [4 /*yield*/, update.save()];
                 case 1:
                     _a.sent();
-                    return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { Updates: update } })];
+                    return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { updates: update } })];
                 case 2:
                     _a.sent();
                     next();

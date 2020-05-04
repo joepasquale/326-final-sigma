@@ -12,7 +12,7 @@ async function updateAdd(req, res, next){
  await update.save();
  await User.findOneAndUpdate(
     { _id: req.body.User },
-    { $push: { Updates: update } }
+    { $push: { updates: update } }
 )
  next();
 };

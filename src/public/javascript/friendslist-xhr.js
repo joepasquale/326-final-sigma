@@ -71,7 +71,8 @@ async function handleFriendsList(friends) {
     nav.appendChild(request);
     nav.appendChild(sent);
     for (let i = 0; i < friends.length; i++) {
-        if(friends[i].reciever == null || friends[i].requester == null) continue;
+        //if(friends[i].receiver == null || friends[i].requester == null) continue;
+        let status = friends[i].status;
         if (status === 3) {
             friendsCount++;
             let tr = document.createElement('tr');
