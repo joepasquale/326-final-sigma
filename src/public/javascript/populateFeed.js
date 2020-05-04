@@ -3,11 +3,14 @@ let arrayOfComments= [];
 
 async function addComments(){
 
+    if(arrayOfComments.length == 0){
+        return;
+    }
     if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
         let y = 5;
     }
     else{
-        let y = arrayOfUpdates.length; //if 4 or less, sets iteration to the number of items in the array
+        let y = arrayOfComments.length; //if 4 or less, sets iteration to the number of items in the array
     }
     for(j=0 ; j=y; j++){ //for loop goes down until all comments are outputted to HTML
         let commentFeedDiv = document.getElementById("updateDiv");
@@ -45,8 +48,6 @@ async function addUpdates(){
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
         //console.log("TEST");
-
-        
     }
     else{ // Output html of X number of updates to the feed
 
