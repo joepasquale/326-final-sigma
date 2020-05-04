@@ -1,4 +1,5 @@
 let arrayOfUpdates= [];
+let arrayOfComments= [];
 
 async function addComments(){
 
@@ -126,7 +127,7 @@ async function addUpdates(){
             //Update structure goes as followed:
             feedDiv.appendChild(postHTML); //Update by user
             addComments(); //Comment(s) by user(s) (if any) (appendChild is called within addComments to the HTML output by addUpdate())
-            feedDiv.appendChild(PostHTML2); //Submit Comment Box
+            feedDiv.appendChild(postHTML2); //Submit Comment Box
         }
     }
 }
