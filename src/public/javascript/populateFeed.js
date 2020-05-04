@@ -8,7 +8,7 @@ async function addUpdates(){
     if(arrayOfUpdates == null || arrayOfUpdates.length  === 0){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
-        p.innerHTML = `No feed updates. Add friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a> to see their updates!`;
+        p.innerHTML = `No feed updates :( . Try adding friends by searching to see their updates! See your friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a>.`;
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
         //console.log("TEST");
@@ -28,11 +28,26 @@ async function addUpdates(){
             let postHTML = document.createElement("div"); //Here is where the HTML gets outputted to homefeed.html
             postHTML.className="container shadow-sm p-3 my-5 bg-white";
             let messageStr = "";
-       
+            
+            let listString = "";
+
+            if(arrayOfUpdates[i].toList === 1){
+                listString = "Want to read";
+            }
+            if(arrayOfUpdates[i].toList === 2){
+                listString = "Currently reading";
+            }
+            if(arrayOfUpdates[i].toList === 3){
+                listString = "Completed reading";
+            }
+            if(arrayOfUpdates[i].toList === 4){
+                listString = "Stopped reading";
+            }
+
             if(arrayOfUpdates[i].toList === 0){
                 messageStr = arrayOfUpdates[i].user.username + " stopped reading " + arrayOfUpdates[i].book.title+"at"+arrayOfUpdates[i].time+".";
             }else {
-                messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title + " to their " + arrayOfUpdates[i].toList + " list at "+arrayOfUpdates[i].time+".";
+                messageStr = arrayOfUpdates[i].user.username + " added " + arrayOfUpdates[i].book.title + " to their " + listString + " list at "+arrayOfUpdates[i].time+".";
             } 
             
             //MESSAGE FOR FUTURE DAN, PLEASE ADD THE UPDATE REVIEW TO INNERHTML WHEN ITS ADDED TO DB 
