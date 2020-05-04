@@ -16,7 +16,7 @@ Our proposed application is a website which allows a user to sign up and store b
 ### Index
 Home page for the site. Includes a short description about the purpose of the site.
 
-![alt text]https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/index.PNG)
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/index.PNG)
 
 ### Sign in
 Sign in page, where user enters their credentials to gain access to the site.
