@@ -39,22 +39,29 @@ exports.__esModule = true;
 var router = require("express").Router();
 exports.router = router;
 var friends_1 = require("../models/friends");
+var update_1 = require("../models/update");
 router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friendslist;
+    var friendslist, friendid, updates;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log(req.body.User);
-                return [4 /*yield*/, friends_1.Friend.find({ 'requester': req.body.User })
-                        .populate({
-                        path: 'receiver',
-                        populate: {
-                            path: 'updates'
-                        }
-                    })];
+            case 0: return [4 /*yield*/, friends_1.Friend.find({ 'requester': req.body.User })];
             case 1:
                 friendslist = _a.sent();
-                res.json(friendslist);
+                friendid = [];
+                friendslist.forEach(function (element) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+                    friendid.push(element.receiver);
+                    return [2 /*return*/];
+                }); }); });
+                return [4 /*yield*/, update_1.Update.find({
+                        'user': { $in: friendid }
+                    })
+                        .populate('user', '_id username email')
+                        .populate('book', 'title imageLinks')
+                        .sort({ 'time': -1 })];
+            case 2:
+                updates = _a.sent();
+                console.log(updates);
+                res.json(updates);
                 return [2 /*return*/];
         }
     });
