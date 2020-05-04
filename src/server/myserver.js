@@ -10,6 +10,7 @@ var book_1 = require("./routes/book");
 var friends_1 = require("./routes/friends");
 var booklist_1 = require("./routes/booklist");
 var update_1 = require("./routes/update");
+var review_1 = require("./routes/review");
 app.use(express.json());
 app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
@@ -27,3 +28,4 @@ app.use('/api/book', book_1.router);
 app.use('/api/booklist', booklist_1.router);
 app.use('/api/friend', friends_1.router);
 app.use('/api/updates', update_1.router);
+app.use('/api/review', review_1.router);

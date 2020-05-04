@@ -14,7 +14,7 @@ async function loadBooks() {
 }
 
 async function handleUser() {
-    document.getElementById('username').innerHTML =`<a href=${url + "/auth/profile.html?user="+ userProfile._id}>${userProfile.username}'s</a> Book List`;
+    document.getElementById('username').innerHTML =`<a href=${url + "/auth/profile.html?user="+ userProfile._id} style="color:black">${userProfile.username}'s</a> Book List`;
 }
 
 /*0 want to read

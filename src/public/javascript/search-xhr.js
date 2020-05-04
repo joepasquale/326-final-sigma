@@ -8,14 +8,17 @@ async function handleSearch(type /*0 book, 1 profile*/, url, data) {
         }).then(async function (resp) {
                 
                     if (resp.status == 400) {
+                        val = false;
                         return false;
                     }
                     let j = await resp.json();
                     let googBooks = await parseJSON(j);
                     if (googBooks != null) {
                         await handleGoogleAPI(googBooks);
+                        val = true;
                         return true;
                     }
+                    val = false;
                     return false;
                 })
             .catch(async function (err) {val = false;});
@@ -23,13 +26,16 @@ async function handleSearch(type /*0 book, 1 profile*/, url, data) {
         } else {
             resp = await postData(url, data);
             if (resp.status != 200) {
+                    val = false;
                     return false;
                 }
             let profile = await resp.json();
             if (profile != null) {
                 await handleProfileSearch(profile);
+                val = true;
                 return true;
             }
+            val = false;
             return false;
     }
     return val;

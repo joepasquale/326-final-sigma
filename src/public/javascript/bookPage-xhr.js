@@ -1,9 +1,5 @@
 let Book;
 
-async function addReview() {
-
-}
-
 async function getBook() {
     let urlData = await parseURL();
     let decoded = decodeURIComponent(urlData.book);
@@ -17,6 +13,8 @@ async function getBook() {
     let j = await resp.json();
     Book = j;
     await handleBook(j);
+    await handleComments(j);
+
 }
 
 async function handleBook(bookData) {
@@ -33,20 +31,7 @@ async function handleBook(bookData) {
     for (let j = bookData.googleRating; j <= 4; j++) {
         stars.innerHTML += '<i class="far fa-star text-warning"></i>';
     }
-    //user stars;
-    const userStars = document.createElement('div');
-    userStars.className = 'container-xl text-center';
-    for (let j = bookData.userRating; j > 0; j--) {
-        if (j > 0 && j < 1) {
-            userStars.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
-        } else {
-            userStars.innerHTML += '<i class="fas fa-star text-warning"></i>';
-        }
-    }
-    for (let j = bookData.userRating; j <= 4; j++) {
-        userStars.innerHTML += '<i class="far fa-star text-warning"></i>';
-    }
-
+   
 
     const div = document.createElement('div');
     div.className = 'container';
@@ -150,39 +135,101 @@ async function handleBook(bookData) {
         document.getElementById('bookinfo').appendChild(p);
     }
     document.getElementById('gogRate').appendChild(stars);
-    document.getElementById('userRate').appendChild(userStars);
+   
+}
 
 
-    await handleComments(bookData);
-
-
-    
+async function postReview(){
+    let rating = document.getElementById("rating");
+    let book_rating = rating.options[rating.selectedIndex].value;
+    let rating_text = document.getElementById('review').value;
+    const data = {
+        'Book': Book._id,
+        'User': currentUser._id,
+        'Text': rating_text,
+        'Rating': book_rating,
+    };
+    const nURL = url + '/api/review/add';
+    let resp = await postData(nURL, data)  
+    .then( setTimeout(function() {
+        window.location.reload(true);
+    }));
 }
 
 async function handleComments(bookData) {
-        //document.getElementbyId('reviewerName').innerHTML = bookData.userReview[0].username
-        //document.getElementbyId('reviewerText').innerHTML = bookData.userReview[0].reviewText
+    const data = {'Book': bookData._id};
+    const nURL = url + "/api/review/find_books";
+    const resp = await postData( nURL,data);
+    let comments = await resp.json();
+    let totalRating = 0;
+    for(let i = 0; i < comments.length; i++){
+        let div = document.createElement('div');
+        const userRating = document.createElement('div');
+        userRating.className = 'container-xl';
+        totalRating += comments[i].rating;
+        for (let j = comments[i].rating; j > 0; j--) {
+            if (j > 0 && j < 1) {
+                userRating.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
+            } else {
+                userRating.innerHTML += '<i class="fas fa-star text-warning"></i>';
+            }
+        }
+        for (let j = comments[i].rating; j <= 4; j++) {
+            userRating.innerHTML += '<i class="far fa-star text-warning"></i>';
+        }
     
-    const div = document.createElement('div');
-    div.className = 'container';
-    div.innerHTML = `
-         
+        let dateval = new Date(comments[i].time);
+        console.log(dateval);
+        div.className="container shadow bg-white mb-5";
+        div.innerHTML=`
+            <div class="row py-3">
+                <div class="col container">
+                    <div class='col container border rounded ' style="background-color: #fafafa;">
+                            <div class='row py-3'>
+                                <div id='${"rating_"+i}' class="col text-center">
+                                    <h5 class="text-center">User Rating</h5>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="col container col-md-9 col-sm-8 col-lg-10 col-xl-10">
+                    <div class="row container d-flex align-items-center" >
+                        <h3 class=""><a href="${url + "/auth/profile.html?user=" + comments[i].user._id}" style="color:black">${comments[i].user.username} </a></h3>
+                        <small class="ml-2">${dateval.toDateString()}</small>
+                    </div>    
+                    <div class='row container'>
+                        <p class="lead" style=" word-wrap:break-word;">${comments[i].message}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+            </div>
         `;
-    document.getElementById('bookreviews').appendChild(div);
 
-}
+        document.getElementById('bookcomments').appendChild(div);
+        document.getElementById('rating_'+i).appendChild(userRating);
+    }
+    let userBookRating = 0
+    if(comments != null && comments.length > 0){
+        userBookRating = totalRating/comments.length;
+    }
+   
+      //user stars;
+    const userStars = document.createElement('div');
+    userStars.className = 'container-xl text-center';
+    for (let j =userBookRating; j > 0; j--) {
+        if (j > 0 && j < 1) {
+            userStars.innerHTML += '<i class="fas fa-star-half text-warning"></i>';
+        } else {
+            userStars.innerHTML += '<i class="fas fa-star text-warning"></i>';
+        }
+    }
+    for (let j = userBookRating; j <= 4; j++) {
+        userStars.innerHTML += '<i class="far fa-star text-warning"></i>';
+    }
+    document.getElementById('userRate').appendChild(userStars);
 
-async function parseURL() {
-    let url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        data = {}, tmp;
-    for (let i = 0, l = params.length; i < l; i++) {
-        tmp = params[i].split('=');
-        data[tmp[0]] = tmp[1];
-    }
-    if (data === null) {
-        return "";
-    }
-    return data;
 
 }

@@ -87,7 +87,6 @@ router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 
                     description: desc,
                     googleRating: rate,
                     imageLinks: imageLinks,
-                    userRating: [],
                     userReview: []
                 });
                 return [4 /*yield*/, book.save()];

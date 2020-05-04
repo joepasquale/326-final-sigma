@@ -8,7 +8,7 @@ import { Update } from '../models/update';
 router.post('/all', async (req, res) => {
     
     const friendslist = await Friend.find(
-        {'requester': req.body.User},
+        {'requester': req.body.User, 'status': 3},
     );
     let friendid = [];
     friendslist.forEach(async (element) => {friendid.push(element.receiver)});

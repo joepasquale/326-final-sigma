@@ -7,7 +7,7 @@ async function loadFriends() {
     let decoded = decodeURIComponent(userID);
     let j = await getUser(decoded);
     userProfile = j;
-    document.getElementById('username-list').innerHTML = `<a href=${url + "/auth/profile.html?user="+ userProfile._id}>${userProfile.username}'s</a> Friends`;
+    document.getElementById('username-list').innerHTML = `<a href=${url + "/auth/profile.html?user="+ userProfile._id} style="color:black">${userProfile.username}'s</a> Friends`;
     let resp = await postData("/api/friend/all", { 'array': userProfile.friends })
     friends = await resp.json();
     if (userProfile._id === currentUser._id) {
