@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var router = require("express").Router();
-var user_1 = require("../models/user");
 var update_1 = require("../models/update");
 function updateAdd(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
@@ -48,14 +47,10 @@ function updateAdd(req, res, next) {
                     update = new update_1.Update({
                         user: req.body.User,
                         book: req.body.Book,
-                        toList: req.body.To,
-                        fromList: req.body.From
+                        change: req.body.Change
                     });
                     return [4 /*yield*/, update.save()];
                 case 1:
-                    _a.sent();
-                    return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { updates: update } })];
-                case 2:
                     _a.sent();
                     next();
                     return [2 /*return*/];

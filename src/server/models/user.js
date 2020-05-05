@@ -65,9 +65,6 @@ var userSchema = new mongoose.Schema({
     friends: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Friend'
         }],
-    updates: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Update'
-        }],
     reviews: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Review'
         }]

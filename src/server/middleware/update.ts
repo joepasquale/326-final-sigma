@@ -6,14 +6,9 @@ async function updateAdd(req, res, next){
     let update = new Update({
         user: req.body.User,
         book: req.body.Book,
-        toList: req.body.To,
-        fromList: req.body.From
+        change: req.body.Change
     });
  await update.save();
- await User.findOneAndUpdate(
-    { _id: req.body.User },
-    { $push: { updates: update } }
-)
  next();
 };
 

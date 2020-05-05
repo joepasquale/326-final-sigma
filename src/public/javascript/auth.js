@@ -92,8 +92,7 @@ async function handlePostList(book, listNumber, urlAddition, currentStatus){
         "Book": book,
         "User": currentUser._id,
         "Status": listNumber,
-        "To": listNumber,
-        "From": currentStatus
+        "Change":{ "toList": listNumber, "fromList": currentStatus}
     };
     const newURL = url + "/api/booklist/"+urlAddition;
     const resp = await postData(newURL, data)

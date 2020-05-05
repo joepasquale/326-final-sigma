@@ -138,6 +138,18 @@ async function handleBook(bookData) {
    
 }
 
+async function removeReview(rev){
+    const data = {
+        'ID': rev.value,
+        'User': currentUser._id
+    };
+    const nURL = url + '/api/review/remove';
+    let resp = await postData(nURL, data)  
+    .then( setTimeout(function() {
+        window.location.reload(true);
+    }));
+}
+
 
 async function postReview(){
     let rating = document.getElementById("rating");
@@ -215,7 +227,7 @@ async function handleComments(bookData) {
         if(comments[i].user._id === currentUser._id){
             let removeButton = document.createElement('div');
             removeButton.className = "col d-flex flex-row-reverse";
-            removeButton.innerHTML=`  <button class="btn" onclick="removeReview()"><i class="fas fa-times text-danger"></i></button>`;
+            removeButton.innerHTML=`  <button class="btn" value="${comments[i]._id}" onclick="removeReview(this)"><i class="fas fa-times text-danger"></i></button>`;
             document.getElementById("reviewContent_"+i).appendChild(removeButton);
         }
     }

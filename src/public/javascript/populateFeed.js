@@ -44,7 +44,7 @@ async function addUpdates(){
     if(arrayOfUpdates == null || arrayOfUpdates.length  === 0){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
-        p.innerHTML = `No feed updates :( . Try adding friends by searching to see their updates! See your friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a>.`;
+        p.innerHTML = `No feed updates :( . Try adding friends by searching their profile to see their updates! See your friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a>.`;
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
         //console.log("TEST");
