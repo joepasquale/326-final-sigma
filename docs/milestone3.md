@@ -4,7 +4,8 @@
 Sigma
 
 ## Name of Application:
-Shelf: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
+Shelf Milestone 3: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
+Shelf Milestone 2: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
 
 ## Team Overview:
 - Daniel Coley, https://www.github.com/DANSC111
@@ -16,7 +17,7 @@ Our application uses a MongoDB non-relational database.
 
 Friends document\
 {\
-    FriendsID: ObjectId1\
+    _id: ObjectId1\
     Requester: UserID, // User who sent the friend request\
     Receiver: UserID, // User who received the friend request\
     Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends\
@@ -24,77 +25,111 @@ Friends document\
 
 User document\
 {\
-    UserID: ObjectId1\
-    Username: String, // Username for this UserID\
-    Email: String, // User's email address\
-    Password: String, // User's password\
-    FirstName: String, // User's first name\
-    LastName: String, // User's last name\
-    FavBook: String, // User's selected favorite book\
-    FavGenre: String, // User's selected favorite genre\
-    BookListID: BookListID, // User's book lists\
-    FriendsId: FriendsID, // User's friends list\
+    _id: ObjectId1\
+    username: String, // Username for this UserID\
+    email: String, // User's email address\
+    password: String, // User's password\
+   
+    info:{
+         firstname: String, // User's first name\
+           lastname: String, // User's last name\
+        favorite_book: String, // User's selected favorite book\
+        favorite_genre: String, // User's selected favorite genre\
+    }
+    booklist:[ booklist_id ], // User's book\
+    friends: [ friend_id ], // User's friends\
+    reviews: [ review_id ], // User's Book Reviews\
 }
 
 Book document\
 {\
     BookID: ObjectId1\
-    Title: String, // Title of the book\
-    Author: String // Author of the book\
-    Publisher: String, // Publisher of the book\
-    PublishedDate: String, // Publishing Date of the Book\
-    ISBN: String, // ISBN identifier of the book\
+    title: String, // Title of the book\
+    author: String // Author of the book\
+    publisher: String, // Publisher of the book\
+    publishedDate: String, // Publishing Date of the Book\
+    ISBN:[{
+        type: String , // type of identifier number \
+        identifier: String //identification number \
+    }], 
     description: String, // A short description of the book\
     categories: String, // The genre(s) of a book\
     googleRating: Number, // A rating of the book fetched from Google\
-    userRating: \
-    userReview:\
+    imageLinks: {
+         smallThumbnail: String , // small picture of book cover\
+        thumbnail: String , //larger picture of book cover \
+    },
+    userReview:[ review_id ] // List of book's reviews\
 }
 
 BookList document\
 {\
-    BookListID: ObjectId1\
-    user: UserID, // ID of the user whom the list belongs to\
-    book: BookID, // ID of book on the list\
+    _id: ObjectId1\
+    user: user_id, // ID of the user whom the list belongs to\
+    book: book_id, // ID of book on the list\
     status: Number, // Denotes which list is selected; 1 is Want to read, 2 is Currently reading, 3 is Completed reading, 4 is Quit Reading\
 }
 
 Update document\
 {\
-    UpdateID: ObjectId1\
-    user: UserID, // ID of the user who is posting the update\
-    book: BookID, // ID of book being posted about\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the update\
+    book: book_id, // ID of book being posted about\
     time: Date, // Timestamp of when the update was posted\
-    toList: Number, // Indicates list that book is now  a member of\
-    fromList: Number, // Indicates list that book was previously a member of\
+    change: Any, // object that is changing\
+     
 }
 
 Comment document\
 {\
-    CommentID: ObjectId1\
-    user: UserID, // ID of the user who is posting the comment\
-    update: UpdateID, // Post where the comment is being made\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the comment\
+    update: update_id, // Post where the comment is being made\
     time: Date, // Timestamp of when the update was posted\
     message: String, // Content of the comment\
 }
+
+Review document\
+{\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the review\
+    book: book_id, // Post where the review is being made\
+    time: Date, // Timestamp of when the update was posted\
+    message: String, // Content of the review\
+    rating: Number // rating of the book\
+}
+
 
 ## Contributions
 
 The following were the contributions made for this milestone:
 
  - Josh
-    -  
-
+    - booklist route (some routes)
+    - Update model (partly)
+    - Update routes
+    - friends model
+    - user model
+    - book model
+    - review model
+    - friends routes
+    - user routes
+    - book routes
+    - review routes
+    - friendslist-xhr 
+    - bookpage-xhr (updated)
+    - booklist-xhr
+    - profile-xhr (updated)
+    - populateFeed.js (partly)
  - Dan
     - Update model
-    - Update route
+    - Update middleware
     - populateFeed.js
     - homefeed.html
     - booklist model
-    - booklist route
+    - booklist routes (some routes)
     - comment model
 
  - Joe
     - Milestone 3 Document
-    - friends list
     - At this point, emotional support
