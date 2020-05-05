@@ -29,13 +29,12 @@ User document\
     username: String, // Username for this UserID\
     email: String, // User's email address\
     password: String, // User's password\
-   
-    info:{
+    info:{\
          firstname: String, // User's first name\
            lastname: String, // User's last name\
         favorite_book: String, // User's selected favorite book\
         favorite_genre: String, // User's selected favorite genre\
-    }
+    }\
     booklist:[ booklist_id ], // User's book\
     friends: [ friend_id ], // User's friends\
     reviews: [ review_id ], // User's Book Reviews\
@@ -48,17 +47,17 @@ Book document\
     author: String // Author of the book\
     publisher: String, // Publisher of the book\
     publishedDate: String, // Publishing Date of the Book\
-    ISBN:[{
+    ISBN:[{\
         type: String , // type of identifier number \
         identifier: String //identification number \
-    }], 
+    }],\
     description: String, // A short description of the book\
     categories: String, // The genre(s) of a book\
     googleRating: Number, // A rating of the book fetched from Google\
-    imageLinks: {
+    imageLinks: {\
          smallThumbnail: String , // small picture of book cover\
-        thumbnail: String , //larger picture of book cover \
-    },
+        thumbnail: String , //larger picture of book cover\
+    },\
     userReview:[ review_id ] // List of book's reviews\
 }
 
