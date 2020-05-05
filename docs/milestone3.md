@@ -4,8 +4,8 @@
 Sigma
 
 ## Name of Application:
-Shelf Milestone 3: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**\
-Shelf Milestone 2: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**\
+Shelf Milestone 3: **[Access via Heroku](https://ancient-lowlands-11467.herokuapp.com/)**\
+Shelf Milestone 2: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
 
 ## Team Overview:
 - Daniel Coley, https://www.github.com/DANSC111
