@@ -44,6 +44,7 @@ function auth(req, res, next) {
             token = req.header('x-auth-token');
             if (!token)
                 return [2 /*return*/, res.status(401).send('No Token Provided.')];
+            console.log("auth Called");
             try {
                 jwtDecoded = jwt.verify(token, 'jwtPrivateKey');
                 req.user = jwtDecoded;

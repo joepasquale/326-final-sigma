@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express();
 
-
+import {auth} from "./middleware/auth";
 import { router as login } from "./routes/login";
 import { router as user } from "./routes/user";
 import { router as book } from "./routes/book";
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
+mongoose.connect(process.env.DB || 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB..', err));
 const PORT = process.env.PORT || 4000;
@@ -30,12 +30,13 @@ app.use('/css', express.static('../public/css'));
 app.use('/javascript', express.static('../public/javascript'));
 app.use('/', express.static('../public/html'));
 app.use('/auth', express.static('../public/authhtml'));
+
 app.use('/api/login', login);
-app.use('/api/user', user);
-app.use('/api/book', book);
-app.use('/api/booklist', booklist);
-app.use('/api/friend', friends);
-app.use('/api/updates', updates);
-app.use('/api/review', review);
+app.use('/api/user', auth,  user);
+app.use('/api/book', auth, book);
+app.use('/api/booklist', auth, booklist);
+app.use('/api/friend', auth, friends);
+app.use('/api/updates', auth, updates);
+app.use('/api/review', auth, review);
 
 
