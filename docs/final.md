@@ -37,35 +37,66 @@ Sign up page, where the user can register credentials to use the site.
 
 ![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/sign_up.PNG)
 
-### Home Feed
-Home Feed for signed in user, which contains post updates and comments on those posts
-
-![alt text]()
-
 ### Profile
 Profile for signed in user, which allows user to change personal details/preferences, as well as access their friends list and book lists. Users are able to view other users profile pages as well where they can add them as a friend.
 
-![alt text]()
+#### Profile Page of Current logged in User
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/profile_currentuser.png)
+
+#### Profile Page when viewing other user
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/profile_otheruser.png)
 
 ### Search
 Search page where users can look through results based on their query. This is how users search for books and profiles.
 
-![alt text]()
+#### Search Results for book
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/searchresults_book.png)
+
+#### Search Results for user
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/searchresults_user.png)
+
+#### Search Results not found
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/searchresults_empty.png)
 
 ### Book Page
 Page that gives details about the currently selected book including the ability to post ratings and reviews.
 
-![alt text]()
+#### Book Info
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/bookpage.png)
+
+#### Book Review
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/bookpage_review.png)
 
 ### Book Lists
 Page that shows all four of the user's lists, as well as what books are on them. Lists can be edited here too.
 
-![alt text]()
+#### BookList with books
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/booklist.png)
+
+#### BookList Empty
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/booklist_empty.png)
 
 ### Friends List
 Page that shows all of the current user's friends, and their information. Users accept/reject friend requests here and delete current friends.
 
-![alt text]()
+#### Friendlist friends
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/friends_friend.png)
+
+#### Friendlist Requests
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/friends_request.png)
+
+#### Friendlist pending
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/friends_pending.png)
+
+#### Friendlist empty
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/friends_empty.png)
+
+### Home Feed
+Home Feed for signed in user, which contains post updates and comments on those posts
+
+#### Home feed empty
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/feed_empty.png)
+
 
 ## APIs
 ### Book
@@ -533,7 +564,7 @@ For authentication our application used JSON Web Tokens stored in session storag
 
 The following were the contributions made during the Project:
 
- - Josh
+ - Joshua Vasilevsky
     - Frontend HTML/CSS
         - navbar and footer
         - index.html
@@ -571,7 +602,7 @@ The following were the contributions made during the Project:
         - myserver.ts
     - Milestone 1 Markdown
     - Final Markdown (contributed)
- - Dan
+ - Daniel Corey
     - Frontend HTML/CSS
         - Homefeed.html
         - bookpage.html
@@ -590,7 +621,7 @@ The following were the contributions made during the Project:
             - update.ts (contributed)
             - booklist.ts (contritbuted)
             - comment.ts
- - Joe
+ - Joe Pasquale
     - Frontend HTML/CSS
         - login.html
         - signup.html 
