@@ -1,3 +1,19 @@
+async function postCommentData(url, data) {
+    const resp = await fetch(url,
+        {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+    return resp;
+}
+
 async function submitComment() { //COMMENTS ARE ON HOMEFEED
 
     let Comment = document.getElementById("commentText").value;
@@ -5,21 +21,9 @@ async function submitComment() { //COMMENTS ARE ON HOMEFEED
 
     const data = {"Comment" : Comment, "UserName" : UserName};
     const newURL = url + "/homefeed/comment";
-    const resp = await postData(newURL, data);  
+    const resp = await postCommentData(newURL, data);
+    let token = await resp.text();
+    sessionStorage.setItem('token', token); 
 
-    await fetch(newURL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(function (dat) { 
-        console.log('Request success: ', dat.results);
-    })
-        .catch(function (error) {
-            console.log('Request failure: ', error);
-        });  
 }
 
