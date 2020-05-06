@@ -1,10 +1,19 @@
 # 326-final-sigma
 
 ## Team Sigma
-### Application: [Shelf](https://limitless-garden-19995.herokuapp.com/)
+### Application: 
+Shelf \
+
+Final: **[Access via Heroku](https://ancient-lowlands-11467.herokuapp.com/)**\
+Milestone 3: **[Access via Heroku](https://ancient-lowlands-11467.herokuapp.com/)**\
+Milestone 2: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
+
 ### Spring 2020
 
 ## Overview
+
+### Shelf 
+
 Our proposed application is a website which allows a user to sign up and store books that they are currently reading, have read, or plan to read. They can search for books which are fetched from the Google Books API, which will return basic information about the book, such as title, author, and publisher, as well as more detailed information, such as cover art and Google Books rating. Users are able to add reviews and ratings to books. Users can share their "shelves" with other people when they add them as a friend, and they can comment on activity from members of their friends list, which show up in a feed. It was brought to our attention that our concept was very similar to [GoodReads](https://www.goodreads.com); however, many users of the site say there are multiple problems with the platform, ranging from performance issues to discontent with the rating system. We believe that Shelf does a good job at alleviating some of the issues that GoodReads has been criticized for.
 
 ## Team Members:
@@ -454,69 +463,144 @@ Review document
 ### Static Authorized Content
 | URL | Description |
 | --- | ----------- |
-|`[url]/auth/booklist.html`||
-|`[url]/auth/bookPage.html`||
-|`[url]/auth/friendlist.html`||
-|`[url]/auth/homefeed.html`||
-|`[url]/auth/search-results.html`||
+|`[url]/auth/booklist.html?user=`| The booklist page that shows users book lists such as want to read, currently reading, finished, and dropped. The user has to be autheniticated to access this page|
+|`[url]/auth/bookPage.html?book=`| The book page shows the information about each book. Users can post reviews here. The user has to be autheniticated to access this page|
+|`[url]/auth/friendlist.html?user=`| The friends lsit page that shows users friends. Either friend, requests, or pending. The user has to be autheniticated to access this page|
+|`[url]/auth/homefeed.html`| The home feed page that shows updates of friends such as when they add books to their lists. The user has to be autheniticated to access this page|
+|`[url]/auth/search-results.html?q=`| The search-reuslt page shows book and profile results for queries. The user has to be autheniticated to access this page|
+|`[url]/auth/profile.html?user=`| The profile page shows the user profile info and links to booklist and friends list. The user has to be autheniticated to access this page|
 
 ### Book
 | URL | Description |
 | --- | ----------- |
-`[url]/api/book/add`
-`[url]/api/book/read`
+|`[url]/api/book/add`|API call to add a book|
+|`[url]/api/book/read`|API call to get info on a book|
 
 ### Booklist
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/booklist/add`||
-|`[url]/api/booklist/remove`||
-|`[url]/api/booklist/find`||
-|`[url]/api/booklist/all`||
+|`[url]/api/booklist/add`|API call to add a book to a user's booklist object|
+|`[url]/api/booklist/remove`|API call to remove a book from a user's booklist object |
+|`[url]/api/booklist/find`|API call lto find if a book is already in a users booklist|
+|`[url]/api/booklist/all`|API call to get all books in a booklist|
 
 ### Friend
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/friend/request`||
-|`[url]/api/friend/accept`||
-|`[url]/api/friend/reject`||
-|`[url]/api/friend/all`||
-|`[url]/api/friend/find`||
+|`[url]/api/friend/request`|API call to create a new request between users|
+|`[url]/api/friend/accept`|API call to accept a friend request|
+|`[url]/api/friend/reject`|API call to reject a friend request|
+|`[url]/api/friend/all`|API call to get all friends of a user|
+|`[url]/api/friend/find`|API call to find if a user is already a friend|
 
 ### Update
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/updates/all`||
+|`[url]/api/updates/all`|API call to get all updates from those who are friends with a user|
 
 ### Review
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/review/add`||
-|`[url]/api/review/remove`||
-|`[url]/api/review/find_books`||
+|`[url]/api/review/add`|API call to add a new review to a book|
+|`[url]/api/review/remove`|API call to remove a remove from a book|
+|`[url]/api/review/find_books`|API call to find book reviews ordered by time stamp|
 
 ### User
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/user/read`||
-|`[url]/api/user/search`||
-|`[url]/api/user/info/update`||
+|`[url]/api/user/read`|API call to get info on user|
+|`[url]/api/user/search`|API call to search for a user with a similar username|
+|`[url]/api/user/info/update`|API call to update the users info|
 
 ### Login
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/login/`||
-|`[url]/api/login/register`||
+|`[url]/api/login/`|API call to log the user in. Validates info and returns JWT token|
+|`[url]/api/login/register`|API call to createe a new user and returns a JWT token|
 
 ### Comments
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/comment/add`||
+|`[url]/api/comment/add`|API call to add a create a comment|
 
 
 ## Authentication
 
+For authentication our application used JSON Web Tokens stored in session storage to authenticate users. When a user creates an account their password is hashed using brcyptjs. When a user logs into the application their password is checked against the hash and username is checked against the existing username to validate whether the username and password combo was correct. If a users credentials are correct then a temporay JSON web token is sent back to the user. This token has an expiration time of one hour. Everytime a user navigates to a new page their token is checked for validity. If the token is valid it will allow them to proceed to the page. If the token is invalid or has expired then the user is redirected back to the login page. The authentication is also check on API calls. Every call attaches the token in the header of the POST request. The token is validated and the route either responses with an invalid token or its normal functionality. 
+
+
 ## Contributions
+
+The following were the contributions made during the Project:
+
+ - Josh
+    - Frontend HTML/CSS
+        - navbar and footer
+        - index.html
+        - profile.html
+        - search-results.html
+        - booklist.html
+        - friendlist.html
+    - Frontend TypeScript/JavaScript
+        - auth.js
+        - booklist-xhr.js
+        - bookPage-xhr.js (contributed)
+        - friendslist-xhr.js (contributed)
+        - login-xhr.js
+        - NavRedirect.js
+        - profile-xhr.js
+        - search-xhr.js
+    - Backend TypeScipt/JavaScript
+        - Middleware 
+            - auth.ts
+            - update.ts (contributed)
+        - Models
+            - book.ts
+            - friends.ts
+            - update.ts (contributed)
+            - review.ts
+            - user.ts
+        - Routes
+            - book.ts
+            - friends.ts
+            - login.ts
+            - review.ts
+            - update.ts (contributed)
+            - booklist.ts (contritbuted)
+            - user.ts
+        - myserver.ts
+    - Milestone 1 Markdown
+    - Final Markdown (contributed)
+ - Dan
+    - Frontend HTML/CSS
+        - Homefeed.html
+        - bookpage.html
+    - Frontend TypeScript/JavaScript
+        - populatefeed.js
+        - homefeed-xhr.js
+        - bookPage-xhr.js  (contributed)
+    - Backend TypeScipt/JavaScript
+        - Middleware 
+            - update.ts (contributed)
+        - Models
+            - update.ts (contributed)
+            - booklist.ts
+            - comment.ts
+        - Routes
+            - update.ts (contributed)
+            - booklist.ts (contritbuted)
+            - comment.ts
+ - Joe
+    - Frontend HTML/CSS
+        - login.html
+        - signup.html 
+        - search-results.html
+    - Frontend TypeScript/JavaScript
+        - friendslist-xhr.js (contributed)
+    - Milestone 2 Markdown
+    - Milestone 3 Markdown
+    - Final Markdown (contributed)
+
 
 ## Conclusion
 
