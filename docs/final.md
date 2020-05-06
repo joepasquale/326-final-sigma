@@ -5,7 +5,7 @@
 ### Spring 2020
 
 ## Overview
-Our proposed application is a website which allows a user to sign up and store books that they are currently reading, have read, or plan to read. They can search for books which are fetched from the Google Books API, which will return basic information about the book, such as title, author, and publisher, as well as more detailed information, such as cover art and Google Books rating. When users add a book to a list, they are also able to add a personal rating and review. Users can share their "shelves" with other people when they add them as a friend, and they can comment on reviews from members of their friends list, which show up in a feed. It was brought to our attention that our concept was very similar to [GoodReads](https://www.goodreads.com); however, many users of the site say there are multiple problems with the platform, ranging from performance issues to discontent with the rating system. We believe that Shelf does a good job at alleviating some of the issues that GoodReads has been criticized for.
+Our proposed application is a website which allows a user to sign up and store books that they are currently reading, have read, or plan to read. They can search for books which are fetched from the Google Books API, which will return basic information about the book, such as title, author, and publisher, as well as more detailed information, such as cover art and Google Books rating. Users are able to add reviews and ratings to books. Users can share their "shelves" with other people when they add them as a friend, and they can comment on activity from members of their friends list, which show up in a feed. It was brought to our attention that our concept was very similar to [GoodReads](https://www.goodreads.com); however, many users of the site say there are multiple problems with the platform, ranging from performance issues to discontent with the rating system. We believe that Shelf does a good job at alleviating some of the issues that GoodReads has been criticized for.
 
 ## Team Members:
 - Daniel Coley, https://www.github.com/DANSC111
@@ -34,17 +34,17 @@ Home Feed for signed in user, which contains post updates and comments on those 
 ![alt text]()
 
 ### Profile
-Profile for signed in user, which allows user to change personal details/preferences, as well as access their friends list and book lists
+Profile for signed in user, which allows user to change personal details/preferences, as well as access their friends list and book lists. Users are able to view other users profile pages as well where they can add them as a friend.
 
 ![alt text]()
 
 ### Search
-Search page where users can look through results based on their query. This is how users search for books.
+Search page where users can look through results based on their query. This is how users search for books and profiles.
 
 ![alt text]()
 
 ### Book Page
-Page that gives details about the currently selected book
+Page that gives details about the currently selected book including the ability to post ratings and reviews.
 
 ![alt text]()
 
@@ -54,7 +54,7 @@ Page that shows all four of the user's lists, as well as what books are on them.
 ![alt text]()
 
 ### Friends List
-Page that shows all of the current user's friends, and their information
+Page that shows all of the current user's friends, and their information. Users accept/reject friend requests here and delete current friends.
 
 ![alt text]()
 
@@ -66,7 +66,7 @@ The create endpoint for the book provides a way for the client to add a new book
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the add endpoint is:
-`localhost:4000/api/book/add`
+`[url]/api/book/add`
 There is 1 required parameter and 7 optional parameters for this endpoint.
 | Parameter     | Description                                      | Example                                                                                                 |
 |---------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -101,7 +101,7 @@ The read endpoint for the book provides a way for the client to fetch an existin
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the read endpoint is:
-`localhost:4000/api/book/read`
+`[url]/api/book/read`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
@@ -130,7 +130,7 @@ The review create endpoint for the book provides a way for the client to add a u
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the review create endpoint is:
-`localhost:4000/api/book/review/create`
+`[url]/api/book/review/create`
 There are 2 required parameters and 1 optional parameter for this endpoint.
 | Parameter | Description                                | Example     |
 |-----------|--------------------------------------------|-------------|
@@ -147,7 +147,7 @@ There is no response from this endpoint.
 The read endpoint for the API allows the client to read the information for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
-`localhost:4000/api/user/read`
+`[url]/api/user/read`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
@@ -170,7 +170,7 @@ The user API returns all response data as a JSON object. The full details for th
 The search endpoint for the API allows the client to search for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
-`localhost:4000/api/user/search`
+`[url]/api/user/search`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
@@ -187,7 +187,7 @@ The user API returns all response data as a JSON object. The full details for th
 The update endpoint for the API allows the client to update information for a user on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
-`localhost:4000/api/user/info/update`
+`[url]/api/user/info/update`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter      | Description                           | Example            |
 |----------------|---------------------------------------|--------------------|
@@ -206,7 +206,7 @@ There is no response from the server for this endpoint.
 The me endpoint for the API allows the client to read the information for themselves on the server.
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
-`localhost:4000/api/user/me`
+`[url]/api/user/me`
 There are no required parameter and zero optional parameters for this endpoint.
 
 ##### Responses
@@ -229,7 +229,7 @@ The request endpoint for the API allows the client to fetch a user from the serv
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
-`localhost:4000/api/friends/request`
+`[url]/api/friends/request`
 There are 2 required parameters and zero optional parameters for this endpoint.
 | Parameter | Description                                  | Example     |
 |-----------|----------------------------------------------|-------------|
@@ -244,7 +244,7 @@ The accept endpoint for the API allows the client to accept a friend request rec
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the accept endpoint is:
-`localhost:4000/api/friends/accept`
+`[url]/api/friends/accept`
 There are 2 required parameters and zero optional parameters for this endpoint.
 | Parameter | Description                                  | Example     |
 |-----------|----------------------------------------------|-------------|
@@ -260,7 +260,7 @@ The reject endpoint for the API allows the client to reject a friend request rec
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the reject endpoint is:
-`localhost:4000/api/friends/reject`
+`[url]/api/friends/reject`
 There are 2 required parameters and zero optional parameters for this endpoint.
 | Parameter | Description                                  | Example     |
 |-----------|----------------------------------------------|-------------|
@@ -276,7 +276,7 @@ The find endpoint for the API allows the client to search for a friend on their 
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
-`localhost:4000/api/friends/find`
+`[url]/api/friends/find`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
@@ -294,20 +294,6 @@ The user API returns all response data as a JSON object. The full details for th
 | favorite_genre | string     | The user's favorite genre             |
 | friends        | Friends    | A list of the user's friends          |
 
-#### Remove API
-##### Overview
-The find endpoint for the API allows the client to fetch a user from the server and remove them from their friends list.
-##### Endpoint URI and Parameters
-Assuming you are deploying the server on localhost with port 4000, the URI for the remove endpoint is:
-`localhost:4000/api/friends/remove`
-There is 1 required parameter and zero optional parameters for this endpoint.
-| Parameter | Description                          | Example |
-|-----------|--------------------------------------|---------|
-|    id     | The database id for the user         |    1    |
-
-##### Responses
-There is no response from this endpoint.
-
 ### Login
 #### Register API
 ##### Overview
@@ -315,7 +301,7 @@ The register endpoint for the API allows the client to send a request to the ser
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
-`localhost:4000/api/login/register`
+`[url]/api/login/register`
 There are 5 required parameter and zero optional parameters for this endpoint.
 | Parameter      | Description                           | Example            |
 |----------------|---------------------------------------|--------------------|
@@ -332,8 +318,155 @@ The login API returns all response data as a JSON object. The full details for t
 | token          | string     | The authentication token of the user  |
 
 ## Database
+Our application uses a MongoDB non-relational database. 
+
+### Friends
+This stores a friend relationship between 2 user. The status field indicates what type of friendship the users have. A reference to one user is stored in requester and the other is stored in receiver.
+
+Friend document\
+{\
+    _id: ObjectId1\
+    Requester: UserID, // User who sent the friend request\
+    Receiver: UserID, // User who received the friend request\
+    Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends\
+}
+
+### User
+This stores the information on the user as well as arrays of references to books, friends, and reivews to store users booklist, friends, and reviews respectively.
+
+User document\
+{\
+    _id: ObjectId1\
+    username: String, // Username for this UserID\
+    email: String, // User's email address\
+    password: String, // User's password\
+    info:{\
+         firstname: String, // User's first name\
+           lastname: String, // User's last name\
+        favorite_book: String, // User's selected favorite book\
+        favorite_genre: String, // User's selected favorite genre\
+    }\
+    booklist:[ booklist_id ], // User's book\
+    friends: [ friend_id ], // User's friends\
+    reviews: [ review_id ], // User's Book Reviews\
+}
+
+### Book
+This stores the information for each book.
+
+Book document\
+{\
+    _id: ObjectId1\
+    title: String, // Title of the book\
+    author: String // Author of the book\
+    publisher: String, // Publisher of the book\
+    publishedDate: String, // Publishing Date of the Book\
+    ISBN:[{\
+        type: String , // type of identifier number \
+        identifier: String //identification number \
+    }],\
+    description: String, // A short description of the book\
+    categories: String, // The genre(s) of a book\
+    googleRating: Number, // A rating of the book fetched from Google\
+    imageLinks: {\
+         smallThumbnail: String , // small picture of book cover\
+        thumbnail: String , //larger picture of book cover\
+    },\
+    userReview:[ review_id ] // List of book's reviews\
+}
+
+### Booklist
+
+
+
+BookList document\
+{\
+    _id: ObjectId1\
+    user: user_id, // ID of the user whom the list belongs to\
+    book: book_id, // ID of book on the list\
+    status: Number, // Denotes which list is selected; 1 is Want to read, 2 is Currently reading, 3 is Completed reading, 4 is Quit Reading\
+}
+### Update
+
+
+
+Update document\
+{\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the update\
+    book: book_id, // ID of book being posted about\
+    time: Date, // Timestamp of when the update was posted\
+    change: Any, // object that is changing\
+     
+}
+
+### Comment
+
+Comment document\
+{\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the comment\
+    update: update_id, // Post where the comment is being made\
+    time: Date, // Timestamp of when the update was posted\
+    message: String, // Content of the comment\
+}
+
+### Review
+
+Review document\
+{\
+    _id: ObjectId1\
+    user: user_id, // ID of the user who is posting the review\
+    book: book_id, // Post where the review is being made\
+    time: Date, // Timestamp of when the update was posted\
+    message: String, // Content of the review\
+    rating: Number // rating of the book\
+}
+
 
 ## URL Mappings
+
+`[url]/index.html`
+`[url]/login.html`
+`[url]/signup.html`
+`[url]/resources/`
+`[url]/javascript/`
+
+`[url]/auth/booklist.html`
+`[url]/auth/bookPage.html`
+`[url]/auth/friendlist.html`
+`[url]/auth/homefeed.html`
+`[url]/auth/search-results.html`
+
+`[url]/api/book/add`
+`[url]/api/book/read`
+
+`[url]/api/booklist/add`
+`[url]/api/booklist/remove`
+`[url]/api/booklist/find`
+`[url]/api/booklist/all`
+
+`[url]/api/friend/request`
+`[url]/api/friend/accept`
+`[url]/api/friend/reject`
+`[url]/api/friend/all`
+`[url]/api/friend/find`
+
+`[url]/api/updates/all`
+
+`[url]/api/review/add`
+`[url]/api/review/remove`
+`[url]/api/review/find_books`
+
+`[url]/api/user/read`
+`[url]/api/user/search`
+`[url]/api/user/info/update`
+
+`[url]/api/login/`
+`[url]/api/login/register`
+
+`[url]/api/comment/add`
+
 
 ## Authentication
 

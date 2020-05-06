@@ -64,11 +64,4 @@ router.post('/read', async (req, res) => {
     res.end();
 });
 
-router.post('/review/create', async (req, res) => {
-
-});
-
-
-
-
 export { router };
