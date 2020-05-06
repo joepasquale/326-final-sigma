@@ -323,88 +323,88 @@ Our application uses a MongoDB non-relational database.
 ### Friends
 This stores a friend relationship between 2 user. The status field indicates what type of friendship the users have. A reference to one user is stored in requester and the other is stored in receiver.
 
-Friend document\
+Friend document
 ```
-{\
-    _id: ObjectId\
-    Requester: UserID, // User who sent the friend request\
-    Receiver: UserID, // User who received the friend request\
-    Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends\
+{
+    _id: ObjectId
+    Requester: UserID, // User who sent the friend request
+    Receiver: UserID, // User who received the friend request
+    Status: Number, // Status of the friend request; 1 means requested, 2 means pending, 3 means friends
 }
 ```
 
 ### User
 This stores the information on the user as well as arrays of references to books, friends, and reivews to store users booklist, friends, and reviews respectively.
 
-User document\
+User document
 ```
-{\
+{
     _id: ObjectId\
-    username: String, // Username for this UserID\
-    email: String, // User's email address\
-    password: String, // User's password\
-    info:{\
-         firstname: String, // User's first name\
-           lastname: String, // User's last name\
-        favorite_book: String, // User's selected favorite book\
-        favorite_genre: String, // User's selected favorite genre\
-    }\
-    booklist:[ booklist_id ], // User's book\
-    friends: [ friend_id ], // User's friends\
-    reviews: [ review_id ], // User's Book Reviews\
+    username: String, // Username for this UserID
+    email: String, // User's email address
+    password: String, // User's password
+    info:{
+        firstname: String, // User's first name
+        lastname: String, // User's last name
+        favorite_book: String, // User's selected favorite book
+        favorite_genre: String, // User's selected favorite genre
+    }
+    booklist:[ booklist_id ], // User's book
+    friends: [ friend_id ], // User's friends
+    reviews: [ review_id ], // User's Book Reviews
 }
 ```
 
 ### Book
 This stores the information for each book and any reviews which are added to it.
 
-Book document\
+Book document
 ```
-{\
-    _id: ObjectId\
-    title: String, // Title of the book\
-    author: String // Author of the book\
-    publisher: String, // Publisher of the book\
-    publishedDate: String, // Publishing Date of the Book\
-    ISBN:[{\
-        type: String , // type of identifier number \
-        identifier: String //identification number \
-    }],\
-    description: String, // A short description of the book\
-    categories: String, // The genre(s) of a book\
-    googleRating: Number, // A rating of the book fetched from Google\
-    imageLinks: {\
-         smallThumbnail: String , // small picture of book cover\
-        thumbnail: String , //larger picture of book cover\
-    },\
-    userReview:[ review_id ] // List of book's reviews\
+{
+    _id: ObjectId
+    title: String, // Title of the book
+    author: String // Author of the book
+    publisher: String, // Publisher of the book
+    publishedDate: String, // Publishing Date of the Book
+    ISBN:[{
+        type: String , // type of identifier number 
+        identifier: String //identification number 
+    }],
+    description: String, // A short description of the book
+    categories: String, // The genre(s) of a book
+    googleRating: Number, // A rating of the book fetched from Google
+    imageLinks: {
+         smallThumbnail: String , // small picture of book cover
+        thumbnail: String , //larger picture of book cover
+    },
+    userReview:[ review_id ] // List of book's reviews
 }
 ```
 
 ### Booklist
 The booklist is a relationship between a book and a user. The stus indicates what book list the book is in. The book is a references to a book object and user is a reference to a user object.
 
-BookList document\
+BookList document
 ```
-{\
-    _id: ObjectId\
-    user: user_id, // ID of the user whom the list belongs to\
-    book: book_id, // ID of book on the list\
-    status: Number, // Denotes which list is selected; 1 is Want to read, 2 is Currently reading, 3 is Completed reading, 4 is Quit Reading\
+{
+    _id: ObjectId
+    user: user_id, // ID of the user whom the list belongs to
+    book: book_id, // ID of book on the list
+    status: Number, // Denotes which list is selected; 1 is Want to read, 2 is Currently reading, 3 is Completed reading, 4 is Quit Reading
 }
 ```
 
 ### Update
 Stores updates made by users. This can either be a book being added, moved, or removed from a list, or a review being posted about a book. These updates show up in your feed.
 
-Update document\
+Update document
 ```
-{\
-    _id: ObjectId\
-    user: user_id, // ID of the user who is posting the update\
-    book: book_id, // ID of book being posted about\
-    time: Date, // Timestamp of when the update was posted\
-    change: Any, // object that is changing\
+{
+    _id: ObjectId
+    user: user_id, // ID of the user who is posting the update
+    book: book_id, // ID of book being posted about
+    time: Date, // Timestamp of when the update was posted
+    change: Any, // object that is changing
      
 }
 ```
@@ -412,75 +412,106 @@ Update document\
 ### Comment
 Comments made on updates. It stores the user who made the comment and the update they made it on.
 
-Comment document\
+Comment document
 ```
-{\
-    _id: ObjectId\
-    user: user_id, // ID of the user who is posting the comment\
-    update: update_id, // Post where the comment is being made\
-    time: Date, // Timestamp of when the update was posted\
-    message: String, // Content of the comment\
+{
+    _id: ObjectId
+    user: user_id, // ID of the user who is posting the comment
+    update: update_id, // Post where the comment is being made
+    time: Date, // Timestamp of when the update was posted
+    message: String, // Content of the comment
 }
 ```
 
 ### Review
 These are reviews made on books. The user is the user making the review and the book is the book the review is made on. It also stores the message and rating of the review.
 
-Review document\
+Review document
 ```
-{\
-    _id: ObjectId\
-    user: user_id, // ID of the user who is posting the review\
-    book: book_id, // Post where the review is being made\
-    time: Date, // Timestamp of when the update was posted\
-    message: String, // Content of the review\
-    rating: Number // rating of the book\
+{
+    _id: ObjectId
+    user: user_id, // ID of the user who is posting the review
+    book: book_id, // Post where the review is being made
+    time: Date, // Timestamp of when the update was posted
+    message: String, // Content of the review
+    rating: Number // rating of the book
 }
 ```
 
 
 ## URL Mappings
 
-`[url]/index.html`
-`[url]/login.html`
-`[url]/signup.html`
-`[url]/resources/`
-`[url]/javascript/`
+### Static Content
 
-`[url]/auth/booklist.html`
-`[url]/auth/bookPage.html`
-`[url]/auth/friendlist.html`
-`[url]/auth/homefeed.html`
-`[url]/auth/search-results.html`
+| URL | Description |
+| --- | ----------- |
+|`[url]/index.html`| The home page of our Site. Gives a short desciption of our application |
+|`[url]/login.html`|  The login page that allows the user to login|
+|`[url]/signup.html`| Signup page to create a new user/account|
+|`[url]/resources/`| Servers static contents stored in the resources folder of our applcation |
+|`[url]/javascript/`| Serves javascript files stored in the javascript folder of our applcation |
 
+### Static Authorized Content
+| URL | Description |
+| --- | ----------- |
+|`[url]/auth/booklist.html`||
+|`[url]/auth/bookPage.html`||
+|`[url]/auth/friendlist.html`||
+|`[url]/auth/homefeed.html`||
+|`[url]/auth/search-results.html`||
+
+### Book
+| URL | Description |
+| --- | ----------- |
 `[url]/api/book/add`
 `[url]/api/book/read`
 
-`[url]/api/booklist/add`
-`[url]/api/booklist/remove`
-`[url]/api/booklist/find`
-`[url]/api/booklist/all`
+### Booklist
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/booklist/add`||
+|`[url]/api/booklist/remove`||
+|`[url]/api/booklist/find`||
+|`[url]/api/booklist/all`||
 
-`[url]/api/friend/request`
-`[url]/api/friend/accept`
-`[url]/api/friend/reject`
-`[url]/api/friend/all`
-`[url]/api/friend/find`
+### Friend
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/friend/request`||
+|`[url]/api/friend/accept`||
+|`[url]/api/friend/reject`||
+|`[url]/api/friend/all`||
+|`[url]/api/friend/find`||
 
-`[url]/api/updates/all`
+### Update
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/updates/all`||
 
-`[url]/api/review/add`
-`[url]/api/review/remove`
-`[url]/api/review/find_books`
+### Review
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/review/add`||
+|`[url]/api/review/remove`||
+|`[url]/api/review/find_books`||
 
-`[url]/api/user/read`
-`[url]/api/user/search`
-`[url]/api/user/info/update`
+### User
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/user/read`||
+|`[url]/api/user/search`||
+|`[url]/api/user/info/update`||
 
-`[url]/api/login/`
-`[url]/api/login/register`
+### Login
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/login/`||
+|`[url]/api/login/register`||
 
-`[url]/api/comment/add`
+### Comments
+| URL | Description |
+| --- | ----------- |
+|`[url]/api/comment/add`||
 
 
 ## Authentication
