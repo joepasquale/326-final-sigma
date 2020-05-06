@@ -2,9 +2,8 @@
 
 ## Team Sigma
 ### Application: 
-Shelf \
-
-Final: **[Access via Heroku](https://ancient-lowlands-11467.herokuapp.com/)**\
+#### Shelf
+Final: **[Access via Heroku](https://shelf-book-app.herokuapp.com/)**\
 Milestone 3: **[Access via Heroku](https://ancient-lowlands-11467.herokuapp.com/)**\
 Milestone 2: **[Access via Heroku](https://limitless-garden-19995.herokuapp.com/)**
 
@@ -106,7 +105,7 @@ The create endpoint for the book provides a way for the client to add a new book
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the add endpoint is:
-`[url]/api/book/add`
+`localhost:4000/api/book/add`
 There is 1 required parameter and 7 optional parameters for this endpoint.
 | Parameter     | Description                                      | Example                                                                                                 |
 |---------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -141,7 +140,7 @@ The read endpoint for the book provides a way for the client to fetch an existin
 
 ##### Endpoint URI and Parameters
 Assuming you are deploying the server on localhost with port 4000, the URI for the read endpoint is:
-`[url]/api/book/read`
+`localhost:4000/api/book/read`
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
@@ -161,25 +160,65 @@ The book API returns all response data as a JSON object. The full details for th
 | description   | string     | A short summary of the book                         |
 | googleRating  | double     | A rating of the book fetched from Google Books      |
 | imageLinks    | string     | A link to cover art for the book                    |
-| userRating    | double     | A rating of the book fetched from users of the site |
 | userReview    | string     | A review of the book fetched from users of the site |
 
-#### Review Create API
+### Review
+
+#### Add API
 ##### Overview
-The review create endpoint for the book provides a way for the client to add a user review to an existing book from the server.
+The add endpoint for the review provides a way for the client to add a user review to an existing book from the server.
 
 ##### Endpoint URI and Parameters
-Assuming you are deploying the server on localhost with port 4000, the URI for the review create endpoint is:
-`[url]/api/book/review/create`
-There are 2 required parameters and 1 optional parameter for this endpoint.
+Assuming you are deploying the server on localhost with port 4000, the URI for the review add endpoint is:
+`localhost:4000/api/review/add`
+There are 4 required parameters this endpoint.
 | Parameter | Description                                | Example     |
 |-----------|--------------------------------------------|-------------|
-| id        | ID of the book being rated                 | 1           |
-| rating    | A rating out of 5 on how good the book was | 4.5         |
-| review    | A review of the book                       | I loved it! |
+| User      |   ID of the User submitting the review     | 1           |
+| Book      | ID of the book being rated                 | 3         |
+| Text      | A review of the book                       | I loved it! |
+| Rating    | A rating of the book out of 5              | 4.5 |
 
 ##### Responses
-There is no response from this endpoint.
+responses 200 "review added"
+
+#### Remove API
+##### Overview
+The remove endpoint for the review provides a way for the client to remove a review from a book
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the review remove endpoint is:
+`localhost:4000/api/review/remove`
+There is 1 required parameters for this endpoint.
+| Parameter | Description                                | Example     |
+|-----------|--------------------------------------------|-------------|
+| ID        | ID of the review                           | 1           |
+
+##### Responses
+responses 200 "review removed"
+
+#### Find_books API
+##### Overview
+The find_books endpoint for the review allows the client to get all reviews for a given book.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the review find_books endpoint is:
+`localhost:4000/api/review/find_books`
+There is 1 required parameters for this endpoint.
+| Parameter | Description                                | Example     |
+|-----------|--------------------------------------------|-------------|
+| Book        | ID of the book                              | 1           |
+
+##### Responses
+An array of reviews sorted by descending order. The review object is shown below 
+| Key           | Value Type | Description                                         |
+|---------------|------------|-----------------------------------------------------|
+| user          | user_id     | ID of the user who wrote review                             |
+| book          | book_id   | ID of the book for which the review was written                        |
+| rating        | number     | The rating of the book                               |
+| review        | string       | the text of the review                     |
+| time          | date        | The date when the review was made               |
+
 
 ### User
 #### Read API
@@ -239,7 +278,7 @@ There is 1 required parameter and zero optional parameters for this endpoint.
 | favorite_genre | The user's favorite genre             | Historical Fiction |
 
 ##### Responses
-There is no response from the server for this endpoint.
+response 200 "info updated"
 
 #### Me API
 ##### Overview
@@ -542,6 +581,7 @@ Review document
 |`[url]/api/user/read`|API call to get info on user|
 |`[url]/api/user/search`|API call to search for a user with a similar username|
 |`[url]/api/user/info/update`|API call to update the users info|
+|`[url]/api/user/me`|API call to get logged in user|
 
 ### Login
 | URL | Description |
