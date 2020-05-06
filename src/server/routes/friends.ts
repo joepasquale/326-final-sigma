@@ -22,6 +22,7 @@ router.post('/request', async (req, res) => {
         { _id: req.body.UserB },
         { $push: { friends: relationshipB } }
     )
+    res.status(200).send("request made");
 });
 
 router.post('/accept', async (req, res) => {
@@ -33,6 +34,7 @@ router.post('/accept', async (req, res) => {
         { requester: req.body.UserB, receiver: req.body.UserA },
         { $set: { status: 3 } }
     )
+    res.status(200).send("friend added");
 });
 
 router.post('/reject', async (req, res) => {
@@ -50,6 +52,7 @@ router.post('/reject', async (req, res) => {
         { _id: req.body.UserB },
         { $pull: { friends: relationshipB._id } }
     )
+    res.status(200).send("friend reject");
 });
 
 router.post('/all', async (req, res) => {

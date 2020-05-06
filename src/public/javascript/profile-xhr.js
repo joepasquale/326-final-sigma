@@ -182,11 +182,12 @@ async function sendFriendRequest() {
         "UserB": userB,
     };
     const newURL = url + '/api/friend/request';
-    const resp = await postData(newURL, data).then(
-        setTimeout(function() {
+    const resp = await postData(newURL, data);
+       if (resp.status == 200) {
+        setTimeout(function () {
             window.location.reload(true);
         })
-    );
+    }
 }
 
 async function handleProfile(profileData) {

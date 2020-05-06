@@ -71,7 +71,7 @@ router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $push: { reviews: review } })];
             case 4:
                 _a.sent();
-                res.end();
+                res.status(200).send("review added");
                 return [2 /*return*/];
         }
     });
@@ -88,7 +88,7 @@ router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $pull: { reviews: req.body.ID } })];
             case 3:
                 _a.sent();
-                res.end();
+                res.status(200).send("review removed");
                 return [2 /*return*/];
         }
     });

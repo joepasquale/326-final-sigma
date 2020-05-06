@@ -3,11 +3,12 @@
     "",
     "\\src",
     "\\src\\public",
+    "\\src\\public\\authhtml",
     "\\src\\public\\javascript",
     "\\src\\server",
     "\\src\\server\\models",
     "\\src\\server\\routes"
   ],
-  "SelectedNode": "\\src\\server\\routes\\user.ts",
+  "SelectedNode": "\\src\\server\\myserver.ts",
   "PreviewInSolutionExplorer": false
 }

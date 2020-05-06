@@ -15,6 +15,7 @@ router.post('/add', updateAdd, async (req, res) => {
     await UserSchema.findOneAndUpdate(
         { _id: req.body.User },
         { $addToSet: { booklist: relationship } });
+    res.status(200).send("book added");
 });
 
 router.post('/remove', updateAdd, async (req, res) => {
@@ -25,6 +26,7 @@ router.post('/remove', updateAdd, async (req, res) => {
         { _id: req.body.User },
         { $pull: { booklist: relationship } }
     );
+    res.status(200).send("book removed");
 });
 
 router.post('/find', async (req, res) => {

@@ -51,6 +51,7 @@ router.post('/add', update_1.updateAdd, function (req, res) { return __awaiter(v
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $addToSet: { booklist: relationship } })];
             case 2:
                 _a.sent();
+                res.status(200).send("book added");
                 return [2 /*return*/];
         }
     });
@@ -65,6 +66,7 @@ router.post('/remove', update_1.updateAdd, function (req, res) { return __awaite
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $pull: { booklist: relationship } })];
             case 2:
                 _a.sent();
+                res.status(200).send("book removed");
                 return [2 /*return*/];
         }
     });

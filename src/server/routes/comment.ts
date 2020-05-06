@@ -10,7 +10,8 @@ router.post('/add', async (req, res) => {
         time : req.body.Comment,
         message: req.body.Comment
     });
- await comment.save();
+    await comment.save();
+    res.status(200).send("comment added");
 });
 
 export { router };

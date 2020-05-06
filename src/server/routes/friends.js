@@ -56,6 +56,7 @@ router.post('/request', function (req, res) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserB }, { $push: { friends: relationshipB } })];
             case 4:
                 _a.sent();
+                res.status(200).send("request made");
                 return [2 /*return*/];
         }
     });
@@ -69,6 +70,7 @@ router.post('/accept', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, friends_1.Friend.findOneAndUpdate({ requester: req.body.UserB, receiver: req.body.UserA }, { $set: { status: 3 } })];
             case 2:
                 _a.sent();
+                res.status(200).send("friend added");
                 return [2 /*return*/];
         }
     });
@@ -89,6 +91,7 @@ router.post('/reject', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.UserB }, { $pull: { friends: relationshipB._id } })];
             case 4:
                 _a.sent();
+                res.status(200).send("friend reject");
                 return [2 /*return*/];
         }
     });

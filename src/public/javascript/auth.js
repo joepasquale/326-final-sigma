@@ -20,12 +20,13 @@ async function auth() {
 async function postData(url, data) {
     const resp = await fetch(url,
         {
+
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
-                'x-auth-token': sessionStorage.getItem('token'),
+                'x-auth-token': sessionStorage.getItem('token') || "",
                 'Content-Type': 'application/json'
             },
             redirect: 'follow',
@@ -68,10 +69,14 @@ async function handleFriend(id, urlAddition){
         "UserB": currentUser._id,
     };
     const newURL = url + urlAddition;
-    const resp = await postData(newURL, data)
-    .then( setTimeout(function() {
-        window.location.reload(true);
-    }));
+    const resp = await postData(newURL, data);
+    if (resp.status == 200) {
+        setTimeout(function () {
+            window.location.reload(true);
+        })
+    }
+ 
+          
 }
 
 async function test() {
@@ -95,10 +100,12 @@ async function handlePostList(book, listNumber, urlAddition, currentStatus){
         "Change":{ "toList": listNumber, "fromList": currentStatus}
     };
     const newURL = url + "/api/booklist/"+urlAddition;
-    const resp = await postData(newURL, data)
-    .then( setTimeout(function() {
-        window.location.reload(true);
-    }));
+    const resp = await postData(newURL, data);
+    if (resp.status == 200) {
+        setTimeout(function () {
+            window.location.reload(true);
+        })
+    }
 }
 
 

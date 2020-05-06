@@ -144,10 +144,12 @@ async function removeReview(rev){
         'User': currentUser._id
     };
     const nURL = url + '/api/review/remove';
-    let resp = await postData(nURL, data)  
-    .then( setTimeout(function() {
-        window.location.reload(true);
-    }));
+    let resp = await postData(nURL, data);  
+    if (resp.status == 200) {
+        setTimeout(function () {
+            window.location.reload(true);
+        })
+    }
 }
 
 
@@ -162,10 +164,12 @@ async function postReview(){
         'Rating': book_rating,
     };
     const nURL = url + '/api/review/add';
-    let resp = await postData(nURL, data)  
-    .then( setTimeout(function() {
-        window.location.reload(true);
-    }));
+    let resp = await postData(nURL, data); 
+    if (resp.status == 200) {
+        setTimeout(function () {
+            window.location.reload(true);
+        })
+    }
 }
 
 async function handleComments(bookData) {

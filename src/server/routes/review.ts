@@ -29,7 +29,7 @@ router.post('/add', async (req, res) => {
         { _id: req.body.User },
         { $push: { reviews: review,} }
     )
-    res.end();
+    res.status(200).send("review added");
 });
 
 router.post('/remove', async (req, res) => {
@@ -43,7 +43,7 @@ router.post('/remove', async (req, res) => {
         { _id: req.body.User },
         { $pull: { reviews: req.body.ID} }
     )
-    res.end();
+    res.status(200).send("review removed");
 });
 
 router.post('/find_books', async (req, res) => {

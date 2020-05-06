@@ -3,6 +3,7 @@ exports.__esModule = true;
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var app = express();
 var login_1 = require("./routes/login");
 var user_1 = require("./routes/user");
@@ -13,6 +14,7 @@ var update_1 = require("./routes/update");
 var review_1 = require("./routes/review");
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cors());
 mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
     .then(function () { return console.log('Connected to MongoDB...'); })["catch"](function (err) { return console.error('Could not connect to MongoDB..', err); });
 var PORT = process.env.PORT || 4000;
