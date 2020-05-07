@@ -73,7 +73,7 @@ async function handleFriend(id, urlAddition){
     if (resp.status == 200) {
         setTimeout(function () {
             window.location.reload(true);
-        })
+        });
     }
  
           
@@ -104,7 +104,7 @@ async function handlePostList(book, listNumber, urlAddition, currentStatus){
     if (resp.status == 200) {
         setTimeout(function () {
             window.location.reload(true);
-        })
+        });
     }
 }
 

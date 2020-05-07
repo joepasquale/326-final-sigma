@@ -26,6 +26,11 @@ async function sendProfileInfo() {
         }
     }
     let resp = await postData(newURL, data);
+    if(resp.status == 200){
+        setTimeout(function () {
+            window.location.reload(true);
+        });
+    }
 }
 
 async function getProfileInfo() {
@@ -186,7 +191,7 @@ async function sendFriendRequest() {
        if (resp.status == 200) {
         setTimeout(function () {
             window.location.reload(true);
-        })
+        });
     }
 }
 

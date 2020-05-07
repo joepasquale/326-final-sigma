@@ -16,7 +16,7 @@ var review_1 = require("./routes/review");
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
+mongoose.connect(process.env.DB || 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true })
     .then(function () { return console.log('Connected to MongoDB...'); })["catch"](function (err) { return console.error('Could not connect to MongoDB..', err); });
 var PORT = process.env.PORT || 4000;
 app.listen(PORT, function () { return console.log("Server listening on " + PORT); });

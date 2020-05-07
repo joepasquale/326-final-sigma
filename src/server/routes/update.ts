@@ -1,7 +1,5 @@
 const router = require("express").Router();
-import { User as UserSchema } from '../models/user';
 import {Friend} from '../models/friends'
-import { Book } from '../models/book';
 import { Update } from '../models/update';
 
 

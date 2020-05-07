@@ -212,7 +212,7 @@ async function handleComments(bookData) {
                 <div class="col container col-md-9 col-sm-9 col-12 col-lg-10 col-xl-10">
                     <div class="row container d-flex align-items-center" id="${"reviewContent_"+i}">
                         <big style="overflow:hidden;"><a href="${url + "/auth/profile.html?user=" + comments[i].user._id}" style="color:black; font-size:23px; ;">${comments[i].user.username}</a></big>
-                        <small class="ml-2">${dateval.toDateString()}</small>
+                        <small class="ml-2 text-muted">${dateval.toDateString()}</small>
                       
                     </div>    
                     <div class='row'>

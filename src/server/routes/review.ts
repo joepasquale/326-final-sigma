@@ -55,4 +55,11 @@ router.post('/find_books', async (req, res) => {
     res.json(reviews);
 });
 
+router.post('/find_review', async(req, res) =>{
+    const review = await Review.findOne(
+        {_id: req.body.ID}
+    )
+    res.json(review);
+});
+
 export {router};

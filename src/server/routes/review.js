@@ -107,3 +107,15 @@ router.post('/find_books', function (req, res) { return __awaiter(void 0, void 0
         }
     });
 }); });
+router.post('/find_review', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var review;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, review_1.Review.findOne({ _id: req.body.ID })];
+            case 1:
+                review = _a.sent();
+                res.json(review);
+                return [2 /*return*/];
+        }
+    });
+}); });
