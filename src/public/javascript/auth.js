@@ -5,7 +5,7 @@ async function auth() {
     let newURL = url + '/api/user/me';
     let token = sessionStorage.getItem('token');
     await postData(newURL, {}).then( async (resp) => {
-        if (resp.status != 200) {
+        if (resp.status == 401 || resp.status == 400) {
             window.location.href = url + "/login.html";
         }
         currentUser = await resp.json();
@@ -39,12 +39,12 @@ async function getUser(id) {
     let newURL = url + '/api/user/read';
     const data = { "id": id };
     const resp = await postData(newURL, data);
-    if (resp.status != 200) {
+    let j = await resp.json();
+    if (resp.status == 400) {
         console.log("Profile Doesn't Exist");
         window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
-    let j = await resp.json();
     return j;
 }
 
