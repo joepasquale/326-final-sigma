@@ -38,27 +38,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var router = require("express").Router();
 exports.router = router;
-var friends_1 = require("../models/friends");
 var update_1 = require("../models/update");
 router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friendslist, friendid, updates;
+    var updates;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, friends_1.Friend.find({ 'requester': req.body.User, 'status': 3 })];
+            case 0: return [4 /*yield*/, update_1.Update.find({
+                    'user': { $in: req.body.array }
+                })
+                    .populate('user', '_id username email')
+                    .populate('book', 'title imageLinks')
+                    .sort({ 'time': -1 })];
             case 1:
-                friendslist = _a.sent();
-                friendid = [];
-                friendslist.forEach(function (element) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-                    friendid.push(element.receiver);
-                    return [2 /*return*/];
-                }); }); });
-                return [4 /*yield*/, update_1.Update.find({
-                        'user': { $in: friendid }
-                    })
-                        .populate('user', '_id username email')
-                        .populate('book', 'title imageLinks')
-                        .sort({ 'time': -1 })];
-            case 2:
                 updates = _a.sent();
                 res.json(updates);
                 return [2 /*return*/];

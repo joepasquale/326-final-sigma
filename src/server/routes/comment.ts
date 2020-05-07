@@ -18,7 +18,7 @@ router.post('/all', async (req, res) => {
         { update: req.body.Update }
     )
     .populate('user', '_id username email')
-    .sort({'time': -1});
+    .sort({'time': 1});
     res.json(comments);
 });
 

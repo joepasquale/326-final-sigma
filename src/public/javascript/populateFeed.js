@@ -1,9 +1,28 @@
 async function getComments(id){
     const nURL = url + "/api/comment/all";
     const data = {'Update': id};
-    let resp = await postData(nURL, data);
+    resp = await postData(nURL, data);
     return await resp.json();
 }
+
+
+async function getUpdates(){
+    let user = await getUser(currentUser._id);
+    let resp = await postData("/api/friend/all", { 'array': user.friends })
+    let friends = await resp.json();
+    let friendarray = [];
+    for(let i = 0; i < friends.length; i++){
+        if(friends[i].status == 3){
+            friendarray.push(friends[i].receiver._id);
+        }
+    }
+    console.log(friendarray);
+    const nURL = url + "/api/updates/all";
+    const data = {'array': friendarray};
+    resp = await postData(nURL, data);
+    return await resp.json();
+}
+
 
 
 async function addComments(id){
@@ -60,9 +79,7 @@ async function getReview(id){
 }
 
 async function addUpdates(){
-    let newURL = url + "/api/updates/all";
-    let resp = await postData(newURL, { 'User':currentUser._id });
-    let arrayOfUpdates = await resp.json();
+    let arrayOfUpdates = await getUpdates();
     if(arrayOfUpdates == null || arrayOfUpdates.length  === 0){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
@@ -205,7 +222,7 @@ async function handleReviewUpdate(array, i){
             </div>
             <hr/>
             <div class="col container col-md-9 col-sm-9 col-12 col-lg-10 col-xl-10">
-                <div class="row my-2 container d-flex align-items-center" id="userRate">
+                <div class="row my-2 container d-flex align-items-center" id=${"userRate" +i}>
                 </div>    
                 <div class="row mb-2 container d-flex align-items-center">
                     <small class="text-muted">${dateval.toDateString()}</small>
@@ -231,7 +248,7 @@ async function handleReviewUpdate(array, i){
     for (let j = review.rating; j <= 4; j++) {
         userStars.innerHTML += '<i class="far fa-star text-warning"></i>';
     }
-    document.getElementById('userRate').appendChild(userStars);
+    document.getElementById('userRate' + i).appendChild(userStars);
 }
 
 

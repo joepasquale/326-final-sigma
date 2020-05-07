@@ -63,7 +63,7 @@ router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 
         switch (_a.label) {
             case 0: return [4 /*yield*/, comment_1.Comment.find({ update: req.body.Update })
                     .populate('user', '_id username email')
-                    .sort({ 'time': -1 })];
+                    .sort({ 'time': 1 })];
             case 1:
                 comments = _a.sent();
                 res.json(comments);
