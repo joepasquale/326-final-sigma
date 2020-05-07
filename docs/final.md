@@ -220,6 +220,136 @@ An array of reviews sorted by descending order. The review object is shown below
 | time          | date        | The date when the review was made               |
 
 
+### Friends
+#### Request API
+##### Overview
+The request endpoint for the API allows the client to fetch a user from the server and send them a request to add each other to their respective friends lists.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
+`[url]/api/friends/request`
+There are 2 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| userA     | The user who is sending the friend request   | joepasquale |
+| userB     | The user who is receiving the friend request | barackobama |
+##### Responses
+response status 200 "friend requested"
+
+#### Accept API
+##### Overview
+The accept endpoint for the API allows the client to accept a friend request received from another user on the server.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the accept endpoint is:
+`[url]/api/friends/accept`
+There are 2 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| userA     | The user who is sending the friend request   | joepasquale |
+| userB     | The user who is receiving the friend request | barackobama |
+
+##### Responses
+response status 200 "friend accepted"
+
+#### Reject API
+##### Overview
+The reject endpoint for the API allows the client to reject a friend request received from another user on the server.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the reject endpoint is:
+`[url]/api/friends/reject`
+There are 2 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| userA     | The user who is sending the friend request   | joepasquale |
+| userB     | The user who is receiving the friend request | barackobama |
+
+##### Responses
+response status 200 "friend removed"
+
+#### Find API
+##### Overview
+The find endpoint for the API allows the client to search for a friend on their friends list
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/friends/find`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    id     | The database id for the user         |    1    |
+
+##### Responses
+The Find API returns all response data as a JSON object. The full details for the response format are shown below:
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| requester       | user_id    | The id of the user                  |
+| receiver          | user_id    | The id  of the user         |
+| status      | number     | The status of their friend relationship          |
+
+#### All API
+##### Overview
+The All endpoint for the API allows the client to get all friends on their friends list
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/friends/all`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    array     | an array of friend ids         |    [1 , 2, 3]    |
+
+##### Responses
+The All API returns an array of friend objects for a specific user.
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| requester       | user_id    | The id of the user                  |
+| receiver          | user_id    | The id  of the user         |
+| status      | number     | The status of their friend relationship          |
+
+### Login
+#### Register API
+##### Overview
+The register endpoint for the API allows the client to send a request to the server to store a new user.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
+`[url]/api/login/register`
+There are 5 required parameter and zero optional parameters for this endpoint.
+| Parameter      | Description                           | Example            |
+|----------------|---------------------------------------|--------------------|
+| username       | The name of the user                  | joep               |
+| email          | The email address of the user         | joep@gmail.com     |
+| password       | The password of the user              | password123
+| firstname      | The first name of the user            | Joe                |
+| lastname       | The last name of the user             | Pasquale           |
+
+##### Responses
+The register API returns a JWT token to the user on success on failure it returns a 400 error
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| token          | string     | The authentication token of the user  |
+
+#### Login API
+##### Overview
+The register endpoint for the API allows the client to send a request to the server to store a new user.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
+`[url]/api/login/`
+There are 2 required parameter and zero optional parameters for this endpoint.
+| Parameter      | Description                           | Example            |
+|----------------|---------------------------------------|--------------------|
+| username       | The name of the user                  | joep               |
+| password       | The password of the user              | password123
+
+##### Responses
+The login API returns a JWT token to the user on success on failure it returns a 400 error
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| token          | string     | The authentication token of the user  |
+
 
 
 ## Database
@@ -418,7 +548,9 @@ Review document
 ### Comments
 | URL | Description |
 | --- | ----------- |
-|`[url]/api/comment/add`|API call to add a create a comment|
+|`[url]/api/comment/add`|API call to add a comment to an update|
+|`[url]/api/comment/remove`|API call to remove a comment from an upddate|
+|`[url]/api/comment/all`|API call to get all comments for a specific update|
 
 
 ## Authentication
