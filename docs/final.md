@@ -448,7 +448,7 @@ Assuming you are deploying the server on localhost with port 4000, the URI for t
 There is 1 required parameter and zero optional parameters for this endpoint.
 | Parameter | Description                          | Example |
 |-----------|--------------------------------------|---------|
-|    User     | The database id for the current user         |    1    |
+|    array     | and array of the users friends       |    1    |
 
 ##### Responses
 The all api returns a lit of update objects to the user

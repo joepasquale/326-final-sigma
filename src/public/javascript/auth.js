@@ -39,12 +39,12 @@ async function getUser(id) {
     let newURL = url + '/api/user/read';
     const data = { "id": id };
     const resp = await postData(newURL, data);
-    let j = await resp.json();
     if (resp.status == 400) {
         console.log("Profile Doesn't Exist");
         window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
+    let j = await resp.json();
     return j;
 }
 

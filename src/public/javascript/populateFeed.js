@@ -8,6 +8,9 @@ async function getComments(id){
 
 async function getUpdates(){
     let user = await getUser(currentUser._id);
+    if(user == null){
+        return [];
+    }
     let resp = await postData("/api/friend/all", { 'array': user.friends })
     let friends = await resp.json();
     let friendarray = [];
