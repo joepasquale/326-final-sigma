@@ -37,12 +37,13 @@ async function postData(url, data) {
 }
 
 async function getUser(id) {
+    console.log(id);
     let newURL = url + '/api/user/read';
     const data = { "id": id };
     const resp = await postData(newURL, data);
     if (resp.status == 400) {
         console.log("Profile Doesn't Exist");
-        window.location.href = url + '/auth/search-results.html?q=';
+        //window.location.href = url + '/auth/search-results.html?q=';
         return;
     }
     let j = await resp.json();
@@ -117,7 +118,3 @@ async function addToList(elem, listNumber, currentStatus){
 async function removeFromList(elem, listNumber, currentStatus){
     await handlePostList(elem.value, listNumber, "remove", currentStatus);
 }
-
-
-
-auth();

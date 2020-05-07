@@ -29,6 +29,7 @@ async function getUpdates(){
 
 
 async function addComments(id){
+    
     let arrayOfComments = await getComments(id);
     if(arrayOfComments == null || arrayOfComments.length == 0){
         return;
@@ -82,6 +83,7 @@ async function getReview(id){
 }
 
 async function addUpdates(){
+    await auth();
     let arrayOfUpdates = await getUpdates();
     if(arrayOfUpdates == null || arrayOfUpdates.length  === 0){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");

@@ -1,6 +1,7 @@
 let userProfile;
 
 async function getProfile() {
+    await auth();
     let urlData = await parseURL();
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);

@@ -2,6 +2,7 @@
 let userProfile;
 
 async function loadBooks() {
+    await auth();
     let urlData = await parseURL();
     let userID = urlData.user;
     let decoded = decodeURIComponent(userID);

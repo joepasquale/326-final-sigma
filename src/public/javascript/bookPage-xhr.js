@@ -1,6 +1,7 @@
 let Book;
 
 async function getBook() {
+    await auth();
     let urlData = await parseURL();
     let decoded = decodeURIComponent(urlData.book);
     let newURL = url + '/api/book/read';

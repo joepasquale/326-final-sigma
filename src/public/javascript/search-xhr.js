@@ -66,6 +66,7 @@ async function decode(text) {
 
 
 async function Search() {
+    await auth();
     let data = await parseURL();
     let books = false;
     let profile = false;
