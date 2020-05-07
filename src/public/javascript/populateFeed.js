@@ -19,6 +19,7 @@ async function getUpdates(){
             friendarray.push(friends[i].receiver._id);
         }
     }
+    friendarray.push(currentUser._id);
     console.log(friendarray);
     const nURL = url + "/api/updates/all";
     const data = {'array': friendarray};
