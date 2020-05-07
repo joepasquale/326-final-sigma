@@ -21,6 +21,7 @@ async function postData(url, data) {
     const resp = await fetch(url,
         {
 
+            
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
