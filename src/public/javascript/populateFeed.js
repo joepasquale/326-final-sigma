@@ -185,7 +185,7 @@ async function handleListUpdate(array, i){
     if(toList === 0){
         action = "removed"
         prep = "from their"
-        toListString = await getList(array[i].change.toFrom);
+        toListString = await getList(array[i].change.fromList);
     }else{
         action = "added"
         prep = "to their"
