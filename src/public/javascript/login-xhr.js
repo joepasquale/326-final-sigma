@@ -51,6 +51,14 @@ async function registerUser() {
     let passwordB = document.getElementById("inputPasswordB").value;
     let firstname = document.getElementById("inputFirstName").value;
     let lastname = document.getElementById("inputLastName").value;
+    if (firstname.length < 1 || lastname.length < 1){ //Checks if there is input in first and last name
+        let errorElem = document.getElementById("validateInput");
+        let p = document.createElement("P");
+        p.innerHTML = "Please add both a first name and a last name\n";
+        errorElem.appendChild(p);
+        errorElem.style.display = 'block';
+        isErroring = true;
+    }
     if ((passwordA.length < 6) || (passwordA.length > 20)) { //Check if password is the correct length (6-20), responds and stops if not
         let errorElem = document.getElementById("validateInput");
         let p = document.createElement("P");
