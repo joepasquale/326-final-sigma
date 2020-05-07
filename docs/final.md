@@ -836,7 +836,7 @@ The following were the contributions made during the Project:
         - myserver.ts
     - Milestone 1 Markdown
     - Final Markdown (contributed)
- - Daniel Corey
+ - Daniel Coley
     - Frontend HTML/CSS
         - Homefeed.html
         - bookpage.html
@@ -868,5 +868,11 @@ The following were the contributions made during the Project:
 
 
 ## Conclusion
+
+Overall, we learned a lot from this project. Specifically, some of the skills that we developed were how to use MongoDB, how to actually develop APIs, how to write detailed and thorough documentation, and how to effectively implement CRUD to give users a functional application. Along this, we learned about how we should prepare a full scale project, and what steps we should take if we wanted to develop an application of our own, especially when it comes to organizing the design process.
+
+Some of the difficulties that we encountered was that we felt that a lot of the project was learn-on-the-fly. For example, while there was a lot of guidance on how to write CRUD operations, there was not a lot of guidance on how to create routes or middleware or models. These are all essential to using CRUD operations when connected to a remote database, and we felt that it was a topic that we would have benefitted from more guidance from. 
+
+Some of the changes that we would suggest is that, under normal circumstances, a little bit of class time should be spent on BootStrap, Heroku, and GitHub's pull requests specifically. Another issue that we had was that we felt that using static pages and updating them dynamically was confusing and complex. While we understand that the point of the class was to get comfortable with web development **without** a framework, it seemed unnesseccarily complicated at points. Finally, this may have been because of the current global circumstances, but we felt disconnected from the rest of the class in the regard that we did not have a semblance of other groups' progress, and what kind of issues they were facing.
 
 ## Video Demo
