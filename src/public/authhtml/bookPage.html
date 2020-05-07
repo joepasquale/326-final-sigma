@@ -76,29 +76,35 @@
             <hr />
             <div class="mx-5">
                 <div class=container>
-                <div class="form-group border-focus row">
-                    <label class="col-form-label" id="rating_label" for="review">Rating</label>
-                    <div class="ml-2 mb-3">
-                        <select class="form-control" id="rating">
-                            <option value="0">0 Stars</option>
-                            <option value="0.5">0.5 Stars</option>
-                            <option value="1.0">1.0 Stars</option>
-                            <option value="1.5">1.5 Stars</option>
-                            <option value="2.0">2.0 Stars</option>
-                            <option value="2.5">2.5 Stars</option>
-                            <option value="3.0">3.0 Stars</option>
-                            <option value="3.5">3.5 Stars</option>
-                            <option value="4.0">4.0 Stars</option>
-                            <option value="4.5">4.5 Stars</option>
-                            <option value="5.0">5.0 Stars</option>
-                        </select>
+                    <div class="row px-5 d-flex justify-content-center">
+                        <div class="col-6" >
+                            <div class="alert alert-danger text-center" id="validateInput" role="alert" style="display:none;"></div>
+                        </div>
                     </div>
-                    <textarea type="text" class="form-control" id="review" style="resize:none;" rows="4"></textarea>
-                    <div class="d-flex flex-row-reverse">
-                        <button type="button" class="btn mt-3 text-white" style="background-color: #335482;" onclick="postReview()">Make a Post</button>
+                    <div class="form-group border-focus row">
+                        <label class="col-form-label" id="rating_label" for="review">Rating</label>
+                        <div class="ml-2 mb-3">
+                            <select class="form-control" id="rating">
+                                <option value="0">0 Stars</option>
+                                <option value="0.5">0.5 Stars</option>
+                                <option value="1.0">1.0 Stars</option>
+                                <option value="1.5">1.5 Stars</option>
+                                <option value="2.0">2.0 Stars</option>
+                                <option value="2.5">2.5 Stars</option>
+                                <option value="3.0">3.0 Stars</option>
+                                <option value="3.5">3.5 Stars</option>
+                                <option value="4.0">4.0 Stars</option>
+                                <option value="4.5">4.5 Stars</option>
+                                <option value="5.0">5.0 Stars</option>
+                            </select>
+                        </div>
+                    
+                        <textarea type="text" class="form-control" id="review" style="resize:none;" rows="4"></textarea>
+                        <div class="d-flex flex-row-reverse">
+                            <button type="button" class="btn mt-3 text-white" style="background-color: #335482;" onclick="postReview()">Make a Post</button>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             <hr />
             

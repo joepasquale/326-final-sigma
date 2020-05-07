@@ -157,18 +157,26 @@ async function postReview(){
     let rating = document.getElementById("rating");
     let book_rating = rating.options[rating.selectedIndex].value;
     let rating_text = document.getElementById('review').value;
-    const data = {
-        'Book': Book._id,
-        'User': currentUser._id,
-        'Text': rating_text,
-        'Rating': book_rating,
-    };
-    const nURL = url + '/api/review/add';
-    let resp = await postData(nURL, data); 
-    if (resp.status == 200) {
-        setTimeout(function () {
-            window.location.reload(true);
-        })
+    rating_text =  rating_text.trim();
+    if( rating_text == null ||  rating_text == ""){
+        let validate = document.getElementById('validateInput');
+        validate.style = "display:block";
+        validate.innerHTML="Input cannot be empty";
+        document.getElementById('review').value = "";
+    }else{
+        const data = {
+            'Book': Book._id,
+            'User': currentUser._id,
+            'Text': rating_text,
+            'Rating': book_rating,
+        };
+        const nURL = url + '/api/review/add';
+        let resp = await postData(nURL, data); 
+        if (resp.status == 200) {
+            setTimeout(function () {
+                window.location.reload(true);
+            })
+        }
     }
 }
 

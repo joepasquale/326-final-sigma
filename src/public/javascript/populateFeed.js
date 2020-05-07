@@ -83,7 +83,14 @@ async function addUpdates(){
         let id = arrayOfUpdates[i]._id;
         postHTML2.className = "container shadow-sm p-3 mb-5 mt-2 bg-white";
         postHTML2.innerHTML = 
-            `
+        
+            `   <div class="row px-5 d-flex justify-content-center">
+                    <div class="col-6" >
+                        <div class="alert alert-danger text-center" id=${"validateInput_"+id} role="alert" style="display:none;" ></div>
+                    </div>
+                </div>
+            
+               
                 <div class="row px-5">
                     <p id="textUI">Leave a comment?</p>
                 </div>
@@ -91,7 +98,7 @@ async function addUpdates(){
                     <textarea class="form-control" id=${"commentText_"+id} rows="3" placeholder="Leave a comment..." style="resize:none;"></textarea>
                 </div>
                 <div class="row px-5">
-                    <button value=${id} onclick="submitComment(this)" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>        
+                    <button value=${id} onclick="submitComment(this)" class="btn text-white" style="background-color: #335482;" type="Submit" style="margin-right: 15px;">Submit</button>        
                 </div>
             `;
         //Update structure goes as followed:
@@ -103,17 +110,25 @@ async function addUpdates(){
 
 async function submitComment(elem) { //COMMENTS ARE ON HOMEFEED
     let Comment = document.getElementById('commentText_'+ elem.value).value;
-    const data = {
-        "Comment" : Comment, 
-        "User" : currentUser._id, 
-        "Update": elem.value
-    };
-    const newURL = url + "/api/comment/add";
-    const resp = await postData(newURL, data);
-    if(resp.status == 200){
-        setTimeout(function () {
-            window.location.reload(true);
-        });
+    Comment = Comment.trim();
+    if(Comment == null || Comment == ""){
+        let validate = document.getElementById('validateInput_'+elem.value);
+        validate.style = "display:block";
+        validate.innerHTML="Input cannot be empty";
+        document.getElementById('commentText_'+ elem.value).value = "";
+    }else{
+        const data = {
+            "Comment" : Comment, 
+            "User" : currentUser._id, 
+            "Update": elem.value
+        };
+        const newURL = url + "/api/comment/add";
+        const resp = await postData(newURL, data);
+        if(resp.status == 200){
+            setTimeout(function () {
+                window.location.reload(true);
+            });
+        }
     }
 }
 
