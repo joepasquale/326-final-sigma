@@ -95,14 +95,17 @@ async function rejectFriend(idElem) {
 
 
 async function handlePostList(book, listNumber, urlAddition, currentStatus){
+  
     const data = {
         "Book": book,
         "User": currentUser._id,
         "Status": listNumber,
         "Change":{ "toList": listNumber, "fromList": currentStatus}
     };
-    const newURL = url + "/api/booklist/"+urlAddition;
+    const newURL = url + "/api/booklist/"+ urlAddition;
+    console.log('press');
     const resp = await postData(newURL, data);
+    console.log(await resp.text());
     if (resp.status == 200) {
         setTimeout(function () {
             window.location.reload(true);

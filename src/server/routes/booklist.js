@@ -48,7 +48,7 @@ router.post('/add', update_1.updateAdd, function (req, res) { return __awaiter(v
             case 0: return [4 /*yield*/, booklist_1.Booklist.findOneAndUpdate({ user: req.body.User, book: req.body.Book }, { $set: { status: req.body.Status } }, { upsert: true, "new": true })];
             case 1:
                 relationship = _a.sent();
-                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $addToSet: { booklist: relationship } })];
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $addToSet: { booklist: relationship._id } })];
             case 2:
                 _a.sent();
                 res.status(200).send("book added");
@@ -63,7 +63,7 @@ router.post('/remove', update_1.updateAdd, function (req, res) { return __awaite
             case 0: return [4 /*yield*/, booklist_1.Booklist.findOneAndRemove({ user: req.body.User, book: req.body.Book })];
             case 1:
                 relationship = _a.sent();
-                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $pull: { booklist: relationship } })];
+                return [4 /*yield*/, user_1.User.findOneAndUpdate({ _id: req.body.User }, { $pull: { booklist: relationship._id } })];
             case 2:
                 _a.sent();
                 res.status(200).send("book removed");
