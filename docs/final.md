@@ -350,6 +350,164 @@ The login API returns a JWT token to the user on success on failure it returns a
 |----------------|------------|---------------------------------------|
 | token          | string     | The authentication token of the user  |
 
+### User
+#### Read API
+##### Overview
+The read endpoint for the API allows the client to read the information for a specific user on the server.
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/user/read`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    id     | The database id for the user         |    1    |
+
+##### Responses
+The user API returns all response data as a JSON object. The full details for the response format are shown below:
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| username       | string     | The name of the user                  |
+| email          | string     | The email address of the user         |
+| firstname      | string     | The first name of the user            |
+| lastname       | string     | The last name of the user             |
+| favorite_book  | string     | The title of the user's favorite book |
+| favorite_genre | string     | The user's favorite genre             |
+| friends        | [Friend_id]    | A list of the user's friends          |
+| reviews        | [review_id]    | A list of the user's reviews         |
+| booklist        | [booklist_id]    | A list of books in user's booklist          |
+
+#### Search API
+##### Overview
+The search endpoint for the API allows the client to search for a user on the server.
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/user/search`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    search | A query for the user                 |  joe    |
+
+##### Responses
+The Search API responses with a list of found user objects or a 400 error for no users found.
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| profiles       | User       | The list of user objects found by the search
+
+#### Update API
+##### Overview
+The update endpoint for the API allows the client to update information for a user on the server.
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/user/info/update`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter      | Description                           | Example            |
+|----------------|---------------------------------------|--------------------|
+| username       |  The username of the user| joshvasilevsky |
+| info    	| The info object: firstname, lastname, favorite_book, favorite_genre|josh, vasilevsky, hunger games, mystery |
+
+##### Responses
+response 200 "user updated"
+
+#### Me API
+##### Overview
+The me endpoint for the API allows the client to read the information for the logged in user.
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/user/me`
+There are no required parameter and zero optional parameters for this endpoint.
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| token       | JWT token    | the stored web token                 |
+
+##### Responses
+The ME API responses with the corresponding user or a 401 error
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| username       | string     | The name of the user                  |
+| password       | string     | The password of the user              |
+| email          | string     | The email address of the user         |
+| firstname      | string     | The first name of the user            |
+| lastname       | string     | The last name of the user             |
+| favorite_book  | string     | The title of the user's favorite book |
+| favorite_genre | string     | The user's favorite genre             |
+| friends        | [Friend_id]    | A list of the user's friends          |
+| reviews        | [review_id]    | A list of the user's reviews         |
+| booklist        | [booklist_id]    | A list of books in user's booklist          |
+
+### Update
+#### all API
+##### Overview
+The all endpoint for the API allows the client to get all updates made by users on their friends list
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/updates/all`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    User     | The database id for the current user         |    1    |
+
+##### Responses
+The all api returns a lit of update objects to the user
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| user      | user_id     | the id of the user who made the update               |
+| book          | book_id     | the id of the book the update was made on         |
+| time      | Date     | the time the update was made            |
+| change       | object     | the change the user made             |
+
+
+### Update
+
+#### add API
+##### Overview
+The add endpoint for the API allows the client to create a comment for a specific update
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/comment/add`
+There is 3 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    User     | The database id for the current user         |    1    |
+|    Update     | The database id for the update        |    2    |
+|    Comment     | the user comment as a String       |    "nice!"    |
+
+##### Responses
+response status 200 "comment added"
+
+#### remove API
+##### Overview
+The remove endpoint for the API allows the client to remove their comment from an update
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/comment/remove`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    ID     | The id for the comment    |    1    |
+
+##### Responses
+response status 200 "comment removed"
+
+#### all API
+##### Overview
+The all endpoint for the API allows the client to get all comments made on specific update
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/comment/all`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    Update     | The database id for the update        |    1    |
+
+##### Responses
+The all api returns a lit of comments on the update
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| user      | user_id     | the id of the user who made the comment               |
+| update      | update_id     | the id of the update             |
+| time      | Date     | the time the comment was made               |
+| message      | String     | the message in the comment              |
 
 
 ## Database

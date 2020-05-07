@@ -16,6 +16,9 @@ async function sendProfileInfo() {
     let favgenre = document.getElementById("favgenre");
     let favorite_genre = favgenre.options[favgenre.selectedIndex].value;
     let newURL = url + "/api/user/info/update";
+    firstname = firstname.trim();
+    lastname = lastname.trim();
+    favorite_book = favorite_book.trim();
     data = {
         "username": currentUser.username,
         "info":{
