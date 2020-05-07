@@ -1,36 +1,54 @@
-let arrayOfUpdates= [];
-let arrayOfComments= [];
+async function getComments(id){
+    const nURL = url + "/api/comment/all";
+    const data = {'Update': id};
+    let resp = await postData(nURL, data);
+    return await resp.json();
+}
 
-async function addComments(){
 
-    if(arrayOfComments.length == 0){
+async function addComments(id){
+    let arrayOfComments = await getComments(id);
+    if(arrayOfComments == null || arrayOfComments.length == 0){
         return;
     }
-    if(arrayOfComments.length > 4){ //if array is greater than 4, then set original display limit to 5 updates
-        let y = 5;
-    }
-    else{
-        let y = arrayOfComments.length; //if 4 or less, sets iteration to the number of items in the array
-    }
-    for(j=0 ; j=y; j++){ //for loop goes down until all comments are outputted to HTML
-        let commentFeedDiv = document.getElementById("updateDiv");
+    for(let i=0 ; i<arrayOfComments.length; i++){ //for loop goes down until all comments are outputted to HTML
+        let commentFeedDiv = document.getElementById("feedbox");
         let commentHTML = document.createElement("div"); 
         //Comment HTML Below
+        let dateval = new Date(arrayOfComments[i].time);
+        commentHTML.className="container shadow-sm p-3 my-2 bg-white";
         commentHTML.innerHTML = 
-        `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white">
-            <div class="row" >
-                <div class="col-sm-11">
-                    <p id="reviewerName">
-                        ${arrayOfUpdates[j].user.username} commented at ${arrayOfComments.timestamp}.
+            `<div class="row px-5 pb-2" id=${"commentContent_"+i} >
+                <div class="container col">
+                    <p id="reviewerName"  style="color:black; margin-bottom:0px; word-wrap:break-word;">
+                        <a  href="${url + "/auth/profile.html?user=" + arrayOfComments[i].user._id}">${arrayOfComments[i].user.username}<a> commented
                     </p>
-                </div>
-                <div class="col-sm-12">
-                    <p id="commentText"> ${commentStr} </p>
+                    <small class="text-muted">${dateval.toString()}</small>
                 </div>
             </div>
-        </div>`;
-    
+            <div class="row px-5">
+                <div class="container">
+                    <p id="commentText" style="word-wrap:break-word;"> ${arrayOfComments[i].message} </p>
+                </div>
+            </div>`;
     commentFeedDiv.appendChild(commentHTML);
+    if(arrayOfComments[i].user._id === currentUser._id){
+        let removeButton = document.createElement('div');
+        removeButton.className = "d-flex flex-row-reverse";
+        removeButton.innerHTML=`  <button class="btn" value="${arrayOfComments[i]._id}" onclick="removeComment(this)"><i class="fas fa-times text-danger"></i></button>`;
+        document.getElementById("commentContent_"+i).appendChild(removeButton);
+    }
+    }
+}
+
+async function removeComment(elem){
+    const nURL = url + "/api/comment/remove";
+    const data = {'ID': elem.value};
+    let resp = await postData(nURL, data);
+    if(resp.status == 200){
+        setTimeout(function () {
+            window.location.reload(true);
+        });
     }
 }
 
@@ -44,53 +62,61 @@ async function getReview(id){
 async function addUpdates(){
     let newURL = url + "/api/updates/all";
     let resp = await postData(newURL, { 'User':currentUser._id });
-    arrayOfUpdates = await resp.json();
+    let arrayOfUpdates = await resp.json();
     if(arrayOfUpdates == null || arrayOfUpdates.length  === 0){ // Put text stating no updates if database array of user updates is less than 1
         let noUpdateDiv = document.getElementById("noUpdates");
         let p = document.createElement("P");
         p.innerHTML = `No feed updates :( . Try adding friends by searching their profile to see their updates! See your friends <a href="${url + "/auth/friendlist.html?user=" + currentUser._id}">here</a>.`;
         noUpdateDiv.appendChild(p);
         noUpdateDiv.style.display = 'block';
-        //console.log("TEST");
+        return;
     }
-    else{ // Output html of X number of updates to the feed
-        if(arrayOfUpdates.length > 10){ //if array is greater than 9, then set original display limit to 10 updates
-            x = 10;
+     // Output html of X number of updates to the feed
+    for(let i = 0 ; i< arrayOfUpdates.length; i++){ //for loop goes down until all posts are outputted to HTML
+        let feedDiv = document.getElementById("feedbox");
+        let postHTML2 = document.createElement("div");
+        if(arrayOfUpdates[i].change.toList != null){
+            await handleListUpdate(arrayOfUpdates, i);
+        }else{
+            await handleReviewUpdate(arrayOfUpdates, i);
         }
-        else{
-            x = arrayOfUpdates.length; //if 9 or less, sets iteration to the number of items in the array
-        }
-        for(i = 0 ; i<x; i++){ //for loop goes down until all posts are outputted to HTML
-            let feedDiv = document.getElementById("feedbox");
-            let postHTML2 = document.createElement("div");
-            console.log(arrayOfUpdates[i]);
-            if(arrayOfUpdates[i].change.toList != null){
-                await handleListUpdate(arrayOfUpdates, i);
-            }else{
-                await handleReviewUpdate(arrayOfUpdates, i);
-            }
-            
-            postHTML2.innerHTML = `<div class="container shadow-sm p-3 my-5 bg-white" style="background-color: white"> 
-                <div class="row">
-                    <div class="col-sm-1">
-                    </div>
-                <div class="col-sm-11">
-                    <p class="textUI" id="textUI">Leave a comment?</p>
+        let id = arrayOfUpdates[i]._id;
+        postHTML2.className = "container shadow-sm p-3 mb-5 mt-2 bg-white";
+        postHTML2.innerHTML = 
+            `
+                <div class="row px-5">
+                    <p id="textUI">Leave a comment?</p>
                 </div>
-                <div class="col-sm-12" style="margin-left:15px;margin-top:15px;">
-                    <div class="form-group green-border-focus">
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="Leave a comment..." style="width: 1000px;"></textarea>
-                    </div>
-                        <button onclick="submitComment()" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>
-                    </div>
+                <div class="form-group row px-5 green-border-focus">
+                    <textarea class="form-control" id=${"commentText_"+id} rows="3" placeholder="Leave a comment..." style="resize:none;"></textarea>
                 </div>
-            </div>`
-            //Update structure goes as followed:
-            addComments(); //Comment(s) by user(s) (if any) (appendChild is called within addComments to the HTML output by addUpdate())
-            feedDiv.appendChild(postHTML2); //Submit Comment Box
-        }
+                <div class="row px-5">
+                    <button value=${id} onclick="submitComment(this)" class="btn btn-secondary" type="Submit" style="margin-right: 15px;">Submit</button>        
+                </div>
+            `;
+        //Update structure goes as followed:
+        await addComments(id); //Comment(s) by user(s) (if any) (appendChild is called within addComments to the HTML output by addUpdate())
+        feedDiv.appendChild(postHTML2); //Submit Comment Box
     }
 }
+
+
+async function submitComment(elem) { //COMMENTS ARE ON HOMEFEED
+    let Comment = document.getElementById('commentText_'+ elem.value).value;
+    const data = {
+        "Comment" : Comment, 
+        "User" : currentUser._id, 
+        "Update": elem.value
+    };
+    const newURL = url + "/api/comment/add";
+    const resp = await postData(newURL, data);
+    if(resp.status == 200){
+        setTimeout(function () {
+            window.location.reload(true);
+        });
+    }
+}
+
 
 async function getList(status){
     if(status === 1){
@@ -110,7 +136,7 @@ async function getList(status){
 async function handleListUpdate(array, i){
     let feedDiv = document.getElementById("feedbox");
     let postHTML = document.createElement("div");
-    postHTML.className="container shadow-sm p-3 my-5 bg-white";
+    postHTML.className="container shadow-sm p-3 mt-5 mb-3 bg-white";
     let action = "";
     let prep = "";
     let messageStr = "";
@@ -120,11 +146,11 @@ async function handleListUpdate(array, i){
     let dateval = new Date(array[i].time);
     if(toList === 0){
         action = "removed"
-        prep = "from"
+        prep = "from their"
         toListString = await getList(array[i].change.toFrom);
     }else{
         action = "added"
-        prep = "to"
+        prep = "to their"
         toListString = await getList(array[i].change.toList);
     }
     postHTML.innerHTML = `
@@ -133,7 +159,7 @@ async function handleListUpdate(array, i){
                     <img class="img-thumbnail" style="height:150px;" src="${array[i].book.imageLinks.thumbnail}"></img>
                  </div>    
                 <div class="container col-md-9 col-sm-8 col-7 col-lg-10 col-xl-10">
-                    <p style="color:black; font-size:24px; margin-bottom:0px;"><a href="${url + "/auth/profile.html?user=" + array[i].user._id}" >${array[i].user.username}</a> 
+                    <p style="color:black; font-size:24px; margin-bottom:0px; word-wrap:break-word;"><a href="${url + "/auth/profile.html?user=" + array[i].user._id}" >${array[i].user.username}</a> 
                     ${action} <a href="${url + "/auth/bookPage.html?book=" + array[i].book._id}">${array[i].book.title}</a> ${prep} ${toListString}</p>
                     <small class="text-muted">${dateval.toString()}</small>
                 </div>
@@ -143,18 +169,17 @@ async function handleListUpdate(array, i){
 
 }
 
-async function handleReviewUpdate(array, index){
+async function handleReviewUpdate(array, i){
     let feedDiv = document.getElementById("feedbox");
     let postHTML = document.createElement("div");
-    postHTML.className="container shadow-sm p-3 my-5 bg-white";
+    postHTML.className="container shadow-sm p-3 mt-5 mb-3 bg-white";
     const review = await getReview(array[i].change);
-    console.log(review);
     let dateval = new Date(review.time);
     let dateval2 = new Date(array[i].time);
     postHTML.innerHTML = `
         <div class="row px-5 pb-2">
             <div class="col">
-                <p style="color:black; font-size:24px; margin-bottom:0px;"><a href="${url + "/auth/profile.html?user=" + array[i].user._id}" >${array[i].user.username}</a> 
+                <p style="color:black; font-size:24px; margin-bottom:0px; word-wrap:break-word;"><a href="${url + "/auth/profile.html?user=" + array[i].user._id}" >${array[i].user.username}</a> 
                 posted a new review for <a href="${url + "/auth/bookPage.html?book=" + array[i].book._id}">${array[i].book.title}</a></p>
                 <small class="text-muted">${dateval2.toString()}</small>
             </div>

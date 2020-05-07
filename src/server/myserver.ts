@@ -12,6 +12,7 @@ import { router as friends } from "./routes/friends";
 import { router as booklist } from "./routes/booklist";
 import { router as updates } from "./routes/update";
 import { router as review } from "./routes/review";
+import { router as comment } from "./routes/comment";
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -38,5 +39,7 @@ app.use('/api/booklist', auth, booklist);
 app.use('/api/friend', auth, friends);
 app.use('/api/updates', auth, updates);
 app.use('/api/review', auth, review);
+app.use('/api/comment', auth, comment);
+
 
 

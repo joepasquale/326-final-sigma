@@ -47,12 +47,38 @@ router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 
                 comment = new comment_1.Comment({
                     user: req.body.User,
                     update: req.body.Update,
-                    time: req.body.Comment,
                     message: req.body.Comment
                 });
                 return [4 /*yield*/, comment.save()];
             case 1:
                 _a.sent();
+                res.status(200).send("comment added");
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var comments;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, comment_1.Comment.find({ update: req.body.Update })
+                    .populate('user', '_id username email')
+                    .sort({ 'time': -1 })];
+            case 1:
+                comments = _a.sent();
+                res.json(comments);
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/remove', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var comments;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, comment_1.Comment.findOneAndRemove({ _id: req.body.ID })];
+            case 1:
+                comments = _a.sent();
+                res.status(200).send("comment removed");
                 return [2 /*return*/];
         }
     });

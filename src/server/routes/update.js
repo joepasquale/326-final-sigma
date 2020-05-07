@@ -60,7 +60,6 @@ router.post('/all', function (req, res) { return __awaiter(void 0, void 0, void 
                         .sort({ 'time': -1 })];
             case 2:
                 updates = _a.sent();
-                console.log(updates);
                 res.json(updates);
                 return [2 /*return*/];
         }

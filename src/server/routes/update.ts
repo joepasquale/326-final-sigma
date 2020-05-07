@@ -16,7 +16,6 @@ router.post('/all', async (req, res) => {
     .populate('user', '_id username email')
     .populate('book', 'title imageLinks')
     .sort({'time': -1});
-    console.log(updates);
     res.json(updates);
 });
 
