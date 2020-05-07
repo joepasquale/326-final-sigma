@@ -93,6 +93,9 @@ Page that shows all of the current user's friends, and their information. Users 
 ### Home Feed
 Home Feed for signed in user, which contains post updates and comments on those posts
 
+#### Home feed
+![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/feed.png)
+
 #### Home feed empty
 ![alt text](https://github.com/joepasquale/326-final-sigma/blob/master/docs/pictures/ui-final/feed_empty.png)
 
@@ -457,7 +460,6 @@ The all api returns a lit of update objects to the user
 | change       | object     | the change the user made             |
 
 
-### Update
 
 #### add API
 ##### Overview
@@ -509,6 +511,82 @@ The all api returns a lit of comments on the update
 | time      | Date     | the time the comment was made               |
 | message      | String     | the message in the comment              |
 
+### Booklist
+
+#### Add API
+##### Overview
+The add endpoint for the API allows the client to add a book to a specified users booklist
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the request endpoint is:
+`[url]/api/booklist/add`
+There are 3 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| User     | The id of the user whos adding book to list  | 4 |
+| Book     | The id of the book being added to list | 3 |
+| Status     | The list the book is being inserted to | 2 (currently reading) |
+
+##### Responses
+response status 200 "book added"
+
+#### Remove API
+##### Overview
+The remove endpoint for the API allows the client to remove a book from their booklists
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the accept endpoint is:
+`[url]/api/booklist/remove`
+There are 2 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| User     | The id of the user whos adding book to list  | 4 |
+| Book     | The id of the book being added to list | 3 |
+
+##### Responses
+response status 200 "book removed"
+
+#### Find API
+##### Overview
+The find endpoint allows the user to find a relationship between them and a book
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the reject endpoint is:
+`[url]/api/booklist/find`
+There are 2 required parameters and zero optional parameters for this endpoint.
+| Parameter | Description                                  | Example     |
+|-----------|----------------------------------------------|-------------|
+| User     | The id of the user whos adding book to list  | 4 |
+| Book     | The id of the book being added to list | 3 |
+
+##### Responses
+returns the relationship between a user and a book
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| user      	 | user_id |The id of the user whos adding book to list  | 4 |
+| book     	 | book_id |The id of the book being added to list | 3 |
+| status     	 | number   |The list the book is in | 3 (finished reading) |
+
+
+#### All API
+##### Overview
+The all endpoint for the API allows the client to get all books in their booklists
+
+##### Endpoint URI and Parameters
+Assuming you are deploying the server on localhost with port 4000, the URI for the find endpoint is:
+`[url]/api/booklist/all`
+There is 1 required parameter and zero optional parameters for this endpoint.
+| Parameter | Description                          | Example |
+|-----------|--------------------------------------|---------|
+|    array    | an array of booklist object ids         |    [1, 2, 3]    |
+
+##### Responses
+The all API returns a list of booklist objects which represent the relationship between  a user and a book
+| Key            | Value Type | Description                           |
+|----------------|------------|---------------------------------------|
+| user      	 | user_id |The id of the user whos adding book to list  | 4 |
+| book     	 | book_id |The id of the book being added to list | 3 |
+| status     	 | number   |The list the book is in | 3 (finished reading) |
 
 ## Database
 Our application uses a MongoDB non-relational database. 
@@ -532,7 +610,7 @@ This stores the information on the user as well as arrays of references to books
 User document
 ```
 {
-    _id: ObjectId\
+    _id: ObjectId
     username: String, // Username for this UserID
     email: String, // User's email address
     password: String, // User's password
