@@ -876,3 +876,5 @@ Some of the difficulties that we encountered was that we felt that a lot of the 
 Some of the changes that we would suggest is that, under normal circumstances, a little bit of class time should be spent on BootStrap, Heroku, and GitHub's pull requests specifically. Another issue that we had was that we felt that using static pages and updating them dynamically was confusing and complex. While we understand that the point of the class was to get comfortable with web development **without** a framework, it seemed unnesseccarily complicated at points. Finally, this may have been because of the current global circumstances, but we felt disconnected from the rest of the class in the regard that we did not have a semblance of other groups' progress, and what kind of issues they were facing.
 
 ## Video Demo
+
+https://www.youtube.com/watch?v=1p2Dk1hi7B0&list=PLbTmqqGclWPIyj1DOb6WwfmpuYCC78vzR&index=2&t=0s&ab_channel=DanielShaneColey
