@@ -52,12 +52,12 @@ async function registerUser() {
     let firstname = document.getElementById("inputFirstName").value;
     let lastname = document.getElementById("inputLastName").value;
     if ((passwordA.length < 6) || (passwordA.length > 20)) { //Check if password is the correct length (6-20), responds and stops if not
-        let errorElem = document.getElementById("validateInput")
+        let errorElem = document.getElementById("validateInput");
         let p = document.createElement("P");
         p.innerHTML = "Password not of appropriate length (6-20 characters)\n";
         errorElem.appendChild(p);
         errorElem.style.display = 'block';
-        isErroring == true;
+        isErroring = true;
     }
     if (passwordA != passwordB) { //Check if passwords match, responds and stops if not
         let errorElem = document.getElementById("validateInput");
@@ -67,18 +67,22 @@ async function registerUser() {
         errorElem.style.display = 'block';
         isErroring = true;
     }
-   /* if (username) {
-        let errorElem = document.getElementById("validateInput").style.display = 'block';
-        errorElem.innerHTML += "Passwords do not match";
-        document.getElementById("passwordHelpBlock").className = "text-danger";
+   if (username.length < 3 || username.length > 30) { //checks if username is correct length (3-30)
+        let errorElem = document.getElementById("validateInput");
+        let p = document.createElement("P");
+        p.innerHTML = "Username not of appropriate length (3-30 characters)\n";
+        errorElem.appendChild(p);
+        errorElem.style.display = 'block';
         isErroring = true;
     }
-    if (email) { //Check if passwords match, responds and stops if not
-        let errorElem = document.getElementById("validateInput").style.display = 'block';
-        errorElem.innerHTML += "Passwords do not match";
-        document.getElementById("passwordHelpBlock").className = "text-danger";
+    if ( !(email.includes("@") && email.includes(".")) ) { //Check if email contains match, responds and stops if not
+        let errorElem = document.getElementById("validateInput");
+        let p = document.createElement("P");
+        p.innerHTML = "Invalid Email Address (does not contain '@website.domain'. Ex: @umass.edu)\n";
+        errorElem.appendChild(p);
+        errorElem.style.display = 'block';
         isErroring = true;
-    }*/
+    }
     if (isErroring === true) {
         return;
     }
